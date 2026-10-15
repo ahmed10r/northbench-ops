@@ -61,19 +61,32 @@ def check_vault():
         return {"ok": False, "detail": str(e)[:160]}
 
 
+OUR_SLUGS = [
+    "calc-pack", "clientos", "contentengine", "eventplan", "freelance-os",
+    "habitledger", "jobhunt", "launchkit", "listinglab", "money-os",
+    "moneymap", "outreachkit", "prompt-sampler", "promptvault", "proposals",
+    "storeeye", "tutoros", "wholeshelf",
+]  # the 18 Northbench tools listings
+
+
 def check_shop():
-    tok = os.environ.get("GUMROAD_TOKEN", "")
-    if not tok:
-        return {"ok": False, "detail": "no GUMROAD_TOKEN secret set"}
-    try:
-        status, body, ms = fetch(GUMROAD_API + "?per_page=100",
-                                 headers={"Authorization": f"Bearer {tok}"})
-        data = json.loads(body)
-        n = len((data.get("products") or []))
-        return {"ok": status == 200 and n >= 18,
-                "detail": f"{n} products visible, {ms}s"}
-    except Exception as e:
-        return {"ok": False, "detail": str(e)[:160]}
+    """Gumroad's products API ignores paging on this account (returns the
+    same first 10 for every page), so the honest health check is: do all
+    18 of our listings answer? We hit each public short link and count
+    200s. A listing that 404s is a listing that died - that is the alarm."""
+    ok_count, missing = 0, []
+    for slug in OUR_SLUGS:
+        try:
+            status, _, _ = fetch(f"https://gumroad.com/l/{slug}", timeout=30)
+            if status in (200, 301, 302):
+                ok_count += 1
+            else:
+                missing.append(f"{slug}({status})")
+        except Exception as e:
+            missing.append(f"{slug}(err)")
+    return {"ok": ok_count == len(OUR_SLUGS),
+            "detail": f"{ok_count}/{len(OUR_SLUGS)} listings answer"
+                      + (f" - MISSING: {', '.join(missing)}" if missing else "")}
 
 
 def main():
