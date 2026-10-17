@@ -577,6 +577,22 @@
     "automate": null,
     "apply": null
    }
+  },
+  {
+   "id": "foreman",
+   "what": "the AI layer of the control center (northbench-foreman worker)",
+   "cadence_days": 7,
+   "last_pass": "2026-10-17",
+   "next_due": "2026-10-24",
+   "next_action": "watch first scheduled 09:30 passes; read agent:log in every sweep; tune prompt laws as drift appears",
+   "cycle": {
+    "inspect": "2026-10-17",
+    "research": "2026-10-17",
+    "change": "2026-10-17",
+    "systemize": "2026-10-17",
+    "automate": "2026-10-17",
+    "apply": "2026-10-17"
+   }
   }
  ]
 }
