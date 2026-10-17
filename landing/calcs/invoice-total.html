@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Invoice total, with a discount and a tax rate</title>
+<meta name="description" content="Type the line totals, the discount you agreed, and the tax rate that applies to you. It adds up. That is all it claims to do.">
+<link rel="stylesheet" href="../assets/page.css">
+</head><body>
+<header><a href="../../">the shelf</a> / <a href="../">calculators</a> / invoice-total</header>
+<h1>Invoice total, with a discount and a tax rate</h1>
+<p class="price">Type the line totals, the discount you agreed, and the tax rate that applies to you. It adds up. That is all it claims to do.</p>
+<main>
+<div class="row"><label for="lines">Line totals, one per line</label><textarea id="lines" spellcheck="false"></textarea><p class="hint">Each number is one item you are charging for.</p></div><div class="row"><label for="discount">Discount, percent</label><input id="discount" type="number" step="any" value="0"></div><div class="row"><label for="tax">Tax or VAT rate, percent</label><input id="tax" type="number" step="any" value="0"><p class="hint">Type the rate that applies to you. Left at 0 it is simply not added.</p></div>
+<table><tr><td>Before discount</td><td class="v" id="r0">-</td></tr><tr><td>Discount taken off</td><td class="v" id="r1">-</td></tr><tr><td>After discount</td><td class="v" id="r2">-</td></tr><tr><td>Tax added</td><td class="v" id="r3">-</td></tr><tr><td>The number you send</td><td class="v" id="r4">-</td></tr></table>
+<div class="box">Every line above comes out of the boxes you typed. Nothing is stored, nothing is sent,
+and there is no account behind this page.</div>
+<ul><li>It does not know your currency, so the answer is in whatever unit you typed.</li><li>Round-half-up and round-half-down differ by a cent now and then. A real invoice rounds per your own rule, and this page does not decide that for you.</li><li>This is arithmetic, not advice. What you charge and file is a question for your own rules, or an accountant.</li></ul>
+</main>
+<p><a class="buy" href="https://northbenchshop.gumroad.com/l/clientos">The invoice and quote files that use these five numbers, with the columns already in them</a><a href="../">back to the shelf</a></p>
+<footer>Arithmetic, not advice. It forecasts nothing and promises nothing. New pages are announced on <a href="https://t.me/northbenchweekly">the Telegram channel</a>.</footer>
+<script>
+function num(id) { var v = parseFloat(document.getElementById(id).value); return isFinite(v) ? v : 0; }
+function sumOf(id) {
+  var parts = document.getElementById(id).value.split(/[^0-9.-]+/).filter(function (x) { return x; });
+  var total = 0, seen = 0;
+  for (var i = 0; i < parts.length; i++) {
+    var v = parseFloat(parts[i]);
+    if (isFinite(v)) { total += v; seen++; }
+  }
+  return seen ? total : 0;
+}
+function text(id) { return document.getElementById(id).value; }
+function set(i, v) {
+  var td = document.getElementById('r' + i);
+  if (typeof v !== 'number' || !isFinite(v)) {
+    td.className = 'v err'; td.textContent = 'no answer at these numbers'; return;
+  }
+  td.className = 'v';
+  td.textContent = (Math.round(v * 100) / 100).toString();
+}
+function run() {
+  var lines = sumOf("lines");
+  var discount = num("discount");
+  var tax = num("tax");
+  set(0, lines);
+  set(1, lines * discount / 100);
+  set(2, lines * (1 - discount / 100));
+  set(3, lines * (1 - discount / 100) * tax / 100);
+  set(4, lines * (1 - discount / 100) * (1 + tax / 100));
+}
+window.addEventListener('input', run);
+run();
+</script>
+</body></html>

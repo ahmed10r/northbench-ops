@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How long a goal takes at a set amount</title>
+<meta name="description" content="Goal, what you put aside, how often. It divides. It will not tell you that you will keep to it.">
+<link rel="stylesheet" href="../assets/page.css">
+</head><body>
+<header><a href="../../">the shelf</a> / <a href="../">calculators</a> / saving-goal</header>
+<h1>How long a goal takes at a set amount</h1>
+<p class="price">Goal, what you put aside, how often. It divides. It will not tell you that you will keep to it.</p>
+<main>
+<div class="row"><label for="goal">The goal</label><input id="goal" type="number" step="any" value="3000"></div><div class="row"><label for="already">Already saved</label><input id="already" type="number" step="any" value="0"></div><div class="row"><label for="each">Put aside each time</label><input id="each" type="number" step="any" value="150"></div><div class="row"><label for="times">Times per year</label><input id="times" type="number" step="any" value="12"></div>
+<table><tr><td>Left to save</td><td class="v" id="r0">-</td></tr><tr><td>Months at that amount</td><td class="v" id="r1">-</td></tr><tr><td>Per year, at that amount</td><td class="v" id="r2">-</td></tr></table>
+<div class="box">Every line above comes out of the boxes you typed. Nothing is stored, nothing is sent,
+and there is no account behind this page.</div>
+<ul><li>No interest, no returns, no investment. Money under a mattress maths, on purpose: the moment a page starts guessing what savings earn, it is selling you a forecast.</li><li>If a month gets missed, the line moves. The plan is the number you can keep, not the number that looks tidy.</li></ul>
+</main>
+<p><a class="buy" href="https://northbenchshop.gumroad.com/l/moneymap">The workbook that tracks the goal month by month, and the debts beside it</a><a href="../">back to the shelf</a></p>
+<footer>Arithmetic, not advice. It forecasts nothing and promises nothing. New pages are announced on <a href="https://t.me/northbenchweekly">the Telegram channel</a>.</footer>
+<script>
+function num(id) { var v = parseFloat(document.getElementById(id).value); return isFinite(v) ? v : 0; }
+function sumOf(id) {
+  var parts = document.getElementById(id).value.split(/[^0-9.-]+/).filter(function (x) { return x; });
+  var total = 0, seen = 0;
+  for (var i = 0; i < parts.length; i++) {
+    var v = parseFloat(parts[i]);
+    if (isFinite(v)) { total += v; seen++; }
+  }
+  return seen ? total : 0;
+}
+function text(id) { return document.getElementById(id).value; }
+function set(i, v) {
+  var td = document.getElementById('r' + i);
+  if (typeof v !== 'number' || !isFinite(v)) {
+    td.className = 'v err'; td.textContent = 'no answer at these numbers'; return;
+  }
+  td.className = 'v';
+  td.textContent = (Math.round(v * 100) / 100).toString();
+}
+function run() {
+  var goal = num("goal");
+  var already = num("already");
+  var each = num("each");
+  var times = num("times");
+  set(0, goal - already);
+  set(1, (goal - already) / (each * times / 12));
+  set(2, each * times);
+}
+window.addEventListener('input', run);
+run();
+</script>
+</body></html>

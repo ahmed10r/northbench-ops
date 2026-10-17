@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Northbench - tools and stories, made to keep</title>
+<meta name=description content="Plain, durable files for people who work for themselves - and a graphic novel season in production. No logins, no subscriptions, free updates, 14-day refunds.">
+<link rel=canonical href="https://northbenchshop.com/">
+<meta property="og:title" content="Northbench - tools and stories, made to keep">
+<meta property="og:description" content="Plain, durable files for freelancers, tutors and small shops. Plus ORBITAL - a graphic novel season in production. No logins, no subscriptions.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://northbenchshop.com/">
+<meta property="og:image" content="https://northbenchshop.com/avatar.png">
+<meta name=twitter:card content="summary">
+<meta name=twitter:image content="https://northbenchshop.com/avatar.png">
+<style>
+:root{--ink:#1A1A18;--paper:#F6F3EC;--amber:#C68A2A;--mut:#6f6a60;--line:#ddd6c8}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font:16px/1.65 -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--paper)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+.serif{font-family:Georgia,'Times New Roman',serif}
+a{color:var(--ink);text-decoration:none;border-bottom:2px solid var(--amber)}
+a:hover{color:var(--amber)}
+header{padding:64px 0 40px;border-bottom:3px solid var(--ink)}
+.brand{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap}
+.brand h1{font-size:clamp(34px,6vw,64px);letter-spacing:2px;margin:0;font-weight:700}
+.brand .tag{font-size:15px;letter-spacing:3px;text-transform:uppercase;color:var(--amber);font-weight:700}
+.lede{max-width:64ch;font-size:19px;margin:18px 0 0;color:#3c382f}
+.badges{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0 0}
+.badges span{font-size:13px;letter-spacing:.4px;border:1.5px solid var(--ink);padding:5px 12px;border-radius:999px;background:#fff}
+section{padding:52px 0 8px}
+.kicker{font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--amber);font-weight:700;margin:0 0 6px}
+h2{font-size:clamp(24px,3.4vw,34px);margin:0 0 10px;font-weight:700}
+.sub{max-width:60ch;color:var(--mut);margin:0 0 26px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(235px,1fr));gap:20px}
+.card{background:#fff;border:1.5px solid var(--line);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .15s}
+.card:hover{border-color:var(--ink)}
+.card img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:#eee}
+.card .body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px;flex:1}
+.card .name{font-size:16.5px;font-weight:700;line-height:1.3}
+.card .one{font-size:13.5px;color:var(--mut);flex:1}
+.card .row{display:flex;align-items:center;justify-content:space-between;margin-top:6px}
+.price{font-weight:700;font-size:15px}
+.price.free{color:#1d7a3e}
+.buy{font-size:13.5px;font-weight:700;letter-spacing:.5px;border-bottom:2px solid var(--amber);padding-bottom:1px}
+.card:hover .buy{color:var(--amber)}
+.bundle{margin-top:26px;border:2.5px solid var(--ink);border-radius:12px;padding:26px 26px 22px;display:flex;gap:26px;align-items:center;background:#fff;flex-wrap:wrap}
+.bundle img{width:230px;border-radius:6px;border:1.5px solid var(--line)}
+.bundle .b2{flex:1;min-width:250px}
+.bundle h3{margin:0 0 6px;font-size:22px}
+.bundle p{margin:0 0 14px;color:var(--mut);max-width:56ch}
+.lanes{display:grid;grid-template-columns:repeat(auto-fill,minmax(235px,1fr));gap:20px}
+.lane{background:#fff;border:1.5px dashed var(--amber);border-radius:10px;padding:18px 18px 16px;display:flex;flex-direction:column;gap:8px}
+.lane .t{font-weight:700;font-size:16.5px}
+.lane .o{font-size:13.5px;color:var(--mut);flex:1}
+.lane a{font-size:13.5px;font-weight:700;letter-spacing:.5px}
+.gcard{background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:16px 18px;display:flex;flex-direction:column;gap:7px}
+.gcard:hover{border-color:var(--ink)}
+.gcard .t{font-weight:700;font-size:16px;line-height:1.35}
+.gcard .o{font-size:13.5px;color:var(--mut);flex:1}
+.gcard .r{font-size:13px;font-weight:700;letter-spacing:.5px;color:var(--amber)}
+.orbital{display:grid;grid-template-columns:1.05fr .95fr;gap:34px;align-items:center}
+.orbital .art{display:grid;grid-template-columns:1.6fr 1fr;gap:12px}
+.orbital .art img{width:100%;border-radius:8px;border:1.5px solid var(--line);display:block}
+.orbital p{max-width:56ch}
+.orbital .when{font-size:14px;letter-spacing:2px;text-transform:uppercase;color:var(--amber);font-weight:700}
+@media(max-width:820px){.orbital{grid-template-columns:1fr}}
+.promise{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin-top:8px}
+.promise div{border-top:3px solid var(--amber);padding-top:12px}
+.promise b{display:block;margin-bottom:4px}
+.promise p{margin:0;font-size:14px;color:var(--mut)}
+.band{margin:56px 0 0;background:var(--ink);color:var(--paper);border-radius:14px;padding:38px 30px;text-align:center}
+.band h3{font-size:clamp(20px,3vw,28px);margin:0 0 10px}
+.band p{margin:0 0 18px;color:#cfc9bb}
+.band a{color:#fff;border-bottom:2px solid var(--amber)}
+footer{padding:44px 0 60px;color:var(--mut);font-size:14px}
+footer .cols{display:flex;gap:40px;flex-wrap:wrap;justify-content:space-between;border-top:1.5px solid var(--line);padding-top:24px}
+footer b{color:var(--ink);letter-spacing:2px}
+.code{display:inline-block;border:1.5px dashed var(--amber);color:var(--ink);font-weight:700;letter-spacing:1.5px;padding:4px 12px;border-radius:6px;margin-top:8px}
+</style>
+</head>
+<body>
+<header>
+  <div class=wrap>
+    <div class="brand serif">
+      <h1>NORTHBENCH</h1>
+      <span class=tag>Made to keep</span>
+    </div>
+    <p class=lede>Plain, durable files for people who work for themselves - and patient
+    stories worth the paper they would be printed on. No logins, no subscriptions,
+    no rent on tools you already bought.</p>
+    <div class=badges>
+      <span>Files you keep</span><span>Free updates</span><span>14-day refunds</span><span>30% off with NORTHBENCH30</span>
+    </div>
+  </div>
+</header>
+<section id="tools">
+  <div class=wrap>
+    <p class=kicker>The tools</p>
+    <h2 class=serif>For the work</h2>
+    <p class=sub>Back offices, pipelines and paperwork for freelancers and small studios. Everything is a file - open it, own it, keep it.</p>
+    <div class=grid>
+      <div class=card><img src=assets/covers/freelance-os.png alt="Freelance OS">
+        <div class=body><div class=name>Freelance OS</div>
+        <div class=one>Your freelance back office, run by conversation. Eight Claude Code commands.</div>
+        <div class=row><span class="price">$29</span><a class=buy href="/go/freelance-os?src=home">Buy &rarr;</a></div></div></div>
+      <div class=card><img src=assets/covers/clientos.png alt="ClientOS">
+        <div class=body><div class=name>ClientOS</div>
+        <div class=one>Clients, projects and invoices in one workbook.</div>
+        <div class=row><span class="price">$19</span><a class=buy href="/go/clientos?src=home">Buy &rarr;</a></div></div></div>
+      <div class=card><img src=assets/covers/proposals.png alt="Proposal System">
+        <div class=body><div class=name>Proposal System</div>
+        <div class=one>Quotes, proposals and SOWs that get signed - and prevent arguments.</div>
+        <div class=row><span class="price">$49</span><a class=buy href="/go/proposals?src=home">Buy &rarr;</a></div></div></div>
+      <div class=card><img src=assets/covers/outreachkit.png alt="Outreach Kit">
+        <div class=body><div class=name>Outreach Kit</div>
+        <div class=one>Cold email system for freelancers and small studios.</div>
+        <div class=row><span class="price">$16</span><a class=buy href="/go/outreachkit?src=home">Buy &rarr;</a></div></div></div>
+      <div class=card><img src=assets/covers/launchkit.png alt="Launch Kit">
+        <div class=body><div class=name>Launch Kit</div>
+        <div class=one>Your first digital product, start to published.</div>
+        <div class=row><span class="price">$24</span><a class=buy href="/go/launchkit?src=home">Buy &rarr;</a></div></div></div>
+      <div class=card><img src=assets/covers/listinglab.png alt="Listing Lab">
+        <div class=body><div class=name>Listing Lab</div>
+        <div class=one>168 fill-in listing lines and a keyword grid.</div>
+        <div class=row><span class="price">$11</span><a class=buy href="/go/listinglab?src=home">Buy &rarr;</a></div></div></div>
+      <div class=card><img src=assets/covers/contentengine.png alt="Content Engine">
+        <div class=body><div class=name>Content Engine</div>
+        <div class=one>90-day post calendar and batch system.</div>
+        <div class=row><span class="price">$17</span><a class=buy href="/go/contentengine?src=home">Buy &rarr;</a></div></div></div>
+      <div class=card><img src=assets/covers/storeeye.png alt="Store Eye">
+        <div class=body><div class=name>Store Eye</div>
+        <div class=one>A short daily letter about what changed on your shop or website.</div>
+        <div class=row><span class="price">$29</span><a class=buy href="/go/storeeye?src=home">Buy &rarr;</a></div></div></div>
+    </div>
+  </div>
+</section><section id="money">
+  <div class=wrap>
+    <p class=kicker>The money</p>
+    <h2 class=serif>For the money</h2>
+    <p class=sub>Know your numbers before your numbers become a problem.</p>
+    <div class=grid>
+      <div class=card><img src=assets/covers/money-os.png alt="Money OS">
+        <div class=body><div class=name>Money OS</div>
+        <div class=one>Your money admin, done by conversation. Eight Claude Code commands.</div>
+        <div class=row><span class="price">$34</span><a class=buy href="/go/money-os?src=home">Buy &rarr;</a></div></div></div>
+      <div class=card><img src=assets/covers/moneymap.png alt="Money Map">
+        <div class=body><div class=name>Money Map</div>
+        <div class=one>Household budget and net worth, one workbook.</div>
+        <div class=row><span class="price">$14</span><a class=buy href="/go/moneymap?src=home">Buy &rarr;</a></div></div></div>
+      <div class=card><img src=assets/covers/calc-pack.png alt="Calculator Pack">
+        <div class=body><div class=name>Calculator Pack</div>
+        <div class=one>The eight calculators, offline, in one workbook.</div>
+        <div class=row><span class="price">$12</span><a class=buy href="/go/calc-pack?src=home">Buy &rarr;</a></div></div></div>
+    </div>
+  </div>
+</section>
+    <div class=bundle>
+      <img src=assets/covers/wholeshelf.png alt="The Whole Shelf">
+      <div class=b2>
+        <h3 class=serif>The Whole Shelf - everything, one download</h3>
+        <p>All sixteen tools, no duplicates, one file. The complete back office, money stack and planning shelf - the cheapest way to own everything we make.</p>
+        <div class=row style="display:flex;align-items:center;gap:18px">
+          <span class=price style="font-size:20px">$59</span>
+          <a class=buy href="/go/wholeshelf?src=home">Buy the Shelf &rarr;</a>
+        </div>
+      </div>
+    </div>
+<section id="everyday">
+  <div class=wrap>
+    <p class=kicker>Teaching & everyday</p>
+    <h2 class=serif>For teaching &amp; everyday</h2>
+    <p class=sub>Classrooms, career moves, and the small daily things.</p>
+    <div class=grid>
+      <div class=card><img src=assets/covers/tutoros.png alt="Tutor OS">
+        <div class=body><div class=name>Tutor OS</div>
+        <div class=one>Students, sessions and payments for private tutors.</div>
+        <div class=row><span class="price">$19</span><a class=buy href="/go/tutoros?src=home">Buy &rarr;</a></div></div></div>
+      <div class=card><img src=assets/covers/eventplan.png alt="Event Plan">
+        <div class=body><div class=name>Event Plan</div>
+        <div class=one>Guest list, seating and budget workbook for big events.</div>
+        <div class=row><span class="price">$14</span><a class=buy href="/go/eventplan?src=home">Buy &rarr;</a></div></div></div>
+      <div class=card><img src=assets/covers/jobhunt.png alt="Job Hunt Command">
+        <div class=body><div class=name>Job Hunt Command</div>
+        <div class=one>Application tracker, interview prep and offer scripts.</div>
+        <div class=row><span class="price">$15</span><a class=buy href="/go/jobhunt?src=home">Buy &rarr;</a></div></div></div>
+      <div class=card><img src=assets/covers/habitledger.png alt="Habit Ledger">
+        <div class=body><div class=name>Habit Ledger</div>
+        <div class=one>Undated 52-week printable planner. No streaks, no shame.</div>
+        <div class=row><span class="price">$9</span><a class=buy href="/go/habitledger?src=home">Buy &rarr;</a></div></div></div>
+      <div class=card><img src=assets/covers/promptvault.png alt="Prompt Vault">
+        <div class=body><div class=name>Prompt Vault</div>
+        <div class=one>79 working AI prompts for small business.</div>
+        <div class=row><span class="price">$12</span><a class=buy href="/go/promptvault?src=home">Buy &rarr;</a></div></div></div>
+      <div class=card style="border-style:dashed"><img src=assets/covers/prompt-sampler.png alt="Prompt Sampler">
+        <div class=body><div class=name>Prompt Sampler</div>
+        <div class=one>14 working AI prompts. The free sample - take it, no strings.</div>
+        <div class=row><span class="price free">FREE</span><a class=buy href="/go/prompt-sampler?src=home">Get it &rarr;</a></div></div></div>
+    </div>
+  </div>
+</section>
+<section id=free>
+  <div class=wrap>
+    <p class=kicker>The free shelf</p>
+    <h2 class=serif>Free, and no email wall</h2>
+    <p class=sub>Everything below is free with no signup. It is the honest half of the shop -
+    use it forever, or use it to decide whether the working files are for you.</p>
+    <div class=lanes>
+      <div class=lane><div class=t>The free sampler</div>
+      <div class=o>Fourteen working AI prompts. No email wall, no strings - take it.</div>
+      <a href="https://northbenchshop.gumroad.com/l/prompt-sampler">Open &rarr;</a></div>
+      <div class=lane><div class=t>Free calculators</div>
+      <div class=o>Freelance rate, invoice totals, payout after fees, break-even - nine of them, no signup.</div>
+      <a href="/calcs/">Open &rarr;</a></div>
+      <div class=lane><div class=t>Free guides</div>
+      <div class=o>Nine plain-words guides. Every one links to the working files if you want them.</div>
+      <a href="/guides/">Open &rarr;</a></div>
+      <div class=lane><div class=t>Plain answers</div>
+      <div class=o>Fifty-seven short answers to the actual jobs - pricing, chasing invoices, seating charts, habits.</div>
+      <a href="/q/">Open &rarr;</a></div>
+    </div>
+  </div>
+</section>
+
+<section id=guides>
+  <div class=wrap>
+    <p class=kicker>The guides</p>
+    <h2 class=serif>Plain-words guides, free</h2>
+    <p class=sub>Short, honest systems for the jobs people actually have - pricing, proposals,
+    cold email, habits, budgets, launches. Each one links to the working files if you want them;
+    none of them requires one.</p>
+    <div class=grid>
+      <div class=gcard><div class=t>How to price freelance work</div>
+      <div class=o>Your cost floor, your value roof, the market range - and the number you can defend out loud.</div>
+      <a class=r href="/guides/how-to-price-freelance-work">Read the guide &rarr;</a></div>
+      <div class=gcard><div class=t>The freelance proposal that gets signed</div>
+      <div class=o>The seven-part anatomy, in order: their words, the outcome, one number, the exclusions.</div>
+      <a class=r href="/guides/freelance-proposal-that-gets-signed">Read the guide &rarr;</a></div>
+      <div class=gcard><div class=t>Cold email that gets replies</div>
+      <div class=o>The one-line pitch, the three-email rhythm, and what never to write.</div>
+      <a class=r href="/guides/cold-email-for-freelancers">Read the guide &rarr;</a></div>
+      <div class=gcard><div class=t>The tutor tracker spreadsheet</div>
+      <div class=o>The four lists that run a tutoring practice: students, sessions, payments, schedule.</div>
+      <a class=r href="/guides/tutor-tracker-spreadsheet">Read the guide &rarr;</a></div>
+      <div class=gcard><div class=t>The habit tracker that survives</div>
+      <div class=o>Why trackers die at week three - and the paper system that does not.</div>
+      <a class=r href="/guides/habit-tracker-that-survives">Read the guide &rarr;</a></div>
+      <div class=gcard><div class=t>The household budget spreadsheet</div>
+      <div class=o>What belongs in a household budget - and what to leave out.</div>
+      <a class=r href="/guides/household-budget-spreadsheet">Read the guide &rarr;</a></div>
+      <div class=gcard><div class=t>AI prompts for small business</div>
+      <div class=o>Role, inputs, format - the three things every working prompt has.</div>
+      <a class=r href="/guides/ai-prompts-for-small-business">Read the guide &rarr;</a></div>
+      <div class=gcard><div class=t>The event planning checklist</div>
+      <div class=o>The dependency order most checklists ignore, plus the three numbers that run every event.</div>
+      <a class=r href="/guides/event-planning-checklist">Read the guide &rarr;</a></div>
+      <div class=gcard><div class=t>Your first product launch</div>
+      <div class=o>Pick it, prove it, build it in a day, price it to survive, publish, tell people.</div>
+      <a class=r href="/guides/product-launch-checklist">Read the guide &rarr;</a></div>
+    </div>
+  </div>
+</section>
+
+<section id=orbital>
+  <div class=wrap>
+    <p class=kicker>The series - in production</p>
+    <h2 class=serif>ORBITAL - a thriller told in silence</h2>
+    <div class=orbital>
+      <div>
+        <p>Low orbit is a workplace. A four-person salvage crew catches a
+        decommissioned satellite that has been dead for thirty years - except its
+        transmitter is warm, and it is spelling one name in old commercial morse:
+        the name of the newest member of their crew.</p>
+        <p style="margin-top:12px">Season One: ten episodes of precision line art, one
+        electric blue, no sound in vacuum. Episode One is finished and in review;
+        the season follows.</p>
+        <p class=when style="margin-top:18px">Coming - Episode One will be free</p>
+      </div>
+      <div class=art>
+        <img src=assets/orbital/cover.png alt="ORBITAL Season One cover">
+        <img src=assets/orbital/splash.png alt="ORBITAL splash page">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class=wrap>
+    <p class=kicker>Why Northbench</p>
+    <h2 class=serif>What we promise</h2>
+    <div class=promise>
+
+      <div><b>Files, not accounts</b><p>Everything you buy is a file you keep. Works
+      offline, forever. If we vanish, your tools still work.</p></div>
+      <div><b>No subscriptions</b><p>Pay once. Free updates for the life of the
+      product. We will never charge you rent on something you own.</p></div>
+      <div><b>14-day refunds</b><p>No reason needed. If it is not for you, it is not
+      for you - we would rather return your money than keep it badly.</p></div>
+      <div><b>Made to keep</b><p>Plain language, honest structure, nothing clever
+      enough to break. The boring parts are the durable parts.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class=band>
+  <div class=wrap>
+    <h3 class=serif>Start with the free sampler</h3>
+    <p>Fourteen working AI prompts, no email wall, no strings. One useful note a
+    week on Telegram - new tools land there first.</p>
+    <p style="margin-bottom:0">
+      <a href="https://northbenchshop.gumroad.com/l/prompt-sampler">Get the free sampler</a>
+      &nbsp;&middot;&nbsp;
+      <a href="https://t.me/northbenchweekly">t.me/northbenchweekly</a>
+    </p>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap cols">
+    <div>
+      <b>NORTHBENCH</b><br>
+      northbenchshop.com<br>
+      Made to keep.
+    </div>
+    <div>
+      <b>Elsewhere</b><br>
+      <a href="https://t.me/northbenchweekly">Telegram</a><br>
+      <a href="https://bsky.app/profile/northbench.bsky.social">Bluesky</a><br>
+      <a href="https://northbenchshop.gumroad.com">The shop</a>
+    </div>
+    <div>
+      <b>Early-days pricing</b><br>
+      Everything, every day:<br>
+      <span class=code>NORTHBENCH30</span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

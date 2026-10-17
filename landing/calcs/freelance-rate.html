@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>What an hour has to cost to pay you</title>
+<meta name="description" content="Start from the money you need, then work back to a rate. Billable hours are the honest part: it is the hours you can actually charge for, not the hours you sit at a desk.">
+<link rel="stylesheet" href="../assets/page.css">
+</head><body>
+<header><a href="../../">the shelf</a> / <a href="../">calculators</a> / freelance-rate</header>
+<h1>What an hour has to cost to pay you</h1>
+<p class="price">Start from the money you need, then work back to a rate. Billable hours are the honest part: it is the hours you can actually charge for, not the hours you sit at a desk.</p>
+<main>
+<div class="row"><label for="need">What you need in hand each month</label><input id="need" type="number" step="any" value="1000"></div><div class="row"><label for="hours">Working hours per week</label><input id="hours" type="number" step="any" value="40"></div><div class="row"><label for="billable">Share of them you can charge for, percent</label><input id="billable" type="number" step="any" value="50"><p class="hint">Sellers run at 40 to 60. Nobody gets paid for the admin.</p></div><div class="row"><label for="weeks">Paid weeks in the year</label><input id="weeks" type="number" step="any" value="45"><p class="hint">Take out holidays, sick days and the empty fortnights.</p></div><div class="row"><label for="months">Months you are pricing for</label><input id="months" type="number" step="any" value="1"></div><div class="row"><label for="fees">Platform and payment fees, percent</label><input id="fees" type="number" step="any" value="13"><p class="hint">Type your own. If you invoice by bank transfer, use 0.</p></div>
+<table><tr><td>Hours you can charge for, per year</td><td class="v" id="r0">-</td></tr><tr><td>What has to come in, per year, before fees</td><td class="v" id="r1">-</td></tr><tr><td>The rate that gets you there</td><td class="v" id="r2">-</td></tr></table>
+<div class="box">Every line above comes out of the boxes you typed. Nothing is stored, nothing is sent,
+and there is no account behind this page.</div>
+<ul><li>It answers 'what rate hits the number you typed', not 'what will anyone pay'. Those are different questions and only the market answers the second one.</li><li>If the rate comes out absurd, the honest fix is usually more billable share or fewer dead weeks, not a bigger number.</li><li>Nothing here is a forecast of work. Empty weeks are the trade's normal weather.</li></ul>
+</main>
+<p><a class="buy" href="https://northbenchshop.gumroad.com/l/clientos">The client files: quotes, scope, chase notes, the log that stops a project drifting</a><a href="../">back to the shelf</a></p>
+<footer>Arithmetic, not advice. It forecasts nothing and promises nothing. New pages are announced on <a href="https://t.me/northbenchweekly">the Telegram channel</a>.</footer>
+<script>
+function num(id) { var v = parseFloat(document.getElementById(id).value); return isFinite(v) ? v : 0; }
+function sumOf(id) {
+  var parts = document.getElementById(id).value.split(/[^0-9.-]+/).filter(function (x) { return x; });
+  var total = 0, seen = 0;
+  for (var i = 0; i < parts.length; i++) {
+    var v = parseFloat(parts[i]);
+    if (isFinite(v)) { total += v; seen++; }
+  }
+  return seen ? total : 0;
+}
+function text(id) { return document.getElementById(id).value; }
+function set(i, v) {
+  var td = document.getElementById('r' + i);
+  if (typeof v !== 'number' || !isFinite(v)) {
+    td.className = 'v err'; td.textContent = 'no answer at these numbers'; return;
+  }
+  td.className = 'v';
+  td.textContent = (Math.round(v * 100) / 100).toString();
+}
+function run() {
+  var need = num("need");
+  var hours = num("hours");
+  var billable = num("billable");
+  var weeks = num("weeks");
+  var months = num("months");
+  var fees = num("fees");
+  set(0, hours * weeks * billable / 100);
+  set(1, need * months * 12 / (1 - fees / 100));
+  set(2, need * months * 12 / (1 - fees / 100) / (hours * weeks * billable / 100));
+}
+window.addEventListener('input', run);
+run();
+</script>
+</body></html>

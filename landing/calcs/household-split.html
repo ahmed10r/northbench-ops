@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The 50 / 30 / 20 split, on your own numbers</title>
+<meta name="description" content="Needs, wants, saving - and what is left after the bills that do not move. It is a starting shape, not a rule.">
+<link rel="stylesheet" href="../assets/page.css">
+</head><body>
+<header><a href="../../">the shelf</a> / <a href="../">calculators</a> / household-split</header>
+<h1>The 50 / 30 / 20 split, on your own numbers</h1>
+<p class="price">Needs, wants, saving - and what is left after the bills that do not move. It is a starting shape, not a rule.</p>
+<main>
+<div class="row"><label for="income">Money in, this month</label><input id="income" type="number" step="any" value="500"></div><div class="row"><label for="fixed">Bills that do not move, this month</label><input id="fixed" type="number" step="any" value="200"></div><div class="row"><label for="save">Saving first, percent of income</label><input id="save" type="number" step="any" value="20"></div><div class="row"><label for="debt">Debt payments this month</label><input id="debt" type="number" step="any" value="0"></div>
+<table><tr><td>Saving</td><td class="v" id="r0">-</td></tr><tr><td>After saving and debt</td><td class="v" id="r1">-</td></tr><tr><td>Leaving for the month's variable spending</td><td class="v" id="r2">-</td></tr><tr><td>Needs share, of what came in</td><td class="v" id="r3">-</td></tr></table>
+<div class="box">Every line above comes out of the boxes you typed. Nothing is stored, nothing is sent,
+and there is no account behind this page.</div>
+<ul><li>If the variable line comes out negative, the split is not the problem: the fixed column is bigger than the income column. That is the whole answer.</li><li>This page cannot see your year, your rent increase, or a month with two big bills in it. A plan that survives one month and not the next was never a plan.</li></ul>
+</main>
+<p><a class="buy" href="https://northbenchshop.gumroad.com/l/moneymap">The budget and net worth workbook, with the same columns already set up</a><a href="../">back to the shelf</a></p>
+<footer>Arithmetic, not advice. It forecasts nothing and promises nothing. New pages are announced on <a href="https://t.me/northbenchweekly">the Telegram channel</a>.</footer>
+<script>
+function num(id) { var v = parseFloat(document.getElementById(id).value); return isFinite(v) ? v : 0; }
+function sumOf(id) {
+  var parts = document.getElementById(id).value.split(/[^0-9.-]+/).filter(function (x) { return x; });
+  var total = 0, seen = 0;
+  for (var i = 0; i < parts.length; i++) {
+    var v = parseFloat(parts[i]);
+    if (isFinite(v)) { total += v; seen++; }
+  }
+  return seen ? total : 0;
+}
+function text(id) { return document.getElementById(id).value; }
+function set(i, v) {
+  var td = document.getElementById('r' + i);
+  if (typeof v !== 'number' || !isFinite(v)) {
+    td.className = 'v err'; td.textContent = 'no answer at these numbers'; return;
+  }
+  td.className = 'v';
+  td.textContent = (Math.round(v * 100) / 100).toString();
+}
+function run() {
+  var income = num("income");
+  var fixed = num("fixed");
+  var save = num("save");
+  var debt = num("debt");
+  set(0, income * save / 100);
+  set(1, income - income * save / 100 - debt);
+  set(2, income - income * save / 100 - debt - fixed);
+  set(3, 100 * fixed / income);
+}
+window.addEventListener('input', run);
+run();
+</script>
+</body></html>

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A project price from the work you actually listed</title>
+<meta name="description" content="Task by task, then a buffer, then expenses. A fixed price with no buffer is a promise with nothing behind it.">
+<link rel="stylesheet" href="../assets/page.css">
+</head><body>
+<header><a href="../../">the shelf</a> / <a href="../">calculators</a> / project-quote</header>
+<h1>A project price from the work you actually listed</h1>
+<p class="price">Task by task, then a buffer, then expenses. A fixed price with no buffer is a promise with nothing behind it.</p>
+<main>
+<div class="row"><label for="hours">Hours, task by task, one per line</label><textarea id="hours" spellcheck="false"></textarea></div><div class="row"><label for="rate">Your rate per hour</label><input id="rate" type="number" step="any" value="25"></div><div class="row"><label for="buffer">Buffer for the rework, percent</label><input id="buffer" type="number" step="any" value="20"></div><div class="row"><label for="costs">Things you pay for, one per line</label><textarea id="costs" spellcheck="false"></textarea></div>
+<table><tr><td>Work as listed</td><td class="v" id="r0">-</td></tr><tr><td>Buffer</td><td class="v" id="r1">-</td></tr><tr><td>Costs you carry</td><td class="v" id="r2">-</td></tr><tr><td>The number in the quote</td><td class="v" id="r3">-</td></tr></table>
+<div class="box">Every line above comes out of the boxes you typed. Nothing is stored, nothing is sent,
+and there is no account behind this page.</div>
+<ul><li>Add a line for the round of changes you expect. If you write 'two rounds included', say how big a round is, or the sentence means nothing.</li><li>The quote is not the contract. What is included, what is late, and what ends the project are sentences you write, not numbers this page can guess.</li></ul>
+</main>
+<p><a class="buy" href="https://northbenchshop.gumroad.com/l/clientos">Quote and scope pages that already have the included / not-included lines in them</a><a href="../">back to the shelf</a></p>
+<footer>Arithmetic, not advice. It forecasts nothing and promises nothing. New pages are announced on <a href="https://t.me/northbenchweekly">the Telegram channel</a>.</footer>
+<script>
+function num(id) { var v = parseFloat(document.getElementById(id).value); return isFinite(v) ? v : 0; }
+function sumOf(id) {
+  var parts = document.getElementById(id).value.split(/[^0-9.-]+/).filter(function (x) { return x; });
+  var total = 0, seen = 0;
+  for (var i = 0; i < parts.length; i++) {
+    var v = parseFloat(parts[i]);
+    if (isFinite(v)) { total += v; seen++; }
+  }
+  return seen ? total : 0;
+}
+function text(id) { return document.getElementById(id).value; }
+function set(i, v) {
+  var td = document.getElementById('r' + i);
+  if (typeof v !== 'number' || !isFinite(v)) {
+    td.className = 'v err'; td.textContent = 'no answer at these numbers'; return;
+  }
+  td.className = 'v';
+  td.textContent = (Math.round(v * 100) / 100).toString();
+}
+function run() {
+  var hours = sumOf("hours");
+  var rate = num("rate");
+  var buffer = num("buffer");
+  var costs = sumOf("costs");
+  set(0, hours * rate);
+  set(1, hours * rate * buffer / 100);
+  set(2, costs);
+  set(3, hours * rate * (1 + buffer / 100) + costs);
+}
+window.addEventListener('input', run);
+run();
+</script>
+</body></html>

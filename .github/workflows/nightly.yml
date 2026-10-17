@@ -5,7 +5,7 @@ on:
   workflow_dispatch: {}      # run on demand from the Actions tab
 
 permissions:
-  contents: write            # the run commits KPI.md back
+  contents: write            # the run commits KPI.md + site changes back
 
 concurrency:
   group: nightly
@@ -14,7 +14,7 @@ concurrency:
 jobs:
   health:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
 
@@ -26,7 +26,6 @@ jobs:
         env:
           VAULT_KEY: ${{ secrets.VAULT_KEY }}
           GUMROAD_TOKEN: ${{ secrets.GUMROAD_TOKEN }}
-          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           BLUESKY_HANDLE: ${{ secrets.BLUESKY_HANDLE }}
           BLUESKY_PASSWORD: ${{ secrets.BLUESKY_PASSWORD }}
         run: python tools/nightly.py
@@ -38,3 +37,25 @@ jobs:
           git add KPI.md
           git diff --cached --quiet && echo "no changes" || git commit -m "nightly kpi $(date -u +%F)"
           git push
+
+      # v3.5 site-sync: the auto-builder. Regenerates the data-driven pages
+      # (index, guides index, sitemap) from landing/site-data.json and, when
+      # anything changed, redeploys the site to Cloudflare. A data edit in
+      # this repo is enough - the site follows within a day, or instantly
+      # on dispatch.
+      - name: keep the site up to date (auto-builder)
+        env:
+          CF_TOKEN: ${{ secrets.CF_TOKEN }}
+          CF_ACCOUNT: ${{ secrets.CF_ACCOUNT }}
+          NB_LANDING: ${{ github.workspace }}/landing
+        run: |
+          python tools/site_builder.py
+          git add landing
+          if ! git diff --cached --quiet; then
+            echo "site data changed - rebuilding and deploying"
+            python tools/cf_site.py deploy
+            git commit -m "site: auto-rebuilt from site-data.json"
+            git push
+          else
+            echo "site already current - no deploy"
+          fi

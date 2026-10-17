@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A bundle price that does not undercut yourself</title>
+<meta name="description" content="Add the parts, set the discount, and see what a buyer pays versus what you would have made selling them apart.">
+<link rel="stylesheet" href="../assets/page.css">
+</head><body>
+<header><a href="../../">the shelf</a> / <a href="../">calculators</a> / bundle-price</header>
+<h1>A bundle price that does not undercut yourself</h1>
+<p class="price">Add the parts, set the discount, and see what a buyer pays versus what you would have made selling them apart.</p>
+<main>
+<div class="row"><label for="parts">One price per part</label><textarea id="parts" spellcheck="false"></textarea></div><div class="row"><label for="discount">Bundle discount, percent</label><input id="discount" type="number" step="any" value="25"></div><div class="row"><label for="copies">Copies you expect to sell instead of singles</label><input id="copies" type="number" step="any" value="10"></div>
+<table><tr><td>Parts add up to</td><td class="v" id="r0">-</td></tr><tr><td>Bundle price</td><td class="v" id="r1">-</td></tr><tr><td>Off, per bundle</td><td class="v" id="r2">-</td></tr><tr><td>What those copies would have made apart</td><td class="v" id="r3">-</td></tr><tr><td>What they make as bundles</td><td class="v" id="r4">-</td></tr><tr><td>Given away, in total</td><td class="v" id="r5">-</td></tr></table>
+<div class="box">Every line above comes out of the boxes you typed. Nothing is stored, nothing is sent,
+and there is no account behind this page.</div>
+<ul><li>A bundle only wins if it replaces sales you would otherwise have made one at a time. If it sits beside them and takes the same buyer's money twice, the discount is a gift.</li><li>Nobody buys a bundle of ten things they did not want. Fewer, better, and worth the one price.</li></ul>
+</main>
+<p><a class="buy" href="https://northbenchshop.gumroad.com/l/wholeshelf">How we priced our own shelf as one file, with the maths on the page</a><a href="../">back to the shelf</a></p>
+<footer>Arithmetic, not advice. It forecasts nothing and promises nothing. New pages are announced on <a href="https://t.me/northbenchweekly">the Telegram channel</a>.</footer>
+<script>
+function num(id) { var v = parseFloat(document.getElementById(id).value); return isFinite(v) ? v : 0; }
+function sumOf(id) {
+  var parts = document.getElementById(id).value.split(/[^0-9.-]+/).filter(function (x) { return x; });
+  var total = 0, seen = 0;
+  for (var i = 0; i < parts.length; i++) {
+    var v = parseFloat(parts[i]);
+    if (isFinite(v)) { total += v; seen++; }
+  }
+  return seen ? total : 0;
+}
+function text(id) { return document.getElementById(id).value; }
+function set(i, v) {
+  var td = document.getElementById('r' + i);
+  if (typeof v !== 'number' || !isFinite(v)) {
+    td.className = 'v err'; td.textContent = 'no answer at these numbers'; return;
+  }
+  td.className = 'v';
+  td.textContent = (Math.round(v * 100) / 100).toString();
+}
+function run() {
+  var parts = sumOf("parts");
+  var discount = num("discount");
+  var copies = num("copies");
+  set(0, parts);
+  set(1, parts * (1 - discount / 100));
+  set(2, parts * discount / 100);
+  set(3, parts * copies);
+  set(4, parts * (1 - discount / 100) * copies);
+  set(5, parts * copies - parts * (1 - discount / 100) * copies);
+}
+window.addEventListener('input', run);
+run();
+</script>
+</body></html>

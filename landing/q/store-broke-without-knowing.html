@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to catch a broken store listing before a buyer sees it</title>
+<meta name="description" content="The five things worth checking on every listing, the four ways stores break silently, and how to make the check happen every day without you.">
+<meta property="og:title" content="How to catch a broken store listing before a buyer sees it">
+<meta property="og:description" content="The five things worth checking on every listing, the four ways stores break silently, and how to make the check happen every day without you.">
+<meta property="og:image" content="https://northbench-site.a7maaadesmail93.workers.dev/pins/storeeye.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How to catch a broken store listing before a buyer sees it">
+<meta name="twitter:description" content="The five things worth checking on every listing, the four ways stores break silently, and how to make the check happen every day without you.">
+<meta name="twitter:image" content="https://northbench-site.a7maaadesmail93.workers.dev/pins/storeeye.png">
+<link rel="stylesheet" href="../assets/page.css">
+</head><body>
+<header><a href="../">the shelf</a> / <a href="./">guides</a> / store-broke-without-knowing</header>
+<h1>How to know your online store broke before your buyers do</h1>
+<p class="price">Stores do not break loudly. A listing goes unpublished, a file fails to attach, a price gets fat-fingered - and everything looks fine from the inside, because no dashboard emails you about any of it.</p>
+<main>
+<h2>The short answer</h2>
+<ul><li>Check five things on every listing, every day: is it published, is the price what you meant, is the file attached, does the cover load, do the links on the page still land.</li><li>A human will not do this daily for thirty listings. It is boring, it is repetitive, and the day you skip is the day it breaks. This is a job for a script, not for willpower.</li><li>The check has to read the store the way a buyer reaches it - the public page - not the inside of your dashboard, because the buyer never sees your dashboard.</li><li>Compare today against yesterday, and say only what moved. A daily report that lists everything is a report nobody reads by Thursday.</li><li>Worst thing first. An unpublished listing costs money every hour; a changed cover picture can wait until lunch.</li></ul>
+<h2>The four ways stores break silently</h2>
+<ul><li>The unpublish: a toggle slips, a draft is saved over a live listing, a platform migration flips a switch. The buy page returns a 404 and every link you ever posted now leads nowhere.</li><li>The missing file: the listing is live, the price is right, and the download is empty. The buyer pays, gets nothing, and asks for a refund - or worse, does not ask and never comes back.</li><li>The price typo: 19 becomes 1.9, or 199. One sells at a loss, the other stops selling at all. Nobody emails you either way.</li><li>The quiet rot: a cover image host dies, an external link rots, a refund policy line gets deleted in an edit. Each one alone is small; together they read as neglect to a first-time buyer.</li></ul>
+<h2>Make the check run itself</h2>
+<ol><li>Pick the pages that matter: the storefront, each listing, and the one or two landing pages you actually send people to.</li><li>Put a small script on a schedule - cron on a Linux box or a Mac, Task Scheduler on Windows, or a free GitHub Action. One line, runs once a day.</li><li>The script fetches each page the way a browser does, pulls out the fields a buyer would see, and saves today's snapshot.</li><li>The next day it compares, and writes one short letter: what changed, worst first, each line pointing at a page and a moment.</li><li>Read the letter with your morning coffee. Ninety days out of a hundred it says nothing moved. The tenth day is the one that pays for the other ninety.</li></ol>
+<h2>What monitoring cannot tell you</h2>
+<ul><li>Visits, sales and search rank live behind logins. A public-page watcher cannot see them, and a tool that claims otherwise is guessing.</li><li>Nobody can watch your store more honestly than the page itself. If the buy button is on the public page, it gets checked; if it is behind a login, it does not, and the report should say so.</li><li>Monitoring is not the same as fixing. It tells you the listing is unpublished by 9am; you still have to click the button.</li></ul>
+<h2>The free tool for this</h2>
+<p>There is no calculator that answers this one honestly, so here is the free set: <a href="../calcs/">eight calculators</a> for rates, quotes, invoices, splits, prices and fees. They run in the page and send nothing anywhere.</p>
+<h2>If you would rather not build it yourself</h2>
+<p>This is the job Store Eye does: it reads your public pages daily, compares against yesterday, and writes one letter, worst thing first. Pure Python, no accounts, no keys. Store Eye is $29.
+<a href="https://northbenchshop.gumroad.com/l/storeeye">See it on the shop</a>,
+and there is a plain page about it here: <a href="../free/storeeye.html">what it holds</a>.</p>
+<h2>Questions people actually ask</h2><h3>Is once a day enough?</h3><p>For a small store, yes. Platforms already watch their own uptime; what they do not tell you is when your own listing quietly stops being for sale. Once a day catches that within a day, which is about a hundred times faster than most sellers find out.</p><h3>Do I need to give a monitoring tool my store password?</h3><p>No, and you should not. Everything worth checking - published state, price, files, cover, links - is on the public page. A tool that reads only public pages has nothing to leak.</p>
+<h2>Read next</h2><p><a href="./website-change-monitoring.html">What website change monitoring is, and when you do not need it</a>, <a href="./watch-a-public-shop.html">How to watch a public shop without doing anything creepy</a>.</p>
+</main>
+<p><a class="buy" href="https://northbenchshop.gumroad.com/l/storeeye">Buy it</a>
+<a href="../">back to the shelf</a> <a href="./">all guides</a></p>
+<footer>Written by the shop. Every number on this page is one you type in yourself. Nothing here
+promises an income, invents a review, or pretends to know your circumstances. New pages are announced on <a href="https://t.me/northbenchweekly">the Telegram channel</a>.</footer>
+</body></html>

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>What a store actually leaves you</title>
+<meta name="description" content="A price is not a payout. Percentage fees, fixed fees and a higher-traffic cut stack on top of each other, so the sticker number is never the arriving one.">
+<link rel="stylesheet" href="../assets/page.css">
+</head><body>
+<header><a href="../../">the shelf</a> / <a href="../">calculators</a> / payout-after-fees</header>
+<h1>What a store actually leaves you</h1>
+<p class="price">A price is not a payout. Percentage fees, fixed fees and a higher-traffic cut stack on top of each other, so the sticker number is never the arriving one.</p>
+<main>
+<div class="row"><label for="price">The price you set</label><input id="price" type="number" step="any" value="19"></div><div class="row"><label for="count">Sales at that price</label><input id="count" type="number" step="any" value="10"></div><div class="row"><label for="store_fee">Store fee, percent</label><input id="store_fee" type="number" step="any" value="10"></div><div class="row"><label for="store_fixed">Store fee, per sale</label><input id="store_fixed" type="number" step="any" value="0.5"></div><div class="row"><label for="pay_pct">Card fee, percent</label><input id="pay_pct" type="number" step="any" value="2.9"></div><div class="row"><label for="pay_fixed">Card fee, per sale</label><input id="pay_fixed" type="number" step="any" value="0.3"></div><div class="row"><label for="market_pct">Marketplace cut, percent - 0 if none</label><input id="market_pct" type="number" step="any" value="0"><p class="hint">The fee a discovery marketplace adds on top. Ours reads 30 when that channel is switched on; 10 plus the fixed fees is the direct path.</p></div>
+<table><tr><td>Taken by the store, per sale</td><td class="v" id="r0">-</td></tr><tr><td>Taken by the payment side, per sale</td><td class="v" id="r1">-</td></tr><tr><td>Taken by the marketplace, per sale</td><td class="v" id="r2">-</td></tr><tr><td>Yours, per sale</td><td class="v" id="r3">-</td></tr><tr><td>Yours, all sales</td><td class="v" id="r4">-</td></tr><tr><td>Kept, percent of the sticker</td><td class="v" id="r5">-</td></tr></table>
+<div class="box">Every line above comes out of the boxes you typed. Nothing is stored, nothing is sent,
+and there is no account behind this page.</div>
+<ul><li>The defaults are the numbers that were published when this page was written, and fee schedules move. Check the store's own page before you price anything on them.</li><li>Taxes and payout minimums are not in here. A store can hold your money until a threshold and a schedule are met; that is timing, not a loss, and it changes what a month feels like.</li><li>Currency conversion sits on top of all of this and nobody publishes the same rate twice.</li></ul>
+</main>
+<p><a class="buy" href="https://northbenchshop.gumroad.com/l/launchkit">The file that walks a first product from folder to listed, pricing page included</a><a href="../">back to the shelf</a></p>
+<footer>Arithmetic, not advice. It forecasts nothing and promises nothing. New pages are announced on <a href="https://t.me/northbenchweekly">the Telegram channel</a>.</footer>
+<script>
+function num(id) { var v = parseFloat(document.getElementById(id).value); return isFinite(v) ? v : 0; }
+function sumOf(id) {
+  var parts = document.getElementById(id).value.split(/[^0-9.-]+/).filter(function (x) { return x; });
+  var total = 0, seen = 0;
+  for (var i = 0; i < parts.length; i++) {
+    var v = parseFloat(parts[i]);
+    if (isFinite(v)) { total += v; seen++; }
+  }
+  return seen ? total : 0;
+}
+function text(id) { return document.getElementById(id).value; }
+function set(i, v) {
+  var td = document.getElementById('r' + i);
+  if (typeof v !== 'number' || !isFinite(v)) {
+    td.className = 'v err'; td.textContent = 'no answer at these numbers'; return;
+  }
+  td.className = 'v';
+  td.textContent = (Math.round(v * 100) / 100).toString();
+}
+function run() {
+  var price = num("price");
+  var count = num("count");
+  var store_fee = num("store_fee");
+  var store_fixed = num("store_fixed");
+  var pay_pct = num("pay_pct");
+  var pay_fixed = num("pay_fixed");
+  var market_pct = num("market_pct");
+  set(0, price * store_fee / 100 + store_fixed);
+  set(1, price * pay_pct / 100 + pay_fixed);
+  set(2, price * market_pct / 100);
+  set(3, price - (price * store_fee / 100 + store_fixed) - (price * pay_pct / 100 + pay_fixed) - price * market_pct / 100);
+  set(4, count * (price - (price * store_fee / 100 + store_fixed) - (price * pay_pct / 100 + pay_fixed) - price * market_pct / 100));
+  set(5, 100 * (price - (price * store_fee / 100 + store_fixed) - (price * pay_pct / 100 + pay_fixed) - price * market_pct / 100) / price);
+}
+window.addEventListener('input', run);
+run();
+</script>
+</body></html>
