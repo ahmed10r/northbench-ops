@@ -109,7 +109,7 @@ def check_metrics():
     tokens degrade gracefully to 'n/a' - the run never dies."""
     m = {"revenue": None, "sales": None, "pv_yesterday": None,
          "go_yesterday": None, "telegram": None,
-         "top_pages": "", "top_clicks": ""}
+         "top_pages": "", "top_clicks": "", "bluesky_followers": None}
     tok = os.environ.get("GUMROAD_TOKEN", "")
     if tok:
         try:
@@ -145,6 +145,20 @@ def check_metrics():
         m["top_clicks"] = ", ".join(s for _, s in movers[:4])
     except Exception:
         pass
+    bh = os.environ.get("BLUESKY_HANDLE", "")
+    bp = os.environ.get("BLUESKY_PASSWORD", "")
+    if bh and bp:
+        try:
+            data = json.dumps({"identifier": bh, "password": bp}).encode()
+            req = urllib.request.Request("https://bsky.social/xrpc/com.atproto.server.createSession",
+                data=data, method="POST", headers={"Content-Type": "application/json"})
+            sess = json.load(urllib.request.urlopen(req, timeout=30))
+            req2 = urllib.request.Request(
+                "https://bsky.social/xrpc/app.bsky.actor.getProfile?actor=" + bh,
+                headers={"Authorization": "Bearer " + sess["accessJwt"]})
+            m["bluesky_followers"] = json.load(urllib.request.urlopen(req2, timeout=30)).get("followersCount")
+        except Exception:
+            pass
     ttok = os.environ.get("TELEGRAM_TOKEN", "")
     if ttok:
         try:
@@ -237,6 +251,7 @@ def main():
         f"| top pages (yesterday) | {metrics.get('top_pages') or 'n/a'} |",
         f"| channel->product clicks | {metrics.get('top_clicks') or 'n/a'} |",
         f"| telegram members | {fmt(metrics['telegram'])} |",
+        f"| bluesky followers | {fmt(metrics.get('bluesky_followers'))} |",
         f"| reddit replies today | {fmt((courier.get('reddit') or {}).get('today'))} |",
         f"| reddit karma | {(courier.get('reddit') or {}).get('karma') or 'n/a'} |",
         "",
