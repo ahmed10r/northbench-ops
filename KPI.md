@@ -1,11 +1,11 @@
 # NORTHBENCH KPI - nightly health + business metrics
 
-**Last run: 2026-10-17 07:25 UTC** - ALL SYSTEMS GO
+**Last run: 2026-10-17 07:43 UTC** - ALL SYSTEMS GO
 
 | system | status | detail |
 |---|---|---|
-| courier | OK | http 200 in 1.42s |
-| vault | OK | 127 keys, index intact, 0.16s |
+| courier | OK | http 200 in 1.66s |
+| vault | OK | 127 keys, index intact, 0.24s |
 | shop | OK | 18/18 listings answer |
 | site | OK | home 200, 96 pages in sitemap |
 
@@ -29,6 +29,7 @@ Payout gate: $100 in sales revenue unlocks the 16 email workflows.
 
 ## History
 
+- 2026-10-17 07:43 UTC - OK (courier ok, vault ok, shop ok, site ok, revenue $0, sales 0, pv 6, tg 2)
 - 2026-10-17 07:25 UTC - OK (courier ok, vault ok, shop ok, site ok, revenue $0, sales 0, pv 6, tg 2)
 - 2026-10-17 07:02 UTC - OK (courier ok, vault ok, shop ok, site ok, revenue $0, sales 0, pv 6, tg 2)
 - 2026-10-17 06:50 UTC - OK (courier ok, vault ok, shop ok, site ok, revenue $0, sales 0, pv 6, tg 2)
