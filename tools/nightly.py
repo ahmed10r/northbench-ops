@@ -240,6 +240,26 @@ def week_rollup(metrics):
     return section, week_line
 
 
+
+
+def check_cycle():
+    """v3.7 the cycle law: the registry (registry.json beside this repo's
+    KPI.md) lists every component with a next_due date. This row is the
+    machine surfacing its own work queue - due components get a cycle pass
+    (inspect, research, change/create, systemize, automate, apply) in the
+    next session. Read-only: sessions update the registry."""
+    import datetime
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "registry.json")
+    try:
+        reg = json.load(open(path, encoding="utf-8"))
+    except Exception:
+        return None
+    today = datetime.date.today().isoformat()
+    due = [c["id"] for c in reg.get("components", [])
+           if str(c.get("next_due", "")) <= today]
+    return due
+
+
 def main():
     now = time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime())
     courier = check_courier()
@@ -247,6 +267,7 @@ def main():
     shop = check_shop()
     site = check_site()
     metrics = check_metrics()
+    cycle_due = check_cycle()
     all_ok = courier["ok"] and vault["ok"] and shop["ok"] and site["ok"]
 
     fmt = lambda v, pre="": "n/a" if v is None else f"{pre}{v}"
@@ -274,6 +295,7 @@ def main():
         f"| channel->product clicks | {metrics.get('top_clicks') or 'n/a'} |",
         f"| telegram members | {fmt(metrics['telegram'])} |",
         f"| bluesky followers | {fmt(metrics.get('bluesky_followers'))} |",
+        f"| cycle due (the work queue) | {', '.join(cycle_due) if cycle_due else 'none - all components cycled'} |",
         f"| reddit replies today | {fmt((courier.get('reddit') or {}).get('today'))} |",
         f"| reddit karma | {(courier.get('reddit') or {}).get('karma') or 'n/a'} |",
         "",
