@@ -28,6 +28,7 @@ jobs:
           GUMROAD_TOKEN: ${{ secrets.GUMROAD_TOKEN }}
           BLUESKY_HANDLE: ${{ secrets.BLUESKY_HANDLE }}
           BLUESKY_PASSWORD: ${{ secrets.BLUESKY_PASSWORD }}
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
         run: python tools/nightly.py
 
       - name: commit the KPI snapshot
@@ -42,12 +43,13 @@ jobs:
       # (index, guides index, sitemap) from landing/site-data.json and, when
       # anything changed, redeploys the site to Cloudflare. A data edit in
       # this repo is enough - the site follows within a day, or instantly
-      # on dispatch.
+      # on dispatch. The VIEWS KV id must ride along or analytics goes dark.
       - name: keep the site up to date (auto-builder)
         env:
           CF_TOKEN: ${{ secrets.CF_TOKEN }}
           CF_ACCOUNT: ${{ secrets.CF_ACCOUNT }}
           NB_LANDING: ${{ github.workspace }}/landing
+          NB_VIEWS_KV: ${{ secrets.CF_VIEWS_KV }}
         run: |
           python tools/site_builder.py
           git add landing

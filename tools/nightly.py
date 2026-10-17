@@ -115,7 +115,7 @@ def check_site():
     try:
         status, body, _ = fetch("https://northbenchshop.com/sitemap.xml", timeout=30)
         if status == 200 and body:
-            pages = body.count("<loc>")
+            pages = body.count(b"<loc>")
     except Exception:
         pass
     return {"ok": home_ok and pages >= 90,

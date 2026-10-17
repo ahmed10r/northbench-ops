@@ -243,14 +243,15 @@ def cmd_deploy():
     # first-party analytics: a KV namespace the worker counts real page views
     # (ours excluded by UA) and /go/ clicks (src-tagged by channel) into. The
     # id lives in crypto-rail/cf-views-kv.txt; no binding -> counting off.
-    kv_id = ""
+    kv_id = os.environ.get("NB_VIEWS_KV", "")
     kv_path = "/home/user/crypto-rail/cf-views-kv.txt"
-    if not os.path.exists(kv_path):
+    if not kv_id and not os.path.exists(kv_path):
         kv_path = os.path.join(SHOP, "..", "crypto-rail", "cf-views-kv.txt")
-    try:
-        kv_id = open(kv_path, encoding="utf-8").read().strip()
-    except OSError:
-        kv_id = ""
+    if not kv_id:
+        try:
+            kv_id = open(kv_path, encoding="utf-8").read().strip()
+        except OSError:
+            kv_id = ""
     KV_BINDING = ([{"type": "kv_namespace", "name": "VIEWS", "namespace_id": kv_id}]
                   if kv_id else [])
 
