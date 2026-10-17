@@ -260,6 +260,35 @@ def check_cycle():
     return due
 
 
+
+
+def push_foreman_context(lines_text):
+    """v3.8: the foreman (the AI layer of the control center) reads its
+    context from the views KV. Right after the KPI is built, we hand it the
+    freshest state: the KPI text and the component registry. Degrades to a
+    warning - never breaks the run."""
+    token = os.environ.get("CF_TOKEN", "")
+    account = os.environ.get("CF_ACCOUNT", "")
+    ns = os.environ.get("NB_VIEWS_KV", "")
+    if not (token and account and ns):
+        print("foreman context: CF env not set - skipped")
+        return
+    try:
+        import urllib.parse
+        reg_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "registry.json")
+        reg = open(reg_path, encoding="utf-8").read()
+        for key, val in (("kpi:latest", lines_text), ("registry:snapshot", reg)):
+            url = (f"https://api.cloudflare.com/client/v4/accounts/{account}"
+                   f"/storage/kv/namespaces/{ns}/values/" + urllib.parse.quote(key, safe=""))
+            req = urllib.request.Request(url, data=val.encode(),
+                                         headers={"Authorization": "Bearer " + token,
+                                                  "Content-Type": "application/json"}, method="PUT")
+            urllib.request.urlopen(req, timeout=30)
+        print("foreman context pushed (kpi:latest + registry:snapshot)")
+    except Exception as e:
+        print("foreman context push failed (non-fatal): " + str(e)[:120])
+
+
 def main():
     now = time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime())
     courier = check_courier()
