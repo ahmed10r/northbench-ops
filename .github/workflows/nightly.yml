@@ -64,3 +64,13 @@ jobs:
           else
             echo "site already current - no deploy"
           fi
+
+      # the foreman (single AI manager) thinks right after the night crew -
+      # second daily pass beside the courier's 09:30 UTC cron
+      - name: wake the foreman
+        env:
+          FOREMAN_KEY: ${{ secrets.FOREMAN_KEY }}
+        run: |
+          curl -sS -m 120 -A "nb-agent/1.0" \
+            "https://northbench-foreman.a7maaadesmail93.workers.dev/?key=${FOREMAN_KEY}&source=nightly" \
+            | head -c 400 || echo "foreman ping failed (non-fatal)"
