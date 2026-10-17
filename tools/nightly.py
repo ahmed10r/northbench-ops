@@ -326,6 +326,7 @@ def main():
     lines.extend(hist)
     open("KPI.md", "w", encoding="utf-8").write("\n".join(lines) + "\n")
     print("\n".join(lines[:16]))
+    push_foreman_context("\n".join(lines))
     sys.exit(0)
 
 
