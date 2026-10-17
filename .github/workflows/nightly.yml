@@ -27,6 +27,8 @@ jobs:
           VAULT_KEY: ${{ secrets.VAULT_KEY }}
           GUMROAD_TOKEN: ${{ secrets.GUMROAD_TOKEN }}
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          BLUESKY_HANDLE: ${{ secrets.BLUESKY_HANDLE }}
+          BLUESKY_PASSWORD: ${{ secrets.BLUESKY_PASSWORD }}
         run: python tools/nightly.py
 
       - name: commit the KPI snapshot
