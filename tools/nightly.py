@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
-"""northbench-ops nightly health run - the night crew.
+"""northbench-ops nightly health run - the night crew. v3 (10x standard).
 
 Runs on GitHub Actions (free minutes) at 03:15 UTC daily, and on demand.
-Checks the three systems that must never silently die, then writes a
-KPI snapshot the whole team (one agent, one owner) can read:
+Checks the systems that must never silently die, then writes a KPI
+snapshot with MACHINE-FED BUSINESS METRICS (the 10x 'automated' +
+'selling' standard):
 
   1. COURIER   - the social courier worker answers.
   2. VAULT     - the master archive lists and its index reads intact.
-  3. SHOP      - Gumroad answers and the product count holds >= 18.
+  3. SHOP      - Gumroad answers and all 18 listings hold.
+  4. METRICS   - revenue + sales (Gumroad API), site pageviews +
+                 go-clicks (site stats), Telegram members (Bot API).
 
 Output: KPI.md updated in this repo (committed by the workflow).
 Everything is graceful: a failed check is recorded, never crashes the
@@ -22,6 +25,9 @@ import urllib.request
 COURIER_URL = "https://northbench-courier.a7maaadesmail93.workers.dev/"
 VAULT_URL = "https://nb-vault.a7maaadesmail93.workers.dev"
 GUMROAD_API = "https://api.gumroad.com/v2/products"
+GUMROAD_SALES = "https://api.gumroad.com/v2/sales"
+SITE_STATS = "https://northbenchshop.com/stats-8c2f19ab4e77"
+TELEGRAM_API = "https://api.telegram.org/bot"
 UA = "northbench-ops/1.0"
 
 
@@ -89,15 +95,60 @@ def check_shop():
                       + (f" - MISSING: {', '.join(missing)}" if missing else "")}
 
 
+def check_metrics():
+    """The 10x upgrade: the business numbers, machine-fed, every night.
+    Revenue + sales from Gumroad, pageviews + go-clicks from the site's
+    first-party counter, Telegram members from the Bot API. Missing
+    tokens degrade gracefully to 'n/a' - the run never dies."""
+    m = {"revenue": None, "sales": None, "pv_yesterday": None,
+         "go_yesterday": None, "telegram": None}
+    tok = os.environ.get("GUMROAD_TOKEN", "")
+    if tok:
+        try:
+            _, body, _ = fetch(GUMROAD_SALES + "?per_page=50",
+                               headers={"Authorization": "Bearer " + tok})
+            sales = json.loads(body).get("sales", [])
+            m["sales"] = len(sales)
+            m["revenue"] = sum(float(s.get("price", 0) or 0) for s in sales)
+        except Exception:
+            pass
+    try:
+        _, body, _ = fetch(SITE_STATS)
+        stats = json.loads(body)
+        yday = time.strftime("%Y-%m-%d", time.gmtime(time.time() - 86400))
+        day = stats.get(yday) or {}
+        pv = day.get("pageviews") or {}
+        go = day.get("go") or {}
+        m["pv_yesterday"] = sum((v or {}).get("n", 0) for v in pv.values()
+                                if isinstance(v, dict))
+        m["go_yesterday"] = sum((v or {}).get("n", 0) for v in go.values()
+                                if isinstance(v, dict))
+    except Exception:
+        pass
+    ttok = os.environ.get("TELEGRAM_TOKEN", "")
+    if ttok:
+        try:
+            _, body, _ = fetch(TELEGRAM_API + ttok +
+                               "/getChatMemberCount?chat_id=@northbenchweekly")
+            r = json.loads(body)
+            if r.get("ok"):
+                m["telegram"] = r.get("result")
+        except Exception:
+            pass
+    return m
+
+
 def main():
     now = time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime())
     courier = check_courier()
     vault = check_vault()
     shop = check_shop()
+    metrics = check_metrics()
     all_ok = courier["ok"] and vault["ok"] and shop["ok"]
 
+    fmt = lambda v, pre="": "n/a" if v is None else f"{pre}{v}"
     lines = [
-        "# NORTHBENCH KPI - nightly health",
+        "# NORTHBENCH KPI - nightly health + business metrics",
         "",
         f"**Last run: {now}** - {'ALL SYSTEMS GO' if all_ok else 'ATTENTION NEEDED'}",
         "",
@@ -106,6 +157,18 @@ def main():
         f"| courier | {'OK' if courier['ok'] else 'FAIL'} | {courier['detail']} |",
         f"| vault | {'OK' if vault['ok'] else 'FAIL'} | {vault['detail']} |",
         f"| shop | {'OK' if shop['ok'] else 'FAIL'} | {shop['detail']} |",
+        "",
+        "## Business metrics (machine-fed daily)",
+        "",
+        "| metric | value |",
+        "|---|---|",
+        f"| revenue to date | {fmt(metrics['revenue'], '$')} |",
+        f"| sales to date | {fmt(metrics['sales'])} |",
+        f"| site pageviews (yesterday) | {fmt(metrics['pv_yesterday'])} |",
+        f"| site->shop clicks (yesterday) | {fmt(metrics['go_yesterday'])} |",
+        f"| telegram members | {fmt(metrics['telegram'])} |",
+        "",
+        "Payout gate: $100 in sales revenue unlocks the 16 email workflows.",
         "",
         "## History",
         "",
@@ -118,10 +181,12 @@ def main():
         hist = []
     mark = "OK" if all_ok else "**ATTENTION**"
     lines.append(f"- {now} - {mark} (courier {'ok' if courier['ok'] else 'FAIL'}, "
-                 f"vault {'ok' if vault['ok'] else 'FAIL'}, shop {'ok' if shop['ok'] else 'FAIL'})")
+                 f"vault {'ok' if vault['ok'] else 'FAIL'}, shop {'ok' if shop['ok'] else 'FAIL'}, "
+                 f"revenue {fmt(metrics['revenue'], '$')}, sales {fmt(metrics['sales'])}, "
+                 f"pv {fmt(metrics['pv_yesterday'])}, tg {fmt(metrics['telegram'])})")
     lines.extend(hist)
     open("KPI.md", "w", encoding="utf-8").write("\n".join(lines) + "\n")
-    print("\n".join(lines[:12]))
+    print("\n".join(lines[:16]))
     sys.exit(0)
 
 
