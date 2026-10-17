@@ -41,11 +41,18 @@ def fetch(url, headers=None, timeout=45):
 def check_courier():
     try:
         status, body, ms = fetch(COURIER_URL)
-        text = body.decode("utf-8", "ignore")[:200]
         ok = status == 200
-        return {"ok": ok, "detail": f"http {status} in {ms}s", "hint": text[:120]}
+        # v3.2 connect-all: the courier now reports the reddit engine's
+        # state on its health GET - carry it into the KPI beside revenue
+        reddit = None
+        try:
+            reddit = json.loads(body).get("reddit")
+        except Exception:
+            pass
+        return {"ok": ok, "detail": f"http {status} in {ms}s",
+                "reddit": reddit}
     except Exception as e:
-        return {"ok": False, "detail": str(e)[:160]}
+        return {"ok": False, "detail": str(e)[:160], "reddit": None}
 
 
 def check_vault():
@@ -215,6 +222,8 @@ def main():
         f"| site pageviews (yesterday) | {fmt(metrics['pv_yesterday'])} |",
         f"| site->shop clicks (yesterday) | {fmt(metrics['go_yesterday'])} |",
         f"| telegram members | {fmt(metrics['telegram'])} |",
+        f"| reddit replies today | {fmt((courier.get('reddit') or {}).get('today'))} |",
+        f"| reddit karma | {(courier.get('reddit') or {}).get('karma') or 'n/a'} |",
         "",
         "Payout gate: $100 in sales revenue unlocks the 16 email workflows.",
         "",
