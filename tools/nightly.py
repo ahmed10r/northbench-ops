@@ -108,7 +108,8 @@ def check_metrics():
     first-party counter, Telegram members from the Bot API. Missing
     tokens degrade gracefully to 'n/a' - the run never dies."""
     m = {"revenue": None, "sales": None, "pv_yesterday": None,
-         "go_yesterday": None, "telegram": None}
+         "go_yesterday": None, "telegram": None,
+         "top_pages": "", "top_clicks": ""}
     tok = os.environ.get("GUMROAD_TOKEN", "")
     if tok:
         try:
@@ -125,11 +126,23 @@ def check_metrics():
         yday = time.strftime("%Y-%m-%d", time.gmtime(time.time() - 86400))
         day = stats.get(yday) or {}
         pv = day.get("pageviews") or {}
-        go = day.get("go") or {}
+        go = day.get("goclicks") or {}   # v3.3 BUGFIX: key is goclicks, not go
         m["pv_yesterday"] = sum((v or {}).get("n", 0) for v in pv.values()
                                 if isinstance(v, dict))
-        m["go_yesterday"] = sum((v or {}).get("n", 0) for v in go.values()
-                                if isinstance(v, dict))
+        m["go_yesterday"] = sum(sum((s or {}).values() or [0])
+                                for s in go.values() if isinstance(s, dict))
+        # v3.3 connect-all: the movers - top pages and top channel->product
+        # clicks, so content and channel decisions read from the same file
+        top_pages = sorted(((k, (v or {}).get("n", 0)) for k, v in pv.items()
+                            if isinstance(v, dict)), key=lambda x: -x[1])[:3]
+        m["top_pages"] = ", ".join(f"{p}({n})" for p, n in top_pages if n)
+        movers = []
+        for slug, srcs in go.items():
+            if isinstance(srcs, dict):
+                for src, n in srcs.items():
+                    if n: movers.append((n, f"{slug}<-{src}"))
+        movers.sort(reverse=True)
+        m["top_clicks"] = ", ".join(s for _, s in movers[:4])
     except Exception:
         pass
     ttok = os.environ.get("TELEGRAM_TOKEN", "")
@@ -221,6 +234,8 @@ def main():
         f"| sales to date | {fmt(metrics['sales'])} |",
         f"| site pageviews (yesterday) | {fmt(metrics['pv_yesterday'])} |",
         f"| site->shop clicks (yesterday) | {fmt(metrics['go_yesterday'])} |",
+        f"| top pages (yesterday) | {metrics.get('top_pages') or 'n/a'} |",
+        f"| channel->product clicks | {metrics.get('top_clicks') or 'n/a'} |",
         f"| telegram members | {fmt(metrics['telegram'])} |",
         f"| reddit replies today | {fmt((courier.get('reddit') or {}).get('today'))} |",
         f"| reddit karma | {(courier.get('reddit') or {}).get('karma') or 'n/a'} |",
