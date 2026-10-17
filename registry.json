@@ -1,42 +1,582 @@
 {
-  "law": "the cycle: inspect, research, change/create, systemize, automate, apply - every component, forever",
-  "note": "registry of every component in the business. nightly v3.7+ prints due components into KPI. cycle dates = last completed step; a full pass refreshes last_pass and next_due.",
-  "components": [
-    {"id": "gumroad-listings", "what": "the 18 sales pages where money changes hands", "cadence_days": 14, "last_pass": "2026-10-13", "next_due": "2026-10-17", "next_action": "cycle pass: inspect rendered listings vs competitor patterns; upgrade the 6 API-editable ones", "cycle": {"inspect": null, "research": "2026-10-17", "change": null, "systemize": "2026-10-13", "automate": null, "apply": null}},
-    {"id": "product-covers", "what": "18 product cover images + 29 pins", "cadence_days": 30, "last_pass": "2026-10-13", "next_due": "2026-11-12", "next_action": "pattern says annotated screenshots beat illustrations - add proof panels to top-seller candidates", "cycle": {"inspect": null, "research": "2026-10-17", "change": null, "systemize": null, "automate": null, "apply": null}},
-    {"id": "product-files", "what": "the actual deliverable files (workbooks, pdfs, planners)", "cadence_days": 30, "last_pass": "2026-10-13", "next_due": "2026-11-12", "next_action": "stranger test each file opener; upgrade weakest three", "cycle": {"inspect": null, "research": null, "change": null, "systemize": null, "automate": null, "apply": null}},
-    {"id": "pricing", "what": "prices + NORTHBENCH30 + bundle math", "cadence_days": 30, "last_pass": "2026-10-13", "next_due": "2026-11-12", "next_action": "patterns doc proposal: sub-$19 products get scope bump or price correction - owner gates money", "cycle": {"inspect": null, "research": "2026-10-17", "change": null, "systemize": null, "automate": null, "apply": null}},
-    {"id": "site-homepage", "what": "northbenchshop.com front door (data-driven)", "cadence_days": 14, "last_pass": "2026-10-17", "next_due": "2026-10-31", "next_action": "monitor: free shelf + guides sections live; check click-through split in stats", "cycle": {"inspect": "2026-10-17", "research": "2026-10-17", "change": "2026-10-17", "systemize": "2026-10-17", "automate": "2026-10-17", "apply": "2026-10-17"}},
-    {"id": "site-guides", "what": "the free guides program (9 live)", "cadence_days": 14, "last_pass": "2026-10-17", "next_due": "2026-10-31", "next_action": "add guides as sweeps allow; each new guide = data entry + campaign rows same day", "cycle": {"inspect": "2026-10-17", "research": "2026-10-17", "change": "2026-10-17", "systemize": "2026-10-17", "automate": "2026-10-17", "apply": "2026-10-17"}},
-    {"id": "site-answers", "what": "56 q/ long-tail answer pages", "cadence_days": 30, "last_pass": "2026-10-15", "next_due": "2026-11-14", "next_action": "sample-inspect 5 rendered pages; internal links from answers to guides", "cycle": {"inspect": null, "research": null, "change": null, "systemize": null, "automate": null, "apply": null}},
-    {"id": "site-free-pages", "what": "18 product explainer pages", "cadence_days": 30, "last_pass": "2026-10-15", "next_due": "2026-11-14", "next_action": "verify each links its guide + q-pages (the cross-sell mesh)", "cycle": {"inspect": null, "research": null, "change": null, "systemize": null, "automate": null, "apply": null}},
-    {"id": "site-calcs", "what": "8 free calculators", "cadence_days": 30, "last_pass": "2026-10-15", "next_due": "2026-11-14", "next_action": "check each calc still computes; add cross-links to matching products", "cycle": {"inspect": null, "research": null, "change": null, "systemize": null, "automate": null, "apply": null}},
-    {"id": "site-seo", "what": "sitemap, robots, canonicals, structured data", "cadence_days": 30, "last_pass": "2026-10-17", "next_due": "2026-11-16", "next_action": "sitemap auto-generated now; add JSON-LD product schema to product cards", "cycle": {"inspect": "2026-10-17", "research": null, "change": null, "systemize": "2026-10-17", "automate": "2026-10-17", "apply": "2026-10-17"}},
-    {"id": "site-analytics", "what": "first-party stats: pageviews + goclicks + movers", "cadence_days": 14, "last_pass": "2026-10-17", "next_due": "2026-10-31", "next_action": "monitor src=home attribution now that homepage rides /go/", "cycle": {"inspect": "2026-10-17", "research": null, "change": "2026-10-17", "systemize": "2026-10-17", "automate": "2026-10-17", "apply": "2026-10-17"}},
-    {"id": "reddit-engine", "what": "heavy-mode reply engine (v40 + karma gate)", "cadence_days": 7, "last_pass": "2026-10-17", "next_due": "2026-10-24", "next_action": "watch v41 karma gate + volume scaling; verify launch threads stay held below karma 10", "cycle": {"inspect": "2026-10-17", "research": "2026-10-15", "change": "2026-10-17", "systemize": "2026-10-17", "automate": "2026-10-17", "apply": "2026-10-17"}},
-    {"id": "reddit-account", "what": "account health: karma growth, survival", "cadence_days": 7, "last_pass": "2026-10-17", "next_due": "2026-10-24", "next_action": "karma 1 with first upvote; monitor removals via engine brakes", "cycle": {"inspect": "2026-10-17", "research": null, "change": null, "systemize": "2026-10-17", "automate": "2026-10-17", "apply": null}},
-    {"id": "bluesky", "what": "daily posts + value replies + follower growth", "cadence_days": 7, "last_pass": "2026-10-17", "next_due": "2026-10-24", "next_action": "daily 2-3 replies continue; followers 2 - watch reply-driven growth", "cycle": {"inspect": "2026-10-17", "research": null, "change": null, "systemize": "2026-10-17", "automate": "2026-10-17", "apply": "2026-10-17"}},
-    {"id": "x-buffer", "what": "X channel NorthbenchOS via Buffer", "cadence_days": 14, "last_pass": "2026-10-17", "next_due": "2026-10-31", "next_action": "posts flow via food; owner X creds still pending for anything richer", "cycle": {"inspect": "2026-10-17", "research": null, "change": null, "systemize": "2026-10-17", "automate": "2026-10-17", "apply": null}},
-    {"id": "telegram", "what": "@northbenchweekly channel + daily briefs", "cadence_days": 14, "last_pass": "2026-10-17", "next_due": "2026-10-31", "next_action": "2 members; research what makes small channels grow - value posts vs briefs", "cycle": {"inspect": "2026-10-17", "research": null, "change": null, "systemize": "2026-10-17", "automate": "2026-10-17", "apply": null}},
-    {"id": "pinterest", "what": "pin lane (rides Buffer; account gated by owner)", "cadence_days": 30, "last_pass": "2026-10-17", "next_due": "2026-11-16", "next_action": "29 pins scheduled in food; account creation remains owner-gated", "cycle": {"inspect": "2026-10-17", "research": null, "change": null, "systemize": "2026-10-17", "automate": "2026-10-17", "apply": null}},
-    {"id": "email-workflows", "what": "15 buyer-email workflows (gated at $100 revenue)", "cadence_days": 30, "last_pass": "2026-10-13", "next_due": "2026-11-12", "next_action": "armed; gate stays until $100 + payout", "cycle": {"inspect": null, "research": null, "change": null, "systemize": "2026-10-13", "automate": "2026-10-13", "apply": null}},
-    {"id": "family-visuals", "what": "ORBITAL graphic novel (ep1 complete, review package v2 with owner)", "cadence_days": 30, "last_pass": "2026-10-17", "next_due": "2026-11-16", "next_action": "owner read pending; nothing ships without his eyes", "cycle": {"inspect": "2026-10-17", "research": null, "change": null, "systemize": "2026-10-17", "automate": null, "apply": null}},
-    {"id": "family-fiction", "what": "UNSENT letters (week one done, owner gate)", "cadence_days": 30, "last_pass": "2026-10-17", "next_due": "2026-11-16", "next_action": "owner read pending", "cycle": {"inspect": "2026-10-17", "research": null, "change": null, "systemize": "2026-10-17", "automate": null, "apply": null}},
-    {"id": "family-knowledge", "what": "pricing course v2 (59pp, owner gate)", "cadence_days": 30, "last_pass": "2026-10-17", "next_due": "2026-11-16", "next_action": "owner read pending; v1 never ships", "cycle": {"inspect": "2026-10-17", "research": null, "change": null, "systemize": "2026-10-17", "automate": null, "apply": null}},
-    {"id": "family-audio", "what": "Long Settle (owner hears proof first)", "cadence_days": 30, "last_pass": "2026-10-17", "next_due": "2026-11-16", "next_action": "owner ears pending", "cycle": {"inspect": "2026-10-17", "research": null, "change": null, "systemize": "2026-10-17", "automate": null, "apply": null}},
-    {"id": "family-gaming", "what": "LIGHTHOUSE keeper (complete + packaged, owner gate)", "cadence_days": 30, "last_pass": "2026-10-17", "next_due": "2026-11-16", "next_action": "owner read pending", "cycle": {"inspect": "2026-10-17", "research": null, "change": null, "systemize": "2026-10-17", "automate": null, "apply": null}},
-    {"id": "food-calendar", "what": "the social food KV (739 rows through 2027-10)", "cadence_days": 30, "last_pass": "2026-10-17", "next_due": "2026-11-16", "next_action": "healthy; every new asset = same-day rows (rule)", "cycle": {"inspect": "2026-10-17", "research": null, "change": "2026-10-17", "systemize": "2026-10-17", "automate": "2026-10-17", "apply": "2026-10-17"}},
-    {"id": "competitor-research", "what": "the pattern library + monthly discover scrape", "cadence_days": 30, "last_pass": "2026-10-17", "next_due": "2026-11-16", "next_action": "re-scrape discover (add notion template + planner queries) and append patterns", "cycle": {"inspect": "2026-10-17", "research": "2026-10-17", "change": "2026-10-17", "systemize": "2026-10-17", "automate": null, "apply": "2026-10-17"}},
-    {"id": "courier", "what": "the daily social machine (v41)", "cadence_days": 7, "last_pass": "2026-10-17", "next_due": "2026-10-24", "next_action": "green; watch launch-gate karma check on next cycle", "cycle": {"inspect": "2026-10-17", "research": null, "change": "2026-10-17", "systemize": "2026-10-17", "automate": "2026-10-17", "apply": "2026-10-17"}},
-    {"id": "nightly-kpi", "what": "the night crew + KPI report (v3.6)", "cadence_days": 14, "last_pass": "2026-10-17", "next_due": "2026-10-31", "next_action": "v3.7 adds the cycle-due row (this registry)", "cycle": {"inspect": "2026-10-17", "research": null, "change": "2026-10-17", "systemize": "2026-10-17", "automate": "2026-10-17", "apply": "2026-10-17"}},
-    {"id": "vault", "what": "the KV archive (127 keys) + agent drive", "cadence_days": 30, "last_pass": "2026-10-17", "next_due": "2026-11-16", "next_action": "nightly checks integrity; monthly full restore-test one file", "cycle": {"inspect": "2026-10-17", "research": null, "change": null, "systemize": "2026-10-17", "automate": "2026-10-17", "apply": null}},
-    {"id": "laptop-bridge", "what": "the owner's laptop hands (v40)", "cadence_days": 7, "last_pass": "2026-10-17", "next_due": "2026-10-24", "next_action": "green; queue hygiene now manual-clear - consider auto-prune in v41 bridge", "cycle": {"inspect": "2026-10-17", "research": null, "change": null, "systemize": "2026-10-17", "automate": "2026-10-17", "apply": null}},
-    {"id": "ops-repo", "what": "the GitHub ops repo (KPI + site + tools)", "cadence_days": 14, "last_pass": "2026-10-17", "next_due": "2026-10-31", "next_action": "carries site tree + registry now; keep local and repo landing trees in sync", "cycle": {"inspect": "2026-10-17", "research": null, "change": "2026-10-17", "systemize": "2026-10-17", "automate": "2026-10-17", "apply": "2026-10-17"}},
-    {"id": "site-auto-builder", "what": "site-data.json + builder + nightly auto-deploy", "cadence_days": 14, "last_pass": "2026-10-17", "next_due": "2026-10-31", "next_action": "verified end-to-end; watch first organic data-driven deploy", "cycle": {"inspect": "2026-10-17", "research": "2026-10-17", "change": "2026-10-17", "systemize": "2026-10-17", "automate": "2026-10-17", "apply": "2026-10-17"}},
-    {"id": "kpi-report", "what": "the KPI.md single-file truth", "cadence_days": 14, "last_pass": "2026-10-17", "next_due": "2026-10-31", "next_action": "v3.7: cycle-due row", "cycle": {"inspect": "2026-10-17", "research": null, "change": "2026-10-17", "systemize": "2026-10-17", "automate": "2026-10-17", "apply": "2026-10-17"}},
-    {"id": "ledger", "what": "DECISIONS-AND-STATUS.txt", "cadence_days": 7, "last_pass": "2026-10-17", "next_due": "2026-10-24", "next_action": "every session, no exceptions", "cycle": {"inspect": "2026-10-17", "research": null, "change": null, "systemize": "2026-10-17", "automate": null, "apply": "2026-10-17"}},
-    {"id": "control-center", "what": "BUSINESS-CONTROL-CENTER.txt (sections A-M)", "cadence_days": 14, "last_pass": "2026-10-17", "next_due": "2026-10-31", "next_action": "section M added (the cycle law); audit sections on next pass", "cycle": {"inspect": "2026-10-17", "research": null, "change": "2026-10-17", "systemize": "2026-10-17", "automate": null, "apply": "2026-10-17"}},
-    {"id": "review-packages", "what": "owner read queue (ORBITAL, UNSENT, LIGHTHOUSE, pricing v2)", "cadence_days": 7, "last_pass": "2026-10-17", "next_due": "2026-10-24", "next_action": "4 pending owner reads; keep packages fresh, never push", "cycle": {"inspect": "2026-10-17", "research": null, "change": null, "systemize": "2026-10-17", "automate": null, "apply": null}},
-    {"id": "business-charter", "what": "the charter + owner gates (money, ships, accounts)", "cadence_days": 30, "last_pass": "2026-10-17", "next_due": "2026-11-16", "next_action": "unchanged; gates stay owner's", "cycle": {"inspect": "2026-10-17", "research": null, "change": null, "systemize": "2026-10-17", "automate": null, "apply": null}}
-  ]
+ "law": "the cycle: inspect, research, change/create, systemize, automate, apply - every component, forever",
+ "note": "registry of every component in the business. nightly v3.7+ prints due components into KPI. cycle dates = last completed step; a full pass refreshes last_pass and next_due.",
+ "components": [
+  {
+   "id": "gumroad-listings",
+   "what": "the 18 sales pages where money changes hands",
+   "cadence_days": 14,
+   "last_pass": "2026-10-17",
+   "next_due": "2026-10-31",
+   "next_action": "cycle done for the 6 API listings (NOT-for + FAQ + summaries verified 6/6). 12 remaining = laptop browse path (standing blocker). Next pass: re-inspect rendered pages as buyer + price-band review vs patterns.",
+   "cycle": {
+    "inspect": "2026-10-17",
+    "research": "2026-10-17",
+    "change": "2026-10-17",
+    "systemize": "2026-10-17",
+    "automate": "2026-10-17",
+    "apply": "2026-10-17"
+   }
+  },
+  {
+   "id": "product-covers",
+   "what": "18 product cover images + 29 pins",
+   "cadence_days": 30,
+   "last_pass": "2026-10-13",
+   "next_due": "2026-11-12",
+   "next_action": "pattern says annotated screenshots beat illustrations - add proof panels to top-seller candidates",
+   "cycle": {
+    "inspect": null,
+    "research": "2026-10-17",
+    "change": null,
+    "systemize": null,
+    "automate": null,
+    "apply": null
+   }
+  },
+  {
+   "id": "product-files",
+   "what": "the actual deliverable files (workbooks, pdfs, planners)",
+   "cadence_days": 30,
+   "last_pass": "2026-10-13",
+   "next_due": "2026-11-12",
+   "next_action": "stranger test each file opener; upgrade weakest three",
+   "cycle": {
+    "inspect": null,
+    "research": null,
+    "change": null,
+    "systemize": null,
+    "automate": null,
+    "apply": null
+   }
+  },
+  {
+   "id": "pricing",
+   "what": "prices + NORTHBENCH30 + bundle math",
+   "cadence_days": 30,
+   "last_pass": "2026-10-13",
+   "next_due": "2026-11-12",
+   "next_action": "patterns doc proposal: sub-$19 products get scope bump or price correction - owner gates money",
+   "cycle": {
+    "inspect": null,
+    "research": "2026-10-17",
+    "change": null,
+    "systemize": null,
+    "automate": null,
+    "apply": null
+   }
+  },
+  {
+   "id": "site-homepage",
+   "what": "northbenchshop.com front door (data-driven)",
+   "cadence_days": 14,
+   "last_pass": "2026-10-17",
+   "next_due": "2026-10-31",
+   "next_action": "monitor: free shelf + guides sections live; check click-through split in stats",
+   "cycle": {
+    "inspect": "2026-10-17",
+    "research": "2026-10-17",
+    "change": "2026-10-17",
+    "systemize": "2026-10-17",
+    "automate": "2026-10-17",
+    "apply": "2026-10-17"
+   }
+  },
+  {
+   "id": "site-guides",
+   "what": "the free guides program (9 live)",
+   "cadence_days": 14,
+   "last_pass": "2026-10-17",
+   "next_due": "2026-10-31",
+   "next_action": "add guides as sweeps allow; each new guide = data entry + campaign rows same day",
+   "cycle": {
+    "inspect": "2026-10-17",
+    "research": "2026-10-17",
+    "change": "2026-10-17",
+    "systemize": "2026-10-17",
+    "automate": "2026-10-17",
+    "apply": "2026-10-17"
+   }
+  },
+  {
+   "id": "site-answers",
+   "what": "56 q/ long-tail answer pages",
+   "cadence_days": 30,
+   "last_pass": "2026-10-15",
+   "next_due": "2026-11-14",
+   "next_action": "sample-inspect 5 rendered pages; internal links from answers to guides",
+   "cycle": {
+    "inspect": null,
+    "research": null,
+    "change": null,
+    "systemize": null,
+    "automate": null,
+    "apply": null
+   }
+  },
+  {
+   "id": "site-free-pages",
+   "what": "18 product explainer pages",
+   "cadence_days": 30,
+   "last_pass": "2026-10-15",
+   "next_due": "2026-11-14",
+   "next_action": "verify each links its guide + q-pages (the cross-sell mesh)",
+   "cycle": {
+    "inspect": null,
+    "research": null,
+    "change": null,
+    "systemize": null,
+    "automate": null,
+    "apply": null
+   }
+  },
+  {
+   "id": "site-calcs",
+   "what": "8 free calculators",
+   "cadence_days": 30,
+   "last_pass": "2026-10-15",
+   "next_due": "2026-11-14",
+   "next_action": "check each calc still computes; add cross-links to matching products",
+   "cycle": {
+    "inspect": null,
+    "research": null,
+    "change": null,
+    "systemize": null,
+    "automate": null,
+    "apply": null
+   }
+  },
+  {
+   "id": "site-seo",
+   "what": "sitemap, robots, canonicals, structured data",
+   "cadence_days": 30,
+   "last_pass": "2026-10-17",
+   "next_due": "2026-11-16",
+   "next_action": "sitemap auto-generated now; add JSON-LD product schema to product cards",
+   "cycle": {
+    "inspect": "2026-10-17",
+    "research": null,
+    "change": null,
+    "systemize": "2026-10-17",
+    "automate": "2026-10-17",
+    "apply": "2026-10-17"
+   }
+  },
+  {
+   "id": "site-analytics",
+   "what": "first-party stats: pageviews + goclicks + movers",
+   "cadence_days": 14,
+   "last_pass": "2026-10-17",
+   "next_due": "2026-10-31",
+   "next_action": "monitor src=home attribution now that homepage rides /go/",
+   "cycle": {
+    "inspect": "2026-10-17",
+    "research": null,
+    "change": "2026-10-17",
+    "systemize": "2026-10-17",
+    "automate": "2026-10-17",
+    "apply": "2026-10-17"
+   }
+  },
+  {
+   "id": "reddit-engine",
+   "what": "heavy-mode reply engine (v40 + karma gate)",
+   "cadence_days": 7,
+   "last_pass": "2026-10-17",
+   "next_due": "2026-10-24",
+   "next_action": "watch v41 karma gate + volume scaling; verify launch threads stay held below karma 10",
+   "cycle": {
+    "inspect": "2026-10-17",
+    "research": "2026-10-15",
+    "change": "2026-10-17",
+    "systemize": "2026-10-17",
+    "automate": "2026-10-17",
+    "apply": "2026-10-17"
+   }
+  },
+  {
+   "id": "reddit-account",
+   "what": "account health: karma growth, survival",
+   "cadence_days": 7,
+   "last_pass": "2026-10-17",
+   "next_due": "2026-10-24",
+   "next_action": "karma 1 with first upvote; monitor removals via engine brakes",
+   "cycle": {
+    "inspect": "2026-10-17",
+    "research": null,
+    "change": null,
+    "systemize": "2026-10-17",
+    "automate": "2026-10-17",
+    "apply": null
+   }
+  },
+  {
+   "id": "bluesky",
+   "what": "daily posts + value replies + follower growth",
+   "cadence_days": 7,
+   "last_pass": "2026-10-17",
+   "next_due": "2026-10-24",
+   "next_action": "daily 2-3 replies continue; followers 2 - watch reply-driven growth",
+   "cycle": {
+    "inspect": "2026-10-17",
+    "research": null,
+    "change": null,
+    "systemize": "2026-10-17",
+    "automate": "2026-10-17",
+    "apply": "2026-10-17"
+   }
+  },
+  {
+   "id": "x-buffer",
+   "what": "X channel NorthbenchOS via Buffer",
+   "cadence_days": 14,
+   "last_pass": "2026-10-17",
+   "next_due": "2026-10-31",
+   "next_action": "posts flow via food; owner X creds still pending for anything richer",
+   "cycle": {
+    "inspect": "2026-10-17",
+    "research": null,
+    "change": null,
+    "systemize": "2026-10-17",
+    "automate": "2026-10-17",
+    "apply": null
+   }
+  },
+  {
+   "id": "telegram",
+   "what": "@northbenchweekly channel + daily briefs",
+   "cadence_days": 14,
+   "last_pass": "2026-10-17",
+   "next_due": "2026-10-31",
+   "next_action": "2 members; research what makes small channels grow - value posts vs briefs",
+   "cycle": {
+    "inspect": "2026-10-17",
+    "research": null,
+    "change": null,
+    "systemize": "2026-10-17",
+    "automate": "2026-10-17",
+    "apply": null
+   }
+  },
+  {
+   "id": "pinterest",
+   "what": "pin lane (rides Buffer; account gated by owner)",
+   "cadence_days": 30,
+   "last_pass": "2026-10-17",
+   "next_due": "2026-11-16",
+   "next_action": "29 pins scheduled in food; account creation remains owner-gated",
+   "cycle": {
+    "inspect": "2026-10-17",
+    "research": null,
+    "change": null,
+    "systemize": "2026-10-17",
+    "automate": "2026-10-17",
+    "apply": null
+   }
+  },
+  {
+   "id": "email-workflows",
+   "what": "15 buyer-email workflows (gated at $100 revenue)",
+   "cadence_days": 30,
+   "last_pass": "2026-10-13",
+   "next_due": "2026-11-12",
+   "next_action": "armed; gate stays until $100 + payout",
+   "cycle": {
+    "inspect": null,
+    "research": null,
+    "change": null,
+    "systemize": "2026-10-13",
+    "automate": "2026-10-13",
+    "apply": null
+   }
+  },
+  {
+   "id": "family-visuals",
+   "what": "ORBITAL graphic novel (ep1 complete, review package v2 with owner)",
+   "cadence_days": 30,
+   "last_pass": "2026-10-17",
+   "next_due": "2026-11-16",
+   "next_action": "owner read pending; nothing ships without his eyes",
+   "cycle": {
+    "inspect": "2026-10-17",
+    "research": null,
+    "change": null,
+    "systemize": "2026-10-17",
+    "automate": null,
+    "apply": null
+   }
+  },
+  {
+   "id": "family-fiction",
+   "what": "UNSENT letters (week one done, owner gate)",
+   "cadence_days": 30,
+   "last_pass": "2026-10-17",
+   "next_due": "2026-11-16",
+   "next_action": "owner read pending",
+   "cycle": {
+    "inspect": "2026-10-17",
+    "research": null,
+    "change": null,
+    "systemize": "2026-10-17",
+    "automate": null,
+    "apply": null
+   }
+  },
+  {
+   "id": "family-knowledge",
+   "what": "pricing course v2 (59pp, owner gate)",
+   "cadence_days": 30,
+   "last_pass": "2026-10-17",
+   "next_due": "2026-11-16",
+   "next_action": "owner read pending; v1 never ships",
+   "cycle": {
+    "inspect": "2026-10-17",
+    "research": null,
+    "change": null,
+    "systemize": "2026-10-17",
+    "automate": null,
+    "apply": null
+   }
+  },
+  {
+   "id": "family-audio",
+   "what": "Long Settle (owner hears proof first)",
+   "cadence_days": 30,
+   "last_pass": "2026-10-17",
+   "next_due": "2026-11-16",
+   "next_action": "owner ears pending",
+   "cycle": {
+    "inspect": "2026-10-17",
+    "research": null,
+    "change": null,
+    "systemize": "2026-10-17",
+    "automate": null,
+    "apply": null
+   }
+  },
+  {
+   "id": "family-gaming",
+   "what": "LIGHTHOUSE keeper (complete + packaged, owner gate)",
+   "cadence_days": 30,
+   "last_pass": "2026-10-17",
+   "next_due": "2026-11-16",
+   "next_action": "owner read pending",
+   "cycle": {
+    "inspect": "2026-10-17",
+    "research": null,
+    "change": null,
+    "systemize": "2026-10-17",
+    "automate": null,
+    "apply": null
+   }
+  },
+  {
+   "id": "food-calendar",
+   "what": "the social food KV (739 rows through 2027-10)",
+   "cadence_days": 30,
+   "last_pass": "2026-10-17",
+   "next_due": "2026-11-16",
+   "next_action": "healthy; every new asset = same-day rows (rule)",
+   "cycle": {
+    "inspect": "2026-10-17",
+    "research": null,
+    "change": "2026-10-17",
+    "systemize": "2026-10-17",
+    "automate": "2026-10-17",
+    "apply": "2026-10-17"
+   }
+  },
+  {
+   "id": "competitor-research",
+   "what": "the pattern library + monthly discover scrape",
+   "cadence_days": 30,
+   "last_pass": "2026-10-17",
+   "next_due": "2026-11-16",
+   "next_action": "re-scrape discover (add notion template + planner queries) and append patterns",
+   "cycle": {
+    "inspect": "2026-10-17",
+    "research": "2026-10-17",
+    "change": "2026-10-17",
+    "systemize": "2026-10-17",
+    "automate": null,
+    "apply": "2026-10-17"
+   }
+  },
+  {
+   "id": "courier",
+   "what": "the daily social machine (v41)",
+   "cadence_days": 7,
+   "last_pass": "2026-10-17",
+   "next_due": "2026-10-24",
+   "next_action": "green; watch launch-gate karma check on next cycle",
+   "cycle": {
+    "inspect": "2026-10-17",
+    "research": null,
+    "change": "2026-10-17",
+    "systemize": "2026-10-17",
+    "automate": "2026-10-17",
+    "apply": "2026-10-17"
+   }
+  },
+  {
+   "id": "nightly-kpi",
+   "what": "the night crew + KPI report (v3.6)",
+   "cadence_days": 14,
+   "last_pass": "2026-10-17",
+   "next_due": "2026-10-31",
+   "next_action": "v3.7 adds the cycle-due row (this registry)",
+   "cycle": {
+    "inspect": "2026-10-17",
+    "research": null,
+    "change": "2026-10-17",
+    "systemize": "2026-10-17",
+    "automate": "2026-10-17",
+    "apply": "2026-10-17"
+   }
+  },
+  {
+   "id": "vault",
+   "what": "the KV archive (127 keys) + agent drive",
+   "cadence_days": 30,
+   "last_pass": "2026-10-17",
+   "next_due": "2026-11-16",
+   "next_action": "nightly checks integrity; monthly full restore-test one file",
+   "cycle": {
+    "inspect": "2026-10-17",
+    "research": null,
+    "change": null,
+    "systemize": "2026-10-17",
+    "automate": "2026-10-17",
+    "apply": null
+   }
+  },
+  {
+   "id": "laptop-bridge",
+   "what": "the owner's laptop hands (v40)",
+   "cadence_days": 7,
+   "last_pass": "2026-10-17",
+   "next_due": "2026-10-24",
+   "next_action": "green; queue hygiene now manual-clear - consider auto-prune in v41 bridge",
+   "cycle": {
+    "inspect": "2026-10-17",
+    "research": null,
+    "change": null,
+    "systemize": "2026-10-17",
+    "automate": "2026-10-17",
+    "apply": null
+   }
+  },
+  {
+   "id": "ops-repo",
+   "what": "the GitHub ops repo (KPI + site + tools)",
+   "cadence_days": 14,
+   "last_pass": "2026-10-17",
+   "next_due": "2026-10-31",
+   "next_action": "carries site tree + registry now; keep local and repo landing trees in sync",
+   "cycle": {
+    "inspect": "2026-10-17",
+    "research": null,
+    "change": "2026-10-17",
+    "systemize": "2026-10-17",
+    "automate": "2026-10-17",
+    "apply": "2026-10-17"
+   }
+  },
+  {
+   "id": "site-auto-builder",
+   "what": "site-data.json + builder + nightly auto-deploy",
+   "cadence_days": 14,
+   "last_pass": "2026-10-17",
+   "next_due": "2026-10-31",
+   "next_action": "verified end-to-end; watch first organic data-driven deploy",
+   "cycle": {
+    "inspect": "2026-10-17",
+    "research": "2026-10-17",
+    "change": "2026-10-17",
+    "systemize": "2026-10-17",
+    "automate": "2026-10-17",
+    "apply": "2026-10-17"
+   }
+  },
+  {
+   "id": "kpi-report",
+   "what": "the KPI.md single-file truth",
+   "cadence_days": 14,
+   "last_pass": "2026-10-17",
+   "next_due": "2026-10-31",
+   "next_action": "v3.7: cycle-due row",
+   "cycle": {
+    "inspect": "2026-10-17",
+    "research": null,
+    "change": "2026-10-17",
+    "systemize": "2026-10-17",
+    "automate": "2026-10-17",
+    "apply": "2026-10-17"
+   }
+  },
+  {
+   "id": "ledger",
+   "what": "DECISIONS-AND-STATUS.txt",
+   "cadence_days": 7,
+   "last_pass": "2026-10-17",
+   "next_due": "2026-10-24",
+   "next_action": "every session, no exceptions",
+   "cycle": {
+    "inspect": "2026-10-17",
+    "research": null,
+    "change": null,
+    "systemize": "2026-10-17",
+    "automate": null,
+    "apply": "2026-10-17"
+   }
+  },
+  {
+   "id": "control-center",
+   "what": "BUSINESS-CONTROL-CENTER.txt (sections A-M)",
+   "cadence_days": 14,
+   "last_pass": "2026-10-17",
+   "next_due": "2026-10-31",
+   "next_action": "section M added (the cycle law); audit sections on next pass",
+   "cycle": {
+    "inspect": "2026-10-17",
+    "research": null,
+    "change": "2026-10-17",
+    "systemize": "2026-10-17",
+    "automate": null,
+    "apply": "2026-10-17"
+   }
+  },
+  {
+   "id": "review-packages",
+   "what": "owner read queue (ORBITAL, UNSENT, LIGHTHOUSE, pricing v2)",
+   "cadence_days": 7,
+   "last_pass": "2026-10-17",
+   "next_due": "2026-10-24",
+   "next_action": "4 pending owner reads; keep packages fresh, never push",
+   "cycle": {
+    "inspect": "2026-10-17",
+    "research": null,
+    "change": null,
+    "systemize": "2026-10-17",
+    "automate": null,
+    "apply": null
+   }
+  },
+  {
+   "id": "business-charter",
+   "what": "the charter + owner gates (money, ships, accounts)",
+   "cadence_days": 30,
+   "last_pass": "2026-10-17",
+   "next_due": "2026-11-16",
+   "next_action": "unchanged; gates stay owner's",
+   "cycle": {
+    "inspect": "2026-10-17",
+    "research": null,
+    "change": null,
+    "systemize": "2026-10-17",
+    "automate": null,
+    "apply": null
+   }
+  }
+ ]
 }
