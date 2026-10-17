@@ -102,6 +102,26 @@ def check_shop():
                       + (f" - MISSING: {', '.join(missing)}" if missing else "")}
 
 
+def check_site():
+    """v3.6 connect-all: our own front door. The homepage must answer and
+    the sitemap must carry the full page count - a silently shrunken site
+    (a deploy that dropped pages) is the failure this catches."""
+    try:
+        status, _, _ = fetch("https://northbenchshop.com/", timeout=30)
+        home_ok = status == 200
+    except Exception:
+        home_ok = False
+    pages = 0
+    try:
+        status, body, _ = fetch("https://northbenchshop.com/sitemap.xml", timeout=30)
+        if status == 200 and body:
+            pages = body.count("<loc>")
+    except Exception:
+        pass
+    return {"ok": home_ok and pages >= 90,
+            "detail": f"home {'200' if home_ok else 'FAIL'}, {pages} pages in sitemap"}
+
+
 def check_metrics():
     """The 10x upgrade: the business numbers, machine-fed, every night.
     Revenue + sales from Gumroad, pageviews + go-clicks from the site's
@@ -225,8 +245,9 @@ def main():
     courier = check_courier()
     vault = check_vault()
     shop = check_shop()
+    site = check_site()
     metrics = check_metrics()
-    all_ok = courier["ok"] and vault["ok"] and shop["ok"]
+    all_ok = courier["ok"] and vault["ok"] and shop["ok"] and site["ok"]
 
     fmt = lambda v, pre="": "n/a" if v is None else f"{pre}{v}"
     lines = [
@@ -239,6 +260,7 @@ def main():
         f"| courier | {'OK' if courier['ok'] else 'FAIL'} | {courier['detail']} |",
         f"| vault | {'OK' if vault['ok'] else 'FAIL'} | {vault['detail']} |",
         f"| shop | {'OK' if shop['ok'] else 'FAIL'} | {shop['detail']} |",
+        f"| site | {'OK' if site['ok'] else 'FAIL'} | {site['detail']} |",
         "",
         "## Business metrics (machine-fed daily)",
         "",
@@ -276,6 +298,7 @@ def main():
         hist.append(week_line)
     lines.append(f"- {now} - {mark} (courier {'ok' if courier['ok'] else 'FAIL'}, "
                  f"vault {'ok' if vault['ok'] else 'FAIL'}, shop {'ok' if shop['ok'] else 'FAIL'}, "
+                 f"site {'ok' if site['ok'] else 'FAIL'}, "
                  f"revenue {fmt(metrics['revenue'], '$')}, sales {fmt(metrics['sales'])}, "
                  f"pv {fmt(metrics['pv_yesterday'])}, tg {fmt(metrics['telegram'])})")
     lines.extend(hist)
