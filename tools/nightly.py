@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""northbench-ops nightly health run - the night crew. v3 (10x standard).
+"""northbench-ops nightly health run - the night crew. v3.1 (loops).
 
 Runs on GitHub Actions (free minutes) at 03:15 UTC daily, and on demand.
 Checks the systems that must never silently die, then writes a KPI
@@ -138,6 +138,54 @@ def check_metrics():
     return m
 
 
+def week_rollup(metrics):
+    """v3.1 - the weekly loop: every Sunday the machine writes a 7-day
+    rollup with deltas against the previous Sunday. Parseable history
+    line keeps state between weeks without any database."""
+    if time.gmtime().tm_wday != 6:
+        return None, None
+    pv7 = go7 = 0
+    try:
+        _, body, _ = fetch(SITE_STATS)
+        stats = json.loads(body)
+        for i in range(1, 8):
+            day = time.strftime("%Y-%m-%d", time.gmtime(time.time() - i * 86400))
+            d = stats.get(day) or {}
+            pv = d.get("pageviews") or {}
+            go = d.get("go") or {}
+            pv7 += sum((v or {}).get("n", 0) for v in pv.values() if isinstance(v, dict))
+            go7 += sum((v or {}).get("n", 0) for v in go.values() if isinstance(v, dict))
+    except Exception:
+        pass
+    prev = {"rev": None, "pv7": None, "tg": None}
+    try:
+        old = open("KPI.md", encoding="utf-8").read()
+        for line in old.splitlines():
+            if line.startswith("- WEEK "):
+                parts = dict(p.split("=", 1) for p in line.split("|")[1:] if "=" in p)
+                prev = {"rev": parts.get("rev"), "pv7": parts.get("pv7"), "tg": parts.get("tg")}
+    except Exception:
+        pass
+    def delta(cur, oldv):
+        try:
+            return f" (vs last week: {cur - float(str(oldv).replace('$', '')):+g})"
+        except Exception:
+            return ""
+    week_line = (f"- WEEK {time.strftime('%Y-%m-%d')} | rev={metrics['revenue'] if metrics['revenue'] is not None else 'n/a'}"
+                 f" | pv7={pv7} | go7={go7} | tg={metrics['telegram'] if metrics['telegram'] is not None else 'n/a'}")
+    section = [
+        "## Week in numbers (auto, Sundays)",
+        "",
+        f"- pageviews, 7 days: {pv7}{delta(pv7, prev['pv7'])}",
+        f"- site->shop clicks, 7 days: {go7}",
+        f"- revenue to date: {'n/a' if metrics['revenue'] is None else '$' + str(metrics['revenue'])}",
+        f"- sales to date: {'n/a' if metrics['sales'] is None else metrics['sales']}",
+        f"- telegram members: {'n/a' if metrics['telegram'] is None else metrics['telegram']}{delta(metrics['telegram'] or 0, prev['tg']) if metrics['telegram'] is not None else ''}",
+        "",
+    ]
+    return section, week_line
+
+
 def main():
     now = time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime())
     courier = check_courier()
@@ -170,9 +218,14 @@ def main():
         "",
         "Payout gate: $100 in sales revenue unlocks the 16 email workflows.",
         "",
+    ]
+    week_section, week_line = week_rollup(metrics)
+    if week_section:
+        lines.extend(week_section)
+    lines.extend([
         "## History",
         "",
-    ]
+    ])
     # keep the last 30 history lines
     try:
         old = open("KPI.md", encoding="utf-8").read()
@@ -180,6 +233,8 @@ def main():
     except Exception:
         hist = []
     mark = "OK" if all_ok else "**ATTENTION**"
+    if week_line:
+        hist.append(week_line)
     lines.append(f"- {now} - {mark} (courier {'ok' if courier['ok'] else 'FAIL'}, "
                  f"vault {'ok' if vault['ok'] else 'FAIL'}, shop {'ok' if shop['ok'] else 'FAIL'}, "
                  f"revenue {fmt(metrics['revenue'], '$')}, sales {fmt(metrics['sales'])}, "
