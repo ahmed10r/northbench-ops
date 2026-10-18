@@ -16,6 +16,14 @@ jobs:
           NB_VIEWS_KV: ${{ secrets.NB_VIEWS_KV }}
           GUMROAD_TOKEN: ${{ secrets.GUMROAD_TOKEN }}
         run: python tools/builder.py
+      - name: hourly owner report
+        env:
+          CF_ACCOUNT: ${{ secrets.CF_ACCOUNT }}
+          CF_TOKEN: ${{ secrets.CF_TOKEN }}
+          NB_VIEWS_KV: ${{ secrets.NB_VIEWS_KV }}
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          OWNER_CHAT_ID: ${{ secrets.OWNER_CHAT_ID }}
+        run: python tools/hourly.py
       - name: wake the CEO (patrol)
         env:
           FOREMAN_KEY: ${{ secrets.FOREMAN_KEY }}
