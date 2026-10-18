@@ -10,13 +10,20 @@ def kv(key, data=None):
     urllib.request.urlopen(urllib.request.Request(u,data=json.dumps(data).encode(),headers={"Authorization":"Bearer "+tok,"Content-Type":"application/json"},method="PUT"),timeout=20)
 def wallpaper(name, seed):
     random.seed(seed); hues=[random.randint(0,359) for _ in range(3)]
-    layers=[]
-    for i in range(random.randint(4,7)):
-        h=random.choice(hues); o=round(random.uniform(.08,.3),2); n=random.randint(3,9)
+    # v2 art engine: layered gradients + composition rules (deep-agent tuned)
+    layers=[f'<defs><radialGradient id="g0" cx="30%" cy="25%"><stop offset="0%" stop-color="hsl({hues[0]},55%,{random.randint(22,38)}%)"/><stop offset="100%" stop-color="hsl({hues[1]},60%,6%)" stop-opacity="0"/></radialGradient>'
+            f'<radialGradient id="g1" cx="75%" cy="80%"><stop offset="0%" stop-color="hsl({hues[2]},50%,{random.randint(18,30)}%)" stop-opacity="0.8"/><stop offset="100%" stop-color="hsl({hues[2]},60%,4%)" stop-opacity="0"/></radialGradient></defs>',
+            '<rect width="1600" height="900" fill="url(#g0)"/>','<rect width="1600" height="900" fill="url(#g1)"/>']
+    for i in range(random.randint(3,6)):  # horizon band composition
+        y=random.uniform(250,780); h=random.uniform(20,120)
+        layers.append(f'<rect x="0" y="{y:.0f}" width="1600" height="{h:.0f}" fill="hsl({random.choice(hues)},{random.randint(25,50)}%,{random.randint(8,20)}%)" opacity="{random.uniform(.25,.7):.2f}"/>')
+    for i in range(random.randint(3,6)):  # geometric silhouettes
+        h=random.choice(hues); o=round(random.uniform(.1,.35),2); n=random.randint(3,7)
         pts=" ".join(f"{random.uniform(0,1600):.0f},{random.uniform(0,900):.0f}" for _ in range(n))
-        layers.append(f'<polygon points="{pts}" fill="hsl({h},60%,{random.randint(15,45)}%)" opacity="{o}"/>')
-    for i in range(random.randint(20,50)):
-        layers.append(f'<circle cx="{random.uniform(0,1600):.0f}" cy="{random.uniform(0,900):.0f}" r="{random.uniform(.5,2.5):.1f}" fill="hsl({random.choice(hues)},70%,80%)" opacity="{random.uniform(.2,.9):.2}"/>')
+        layers.append(f'<polygon points="{pts}" fill="hsl({h},{random.randint(35,60)}%,{random.randint(12,40)}%)" opacity="{o}"/>')
+    for i in range(random.randint(30,80)):  # star field with size falloff
+        sy=random.uniform(0,900)**1.4/900*900
+        layers.append(f'<circle cx="{random.uniform(0,1600):.0f}" cy="{sy:.0f}" r="{random.uniform(.4,2.2):.1f}" fill="hsl({random.choice(hues)},{random.randint(50,80)}%,{random.randint(75,92)}%)" opacity="{random.uniform(.2,.95):.2f}"/>')
     return f'<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900"><rect width="1600" height="900" fill="hsl({hues[0]},45%,{random.randint(5,12)}%)"/>{"".join(layers)}</svg>'
 def git(path, content, msg):
     os.makedirs(os.path.dirname(path) or ".", exist_ok=True)
