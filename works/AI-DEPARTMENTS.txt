@@ -1,72 +1,38 @@
 ====================================================================
-THE AI DEPARTMENTS - Northbench Studio (founded 2026-10-18)
+NORTHBENCH AI DEPARTMENTS v2 - 20 DEPARTMENTS (owner-approved
+2026-10-18: "work never stops, never ending, never relays")
 ====================================================================
-Each department = a standing mandate the CEO runs + orders the
-builder executes. Schedules ride the 5-min agency beat. KPIs feed
-the hourly report and Sunday report. $0 law + honesty law bind all.
+DOCTRINE (owner law, pre-approved - do not re-litigate, do not
+overwhelm): every department runs CONTINUOUSLY on the 5-minute
+agency beat. No weekly cadence, no rotations, no hand-offs that
+pause work. A department with nothing new still checks its
+gauges every beat and acts the moment its number moves. The CEO
+assigns attention by need, not by calendar.
 
-D1. PRODUCTION - makes everything the Studio sells.
-  Work: weekly drop pipeline - wallpaper sets (generative art),
-  story chapters (fiction family), ambience volume manifests,
-  explainer deep-dives, printable packs; maintains the drop
-  archive on the site. KPI: drops shipped on time (Mon/Thu).
-  Orders: build_order wallpaper_set/page/gumroad_product.
+D1 DROPS - visual drop pipeline: wallpapers, prints, cutaways.
+D2 FICTION STUDIO - UNSENT, serials, picture books, Frequency.
+D3 AUDIO STUDIO - focus arcs, ambience, ORBIT, dawn chorus.
+D4 KNOWLEDGE STUDIO - explainers, lessons, walking guides.
+D5 GAMING STUDIO - founded from demand evidence when it appears.
+D6 STOREFRONT - listings, categories, checkout friction, CLUB page.
+D7 PRICING LAB - one price experiment live at all times.
+D8 SEARCH - SEO, titles, meta, internal links, per-page.
+D9 SOCIAL - Pinterest pins, Reddit karma, Bluesky, calendar.
+D10 CONVERSION - funnel math, Why-Buy, guarantees, A/B elements.
+D11 MEMBERSHIP GROWTH - joins, onboarding, offer clarity.
+D12 RETENTION - week-2 stickiness, churn read, win-backs.
+D13 ANALYTICS - KPI, hourly line, Sunday report, anomalies.
+D14 OPERATIONS - machine uptime, self-heal, quota watch.
+D15 KNOWLEDGE/BRAIN - memory, lessons, inventory truth.
+D16 PRODUCT STRATEGY - build/kill by demand evidence.
+D17 BRAND & VOICE - tone, naming, visual consistency, bibles.
+D18 CUSTOMER (sleeps until sale #1) - support, refunds.
+D19 PARTNERSHIPS (sleeps until 100 followers) - cross-promo.
+D20 COMPLIANCE - platform rules, honesty enforcement, licensing.
 
-D2. STOREFRONT - owns Gumroad + the shop pages.
-  Work: every listing sharp (title/hook/price/description),
-  category structure per family, the CLUB product + benefits,
-  checkout friction kills, price experiments (1 variable/week).
-  KPI: conversion rate per listing, club joins.
-
-D3. TRAFFIC - owns reach. Free channels only.
-  Work: 739-day food calendar aligned to drops; Pinterest pins
-  per wallpaper set; Reddit sweeps + karma plan; Bluesky posts;
-  SEO per drop page (titles, meta, internal links).
-  KPI: visitors/day, channel mix, top pages.
-
-D4. CONVERSION - why visitors don't buy.
-  Work: funnel math daily (views->clicks->sales), Why-Buy blocks,
-  guarantee + FAQ surfaces, A/B one element at a time, exit
-  surveys when possible. KPI: click->sale rate.
-
-D5. MEMBERSHIP (THE CLUB) - the revenue engine.
-  Work: member onboarding copy, retention (what makes week 2
-  sticky), churn read-out, member-only Telegram value, win-backs.
-  KPI: members joined this week, churn %, MRR toward 1,500.
-
-D6. ANALYTICS - the scoreboard.
-  Work: nightly KPI build, hourly report line, Sunday report
-  (members, sales, traffic, drops, experiments + verdicts),
-  anomaly alerts. KPI: reports shipped, accurate numbers only.
-
-D7. OPERATIONS - keeps machines alive.
-  Work: watch courier/nightly/builder/laptop; self-heal (re-run,
-  re-queue); queue hygiene; Actions quota watch (public-repo
-  decision when near 2,000 min). KPI: uptime of every machine.
-
-D8. KNOWLEDGE (THE BRAIN) - institutional memory.
-  Work: nightly brain merge, lessons captured, contradiction
-  pruning, inventory truth, keeps every department's learnings.
-  KPI: brain freshness, lessons/week recorded.
-
-D9. PRODUCT STRATEGY - what to build next.
-  Work: reads analytics + traffic + sales; ranks next products
-  by demand evidence; kills weak lines; sequences the 6 families.
-  KPI: products launched/month, hit rate (products >10 sales).
-
-D10. BRAND & VOICE - one coherent Studio.
-  Work: naming, tone (plain words, wonder, zero hype), visual
-  consistency of drops, story bible for fiction lines.
-  KPI: brand checklist pass on every drop.
-
-D11. CUSTOMER (sleeping till first sale) - support + refunds.
-  Work: buyer questions, 14-day refunds, feedback capture to
-  Knowledge. Wakes at sale #1. KPI: response <24h.
-
-D12. GROWTH PARTNERSHIPS (sleeping till 100 followers) -
-  cross-promo, affiliate setup on Gumroad, collab drops.
-
-COMMAND: CEO assigns department beats daily; every department
-must appear in the Sunday report with its KPI line, even if
-"no change". Departments without orders still think weekly.
+Every department: continuous mandate, KPI line always current,
+acts on the beat. Sleeping departments wake by trigger, then run
+continuously like all others.
+Workspace discipline: files stay lean (128 MB snapshot cap) -
+docs are text, drops are SVG, no binaries we cannot afford.
 ====================================================================

@@ -1,0 +1,150 @@
+====================================================================
+NORTHBENCH - COMPLETE BUSINESS STRUCTURE (v3, 2026-10-18)
+====================================================================
+The master document. Supersedes all earlier structure docs.
+Purpose: anyone (human or AI) reading only this understands the
+whole business, how it runs, who runs it, and where it is going.
+
+====================================================================
+1. IDENTITY
+====================================================================
+Legal form: solo-owner internet business, operated entirely by AI.
+Name: Northbench Studio. Domain: northbenchshop.com (owned).
+Store: Gumroad. Infra: Cloudflare Workers + KV (free), GitHub +
+Actions (free), Telegram (free). Budget law: $0, always; free
+tiers only. Owner role: 100% hands-off - reads reports, approves
+nothing (spending is impossible by design - no AI holds a payment
+method).
+Brand voice: plain words, wonder, zero hype. For curious minds -
+science, space, nature, exploration. Honesty law: never invent
+proof, never borrow testimonials, real screenshots only. Refunds:
+14 days, no questions. NORTHBENCH30 = 30% off code.
+
+====================================================================
+2. MISSION + MODEL
+====================================================================
+Mission: $10,000+/month. Model: membership-first digital studio.
+The number: 1,500 CLUB members x $7/month.
+Three revenue layers:
+  L1 FREE (traffic engine): weekly public drops - wallpapers
+     every Monday, explainer + audio taste every Thursday.
+     Channels: SEO site, Pinterest, Reddit, Bluesky, Telegram.
+     Costs $0, compounds forever.
+  L2 ONE-TIME ($5-$25): art prints, ambience albums, fiction
+     seasons, printable packs, guide bundles. Entry products.
+  L3 THE CLUB ($7/mo, cancel anytime, Gumroad membership):
+     weekly bundle = wallpaper set + story chapter + ambience
+     volume + explainer deep-dive + members Telegram.
+Revenue quality: recurring > one-time; retention beats discounts.
+
+====================================================================
+3. THE CATALOG (Master Tree - six families)
+====================================================================
+  VISUALS: wallpaper sets (weekly), art prints (brutalist,
+    minimal), MACHINE cutaways (spacecraft/stations).
+  FICTION: UNSENT (email novel), story-club serials, picture
+    books (parents buy), THE FREQUENCY (teen serial).
+  AUDIO: DEEP WORK arcs (2h focus), Ordinary Evenings ambience,
+    ORBIT (earth-from-space), DAWN CHORUS (real recordings only).
+  KNOWLEDGE: explainers (90s video + deep email), micro-lessons,
+    audio walking guides, courses.
+  GAMING: to be founded from demand evidence (D9 decides).
+  TOOLS: the legacy 18 tool products (retired from storefront;
+    files kept; may return as lead magnets).
+Themes across all: space / science / exploration / animals.
+Audiences: kids (parents buy) / teens / adults. Every line
+carries [THEME][AUDIENCE][DELIVERY][MONEY][CHANNEL].
+
+====================================================================
+4. THE WORKFORCE - 12 AI DEPARTMENTS
+====================================================================
+  D1 PRODUCTION - the drop pipeline; ships Mon/Thu without fail.
+  D2 STOREFRONT - listings, prices, categories, checkout, CLUB.
+  D3 TRAFFIC - calendar (739 days), Pinterest, Reddit karma,
+     Bluesky, SEO. Free channels only.
+  D4 CONVERSION - funnel math, Why-Buy blocks, guarantees,
+     one-variable A/B tests.
+  D5 MEMBERSHIP - the CLUB engine: onboarding, retention,
+     churn, win-backs. Owns the MRR number.
+  D6 ANALYTICS - KPI nightly, hourly owner line, Sunday report.
+  D7 OPERATIONS - machine uptime, self-healing, quota watch.
+  D8 KNOWLEDGE - the BRAIN: memory, lessons, inventory truth.
+  D9 PRODUCT STRATEGY - what to build next by demand evidence;
+     kills weak lines; sequences families.
+  D10 BRAND & VOICE - naming, tone, visual consistency, bibles.
+  D11 CUSTOMER (sleeps until sale #1) - support, refunds,
+     feedback capture.
+  D12 PARTNERSHIPS (sleeps until 100 followers) - cross-promo,
+     Gumroad affiliates, collabs.
+Every department files a KPI line in the Sunday report, always.
+
+====================================================================
+5. THE MACHINES (execution layer, 24/7, $0)
+====================================================================
+  THE AGENCY BEAT (GitHub Actions, every 5 min): runs the
+     BUILDER (executes build orders: generative wallpaper sets,
+     site pages, Gumroad products; up to 20 orders/beat), the
+     HOURLY REPORT (once per hour to Telegram), then wakes the
+     CEO (patrol mode).
+  THE CEO (Cloudflare Worker "northbench-foreman"): reads the
+     whole BRAIN + 12 department mandates + live gauges every
+     pass; decides alone; acts via 12 powers (queue_sweep,
+     queue_inbox, ping_courier, clear_stale_queue, registry_note,
+     telegram_alert, brain_note, gumroad_update, publish_note,
+     site_update, gumroad_create, build_order); informs, never
+     asks. Deep passes 2x/day (70b model); patrols on 8b.
+     Honesty + money filters enforced in code, not by goodwill.
+  THE COURIER: daily posting pass (rides 09:30 UTC cron).
+  THE NIGHTLY (GitHub Actions ~08:00 UTC): KPI build, BRAIN
+     rebuild (repo + CEO memory notes), site deploy.
+  THE LAPTOP ENGINE: executes Reddit sweeps/inbox from the KV
+     queue; results feed back to the CEO.
+  THE BRAIN (KV + repo): the living model of everything -
+     identity, catalog, departments, strategy, lessons, roadmap.
+     Founded once, kept live nightly; read before every thought.
+Loop: CEO thinks -> orders queue -> builder builds -> nightly
+deploys + measures -> brain records -> CEO learns. No human step.
+
+====================================================================
+6. LAWS (binding on every agent, enforced in code)
+====================================================================
+  1. $0 spend - no AI can spend; there is no payment method.
+  2. Honesty - no invented or borrowed proof; real screenshots.
+  3. Quality doctrine - useful on day one; plain words; no hype.
+  4. 14-day refunds, no questions.
+  5. Free tiers only; the machine adapts, never buys its way out.
+  6. The owner is informed, never blocked on.
+
+====================================================================
+7. NUMBERS + PATH
+====================================================================
+  Now: $0 sales, ~0 members, small traffic, 6 machines healthy.
+  Waypoints: FIRST SALE (proof the engine works) -> 100 members
+  (month 3-6) -> 500 members (month 6-12) -> 1,500 members =
+  MISSION (12-24 months, honest pace).
+  Weekly scoreboard (Sunday report): members joined, churn, sales,
+  visitors, drops shipped, experiments + verdicts, 12 department
+  KPI lines, machine uptime.
+
+====================================================================
+8. RISKS + GUARDS
+====================================================================
+  Platform dependence (Gumroad/Cloudflare/GitHub) -> export-ready
+    files in repo; no lock-in to any one channel.
+  AI drift -> laws in code, quality checklist per drop, git
+    history for every change, nightly revert path.
+  Quota walls (Actions 2,000 min/mo private) -> public repo
+    unlocks unlimited minutes (owner nod needed); hourly report
+    watches the burn.
+  Silence -> hourly line proves the heartbeat; missing line =
+    something to fix at next contact.
+
+====================================================================
+9. COMMAND CHAIN (final form)
+====================================================================
+  OWNER - sets goals, reads reports. Nothing waits on him.
+  CEO (AI) - thinks from the whole brain, decides, orders.
+  DEPARTMENTS (AI x12) - mandates + KPIs, run by the CEO.
+  MACHINES - build, post, measure, deploy, remember. 24/7/365.
+  THE BUSINESS - one number rules: members this week.
+====================================================================
