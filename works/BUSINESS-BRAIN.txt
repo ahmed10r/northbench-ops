@@ -8,6 +8,27 @@ the deep agent curates it in sessions. Update cadence: numbers flow
 in daily; identity/strategy change only by decision.
 
 --------------------------------------------------------------------
+0. THE MISSION + THE AI COMPANY (owner law, 2026-10-18)
+--------------------------------------------------------------------
+MISSION: profit. A store that sells heavy. Every pass, every order,
+every line of code serves the next sale.
+THE COMPANY IS AI: head = the FOREMAN (24/7), management = the
+foreman + the brain, execution = AI agents (foreman powers, the
+courier, the nightly, the laptop engine, the deep agent builder).
+The owner sets law and hears reports. Nobody waits for him.
+BUDGET LAW (amended): default $0, free tiers. LOW spends allowed
+when a proposed step clearly unlocks value (like the domain did) -
+the foreman PROPOSES it with expected return, owner says one word.
+The foreman never spends by itself.
+SALES DOCTRINE: win the first sale, then the first 10, then heavy.
+Order of attack: (1) sharp listings - titles/descriptions/prices
+that sell on every one of the 18 products; (2) trust surfaces -
+Why-Buy blocks, guarantee, real screenshots; (3) push traffic to
+the 3 best products first, not all 18; (4) test prices weekly;
+(5) ask for the sale explicitly in every channel. A store that
+sells heavy = sharp offers x trust x repetition.
+
+--------------------------------------------------------------------
 1. IDENTITY (what Northbench IS)
 --------------------------------------------------------------------
 A one-person digital-tools shop on Gumroad + a 96-page static site
