@@ -6,6 +6,15 @@ def kv(k):
         return urllib.request.urlopen(urllib.request.Request(u,headers={"Authorization":"Bearer "+os.environ["CF_TOKEN"]}),timeout=15).read().decode()
     except Exception: return None
 now=time.strftime("%H:%M:%S")
+# rate limit: one line per 60s max (beats now run ~every 10s)
+def kvput(k,v):
+    u=("https://api.cloudflare.com/client/v4/accounts/%s/storage/kv/namespaces/%s/values/"%(os.environ["CF_ACCOUNT"],os.environ["CF_VIEWS_KV"]))+k.replace(":","%3A")
+    urllib.request.urlopen(urllib.request.Request(u,data=v.encode(),headers={"Authorization":"Bearer "+os.environ["CF_TOKEN"],"Content-Type":"application/json"},method="PUT"),timeout=15)
+try:
+    last=float(kv("report:last") or 0)
+    if time.time()-last < 55: raise SystemExit(0)
+except SystemExit: raise
+except Exception: pass
 b=kv("build:log") or "{}"
 q=kv("build:queue") or "[]"
 try: ceo=(json.loads(kv("agent:log") or "[]")[-1].get("at","?")[11:16])
@@ -30,4 +39,5 @@ try:
 except Exception: pass
 msg=("%s | NOW: %s | sales:%d | built:%s orders | queue:%d | beats today:%s (~%s min quota burn)" % (now, what, sales, built, len(json.loads(q)), runs, runs))
 urllib.request.urlopen(urllib.request.Request("https://api.telegram.org/bot%s/sendMessage"%os.environ["TELEGRAM_TOKEN"],data=json.dumps({"chat_id":os.environ["OWNER_CHAT_ID"],"text":msg[:500]}).encode(),headers={"Content-Type":"application/json"}),timeout=15)
+kvput("report:last",str(time.time()))
 print("report sent:", msg)
