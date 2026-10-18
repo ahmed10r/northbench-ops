@@ -15,6 +15,19 @@ try:
     g=json.load(urllib.request.urlopen(urllib.request.Request("https://api.gumroad.com/v2/sales",headers={"Authorization":"Bearer "+os.environ["GUMROAD_TOKEN"]}),timeout=15))
     sales=len(g.get("sales",[]))
 except Exception: pass
-msg=("%s UTC | sales:%d | CEO last:%s | builder:%s | queue:%d pending" % (now, sales, ceo, b[:60], len(json.loads(q))))
+what="?"
+try:
+    e=json.loads(kv("agent:log") or "[]")[-1]
+    what=str(e.get("assessment") or e.get("digest") or "?")[:70]
+except Exception: pass
+built=json.loads(b).get("executed","?")
+runs="?"
+try:
+    h={"Authorization":"Bearer "+os.environ["GH_TOKEN"],"User-Agent":"nb"}
+    r=json.load(urllib.request.urlopen(urllib.request.Request("https://api.github.com/repos/ahmed10r/northbench-ops/actions/runs?per_page=100",headers=h),timeout=15))
+    today=time.strftime("%Y-%m-%d")
+    runs=sum(1 for x in r.get("workflow_runs",[]) if x.get("created_at","").startswith(today))
+except Exception: pass
+msg=("%s | NOW: %s | sales:%d | built:%s orders | queue:%d | beats today:%s (~%s min quota burn)" % (now, what, sales, built, len(json.loads(q)), runs, runs))
 urllib.request.urlopen(urllib.request.Request("https://api.telegram.org/bot%s/sendMessage"%os.environ["TELEGRAM_TOKEN"],data=json.dumps({"chat_id":os.environ["OWNER_CHAT_ID"],"text":msg[:500]}).encode(),headers={"Content-Type":"application/json"}),timeout=15)
 print("report sent:", msg)

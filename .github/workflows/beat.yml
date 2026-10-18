@@ -18,6 +18,7 @@ jobs:
           GUMROAD_TOKEN: ${{ secrets.GUMROAD_TOKEN }}
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           OWNER_CHAT_ID: ${{ secrets.OWNER_CHAT_ID }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           python tools/builder.py || true
           python tools/hourly.py || true

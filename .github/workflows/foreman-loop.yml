@@ -23,6 +23,7 @@ jobs:
           CF_VIEWS_KV: ${{ secrets.CF_VIEWS_KV }}
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           OWNER_CHAT_ID: ${{ secrets.OWNER_CHAT_ID }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python tools/hourly.py
       - name: wake the CEO (patrol)
         env:
