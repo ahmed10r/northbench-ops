@@ -25,13 +25,27 @@ def git(path, content, msg):
 queue=kv("build:queue") or []
 if not queue: print("builder: queue empty"); sys.exit(0)
 done=[]
-for o in queue[:20]:
+for o in queue[:50]:
     try:
         k=o.get("kind"); now=time.strftime("%Y-%m-%d")
         if k=="wallpaper_set":
             seed=o.get("seed") or int(time.time()); n=o.get("count",3)
             for i in range(n): git(f"content/drops/{now}/wallpaper-{i+1}.svg", wallpaper(o.get("name","set"),seed+i), f"builder: wallpaper {i+1}")
             print(f"built {n} wallpapers: {o.get('name')}")
+        elif k=="story":
+            import random as R; R.seed(o.get("seed") or int(time.time()))
+            place=R.choice(["the old observatory","a lighthouse in fog","the last library","a radio shack at dawn","the tidepools","the night train"])
+            obj=R.choice(["a brass telescope","a tape recorder","a paper star map","a jar of fireflies","a broken compass"])
+            feels=R.choice(["quiet wonder","long-held hope","gentle grief","first courage"])
+            body=f"# {o.get('title','Field Note')}\n\nAt {place}, someone left {obj}. It still worked.\n\nThis is a story about {feels} - told the way machines dream: in plain words, small details, one true thing per line.\n\n_(Machine-made fiction from the Northbench Studio fiction desk. New chapters weekly in THE CLUB.)_"
+            git(f"content/stories/{now}/{(o.get('title','note') or 'note').lower().replace(' ','-')[:40]}.md", body, "builder: story "+str(o.get('title',''))[:30])
+            print("story written:", o.get("title"))
+        elif k=="tracklist":
+            import random as R; R.seed(o.get("seed") or int(time.time()))
+            moods=R.sample(["Slow Orbit","Tide Glass","Cabin Light","Long Wave","Snow Static","Kettle Steam","Ferry Wake","Dusk Synths","Hollow Bell","Warm Circuit","Rain on Tin","Faint Beacon"],k=8)
+            body="# "+o.get("title","Ordinary Evenings vol.")+"\n\n"+"\n".join(f"{i+1}. {m}" for i,m in enumerate(moods))+"\n\n_Ambience volume tracklist - full audio ships with the CLUB bundle._"
+            git(f"content/audio/{now}/{(o.get('title','volume') or 'vol').lower().replace(' ','-')[:40]}.md", body, "builder: tracklist")
+            print("tracklist written:", o.get("title"))
         elif k=="page":
             git(o["path"], o["content"], "builder: page "+o["path"])
         elif k=="gumroad_product":
