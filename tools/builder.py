@@ -2,7 +2,7 @@
 # Pulls build:queue from KV, executes orders alone, marks done.
 import json, os, sys, urllib.request, urllib.parse, random, math, subprocess, time
 def kv(key, data=None):
-    acct=os.environ["CF_ACCOUNT"]; tok=os.environ["CF_TOKEN"]; ns=os.environ["NB_VIEWS_KV"]
+    acct=os.environ["CF_ACCOUNT"]; tok=os.environ["CF_TOKEN"]; ns=os.environ["CF_VIEWS_KV"]
     u=f"https://api.cloudflare.com/client/v4/accounts/{acct}/storage/kv/namespaces/{ns}/values/"+urllib.parse.quote(key,safe="")
     if data is None:
         try: return json.loads(urllib.request.urlopen(urllib.request.Request(u,headers={"Authorization":"Bearer "+tok}),timeout=20).read().decode())

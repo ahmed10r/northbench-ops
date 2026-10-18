@@ -1,0 +1,67 @@
+====================================================================
+HARD SAVE - full context, 2026-10-18 (read me first, next session)
+====================================================================
+THE BUSINESS: Northbench Studio, northbenchshop.com, Gumroad.
+Mission $10k/mo = 1,500 CLUB members x $7. $0 budget ALWAYS,
+free tiers only, owner 100% hands-off (reads Telegram reports).
+Founding spec: works/FOUNDING-SPEC.txt. Master structure:
+works/BUSINESS-STRUCTURE-V3.txt. The machine: works/THE-MACHINE.txt
+(1 AI HEAD w/ 13 powers, 7 loops, 7 watchers, 6 updaters, 7
+creators). 20 departments: works/AI-DEPARTMENTS.txt (continuous
+doctrine, owner pre-approved - never re-litigate). Catalog law:
+works/MASTER-TREE.txt (6 families). Brain: works/BUSINESS-BRAIN.txt
+(seeded to KV business:brain + business:departments +
+business:machine; nightly v3.9 rebuilds brain). Ledger:
+works/DECISIONS-AND-STATUS.txt (read tail for history).
+
+LIVE SYSTEMS (verified deployed):
+- CEO worker northbench-foreman: 13 powers, multi-pass, laws in
+  code (honesty+money filters, JSON repair, queue dedupe),
+  patrol fingerprint logic, reads brain+departments+machine+KPI
+  every pass. Deploy: cd /home/user/gumroad-shop && python3
+  tools/cf_foreman.py (bindings incl. GITHUB_TOKEN, GUMROAD_TOKEN).
+- GitHub ops repo ahmed10r/northbench-ops (PRIVATE, Actions
+  2,000 min/mo): workflows nightly.yml (KPI+brain+deploy ~08:00
+  UTC, wakes CEO) + foreman-loop.yml ("the agency 24/7", cron
+  */5: tools/builder.py -> tools/hourly.py -> CEO patrol).
+  Repo secrets sealed: FOREMAN_KEY, TELEGRAM_TOKEN, OWNER_CHAT_ID
+  (@northbenchweekly), CF_TOKEN/CF_ACCOUNT/NB_VIEWS_KV (from
+  nightly S65), GUMROAD_TOKEN (sealed this session - verify).
+- Courier worker (daily 09:30 cron, posts + rides CEO), laptop
+  engine (executes KV laptop:queue sweeps/inbox), KV namespace
+  (views): keys agent:log, kpi:latest, registry:snapshot,
+  business:brain/departments/machine, brain:notes, build:queue,
+  build:log, laptop:queue/results, foreman:state.
+- Local secrets: /home/user/gumroad-shop/.secrets/ (foreman-key,
+  github_token, gumroad_token, netlify_token, telegram_token,
+  vault_key). CF coords: /home/user/crypto-rail/cf-*.txt.
+
+THE BLOCKER (top priority - fix first):
+GitHub Actions "the agency 24/7" shows NO runs. Builder never
+executed: 0 wallpapers, no build:log, drop zero still in
+build:queue (wallpaper_set x4 + THE CLUB gumroad_product $7).
+Site still shows OLD store ("tools and stories"). Repair steps:
+1) Check runs: GET /repos/ahmed10r/northbench-ops/actions/workflows
+   + /runs (with github_token). 2) Verify all 6 secrets exist
+   (list /actions/secrets). 3) Look for yml errors (the cron
+   sed change: verify file). 4) If no runs: GitHub may need
+   workflow on default branch activity OR the schedule hasn't
+   ticked - wait for :00/:05 boundary, recheck. 5) Fallback:
+   merge builder+hourly steps INTO nightly.yml (that workflow
+   DOES run) + add cron "*/5" to a NEW workflow file, push, and
+   bump the file (empty commit) to wake the scheduler.
+6) Verify: repo commits "builder: wallpaper", Gumroad CLUB
+   product, hourly Telegram line to @northbenchweekly.
+
+AFTER THE BEAT IS ALIVE (in order):
+1. Drop zero lands -> Studio home page (site_update/D6) replaces
+   old storefront; retire 18 old listings from storefront.
+2. Monday/Thursday drop calendar starts (D1/D9).
+3. Weekly scoreboard: members joined this week (THE number).
+4. Extend creators: audio manifests, story chapters (C4/C5).
+5. Quota watch: Actions minutes; if nearing 2,000/mo -> ask
+   owner to make repo public (unlimited) - credentials are in
+   secrets, safe.
+HONESTY BASELINE: 0 sales, 0 members. No invented proof ever.
+Workspace: keep lean (128 MB snapshot cap), text/SVG only.
+====================================================================
