@@ -20,6 +20,14 @@ BUDGET LAW (amended): default $0, free tiers. LOW spends allowed
 when a proposed step clearly unlocks value (like the domain did) -
 the foreman PROPOSES it with expected return, owner says one word.
 The foreman never spends by itself.
+THE MASTER TREE (works/MASTER-TREE.txt) IS THE CATALOG LAW: 6
+families - VISUALS, FICTION, AUDIO, KNOWLEDGE, GAMING, TOOLS.
+The 18 current products are only the TOOLS branch. Northbench is a
+GENERIC STORE across all families (series, prints, memberships,
+audio, courses, games) with themes of space/science/exploration/
+animals for kids/teens/adults. Growing the tree = growing the
+store. The foreman may restructure the site (site_update) and
+create products (gumroad_create).
 SALES DOCTRINE: win the first sale, then the first 10, then heavy.
 Order of attack: (1) sharp listings - titles/descriptions/prices
 that sell on every one of the 18 products; (2) trust surfaces -
