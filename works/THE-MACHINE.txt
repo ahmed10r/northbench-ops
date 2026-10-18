@@ -1,0 +1,113 @@
+====================================================================
+THE MACHINE - every system, loop, watcher, updater, creator
+and the AI HEAD that runs them. Master map v1, 2026-10-18.
+====================================================================
+
+====================================================================
+THE AI HEAD ("the CEO")
+====================================================================
+Identity: the northbench-foreman worker + its thinking protocol.
+Strength: multi-pass reasoning - every deep pass runs THINK ->
+CRITIQUE -> DECIDE (it reviews its own first answer, then acts).
+Models: 70b for deep passes (2x/day + big decisions), 8b for
+patrols. Sub-agents: it can spawn up to 3 focused extra passes
+per beat (one department each) when a number moves.
+Powers (13, whitelisted in code, laws enforced in code):
+  build_order      queue any build for the creators
+  site_update      rewrite any site/repo file (restructure)
+  gumroad_create   new products ($1-$120)
+  gumroad_update   listing text/price ($3-$60)
+  publish_note     public notes
+  queue_sweep      Reddit thread-sweep via laptop
+  queue_inbox      inbox/karma check via laptop
+  ping_courier     extra posting pass
+  clear_stale_queue  queue hygiene
+  dispatch_nightly force a night-cycle (best effort)
+  registry_note    update any component's next action
+  brain_note       write permanent memory
+  telegram_alert   priority owner message
+The head owns one number: members this week.
+
+====================================================================
+THE LOOPS (never stop, never relay)
+====================================================================
+  L1 AGENCY BEAT - every 5 min: creators run queued builds (<=20
+     orders), hourly report check, then the HEAD patrols (state
+     fingerprint; unchanged = watch, changed = think + act).
+  L2 HOURLY LINE - every hour to Telegram: builder status, queue
+     depth, sales count. Missing line = silence alarm (L7).
+  L3 DEEP PASSES - 2x/day (09:30 courier ride + ~08:10 nightly
+     wake): HEAD thinks from whole brain + 20 departments + 3
+     sub-agents max; sets priorities; queues builds.
+  L4 NIGHT CYCLE - ~08:00 UTC: KPI build -> brain rebuild (repo
+     + CEO memory + department notes) -> site deploy -> due
+     components registry update.
+  L5 COURIER LOOP - daily posting pass on the 739-day calendar.
+  L6 DEPARTMENT LOOPS - all 20 departments check their gauges
+     every beat via the HEAD's assignment; act on movement.
+  L7 SILENCE WATCHER - if the hourly line is missing 2 hours
+     straight, every later beat retries + telegram_alert fires.
+
+====================================================================
+THE WATCHERS (always on)
+====================================================================
+  W1 STATE WATCHER - fingerprint: courier log, laptop results,
+     queue depth, KPI tail, site stats. Change -> think now.
+  W2 MACHINE WATCHER (Ops/D14) - courier ran? nightly green?
+     builder committed? laptop alive? Self-heal: re-run, requeue,
+     re-ping; alert on 2 consecutive failures.
+  W3 QUOTA WATCHER - Actions minutes vs 2,000/mo; Workers AI
+     neurons vs 10k/day. Near limit -> downgrade to 8b-only +
+     propose public-repo switch to owner.
+  W4 FUNNEL WATCHER (D10/D13) - views->clicks->sales daily; any
+     step = 0 for 3 days straight -> conversion orders queued.
+  W5 ANOMALY WATCHER (D13) - traffic spike/drop, refund, first
+     sale, first member: instant telegram_alert + brain_note.
+  W6 HONESTY WATCHER (D20) - every publish passes the banned-
+     patterns filter in code; violations dropped + logged.
+  W7 SLEEPING-GATE WATCHER (D11) - checks triggers daily: sale #1
+     -> wake Customer; 100 followers -> wake Partnerships; $100
+     Gumroad balance -> wake Email lane.
+
+====================================================================
+THE UPDATERS (keep everything true)
+====================================================================
+  U1 BRAIN UPDATER - nightly merge: repo brain + CEO memory +
+     department notes -> KV business:brain (read every pass).
+  U2 KPI UPDATER - nightly table from stats + Gumroad -> KV
+     kpi:latest (feeds patrol + reports).
+  U3 SITE DEPLOYER - nightly builds + deploys the site from
+     repo; any site_update/gumroad file lands here.
+  U4 REGISTRY UPDATER - component states + next_due -> KV
+     registry:snapshot (cycle-due detection).
+  U5 LISTING UPDATER (D6/D7) - keeps every Gumroad listing
+     current: text, prices, categories, CLUB page.
+  U6 CALENDAR UPDATER (D9) - keeps the 739-day food calendar
+     aligned with drops and seasonal moments.
+
+====================================================================
+THE CREATORS (make everything)
+====================================================================
+  C1 WALLPAPER CREATOR - generative SVG art sets (seeded,
+     original, 1600x900) - runs from build_order.
+  C2 PAGE CREATOR - site pages, drop pages, family pages,
+     trust surfaces - any text file in the repo.
+  C3 PRODUCT CREATOR - new Gumroad products from orders
+     (name/price/description, laws applied).
+  C4 STORY CREATOR - fiction chapters + serials (text drops,
+     D2 Fiction Studio pipeline).
+  C5 EXPLAINER CREATOR - knowledge drops: 90-second scripts +
+     deep-dive text (D4).
+  C6 REPORT CREATOR - hourly line, Sunday report, anomaly
+     alerts (D13).
+  C7 LISTING CREATOR-EDITOR - selling copy for every listing
+     (D6/D17 voice).
+
+====================================================================
+COMMAND (final)
+====================================================================
+  OWNER (reports only) -> AI HEAD (13 powers, multi-pass, sub-
+  agents) -> 20 DEPARTMENTS -> 7 LOOPS -> 7 WATCHERS -> 6
+  UPDATERS -> 7 CREATORS. All $0, all free tiers, all logged,
+  all honest. One number: members this week.
+====================================================================
