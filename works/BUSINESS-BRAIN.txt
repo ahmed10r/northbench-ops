@@ -1,6 +1,26 @@
 ====================================================================
-THE NORTHBENCH BRAIN - the whole business, founded once, kept live
+THE NORTHBENCH STUDIO BRAIN - founded 2026-10-18, owner said GO
 ====================================================================
+THE BUSINESS: Northbench Studio (northbenchshop.com) - a
+membership-first digital studio for curious minds (science,
+space, nature, exploration). GOAL: $10,000+/month = 1,500 Club
+members at $7/mo. Budget: truly $0, always. Owner: 100%
+hands-off, reads the Sunday report.
+REVENUE: (1) FREE weekly drops - wallpapers Monday, explainer +
+audio taste Thursday - SEO + Pinterest + Reddit + Bluesky, $0;
+(2) one-time products $5-$25 (prints, ambience, fiction seasons,
+printables); (3) THE CLUB $7/mo on Gumroad - weekly bundle
+(wallpaper set + story chapter + ambience volume + deep dive) +
+members Telegram. THE number: members joined this week.
+FIRST MOVES (do them, in order): retire the 18 old tool listings
+from the storefront; site home = Studio + Club; ship drop zero
+(brand page, first wallpaper set, first audio taste, Club page);
+start the Monday/Thursday calendar. Old tree assets (ORBITAL art,
+ambience, wallpapers, explainers) = raw material.
+BELOW: legacy brain (pre-Studio) - history + lessons still true;
+inventory/strategy superseded by the Studio above.
+
+
 Rule: this file is the business model. The nightly rebuilds the KV
 copy (business:brain); the foreman reads it in EVERY pass before it
 looks at live gauges; the foreman adds living memory via brain_note;

@@ -1,0 +1,55 @@
+====================================================================
+NORTHBENCH 2.0 - FOUNDING SPEC (owner answers, 2026-10-18)
+====================================================================
+GOAL: $10,000+/month. Heavy-selling store.
+PRODUCT: AI decides (below). ASSETS: keep only what fits
+(domain, Gumroad, social accounts, Cloudflare/GitHub infra;
+18 old tool listings retired). BUDGET: truly $0, free tiers,
+always. OWNER: 100% hands-off - reads reports only.
+
+====================================================================
+THE BUSINESS (founded on the goals)
+====================================================================
+NAME: Northbench Studio (northbenchshop.com)
+WHAT: a membership-first digital studio for CURIOUS MINDS -
+science, space, nature, exploration. One brand, one audience,
+everything sells to the same person.
+WHY THIS: $0-cost AI production fits our DNA (ORBITAL art,
+ambience audio, wallpapers, explainers, fiction - assets exist);
+evergreen search demand; recurring revenue is the only realistic
+$10k/mo path at $0 spend (1,000 members x $10 = goal).
+
+THE ENGINE (3 revenue layers):
+1. FREE LAYER (traffic): weekly public drops - wallpapers
+   (Monday), mini-explainer + audio taste (Thursday). SEO site +
+   Pinterest + Reddit + Bluesky. Compounds forever, costs $0.
+2. ONE-TIME PRODUCTS ($5-$25): art prints, ambience albums,
+   guide bundles, fiction seasons, printables - the entry point.
+3. THE CLUB (membership, $7/mo, cancel anytime): weekly drop
+   bundle (wallpaper set + story chapter + ambience volume +
+   explainer deep-dive) + members Telegram. THE revenue engine.
+   1,500 members = goal reached. Gumroad memberships + Telegram
+   = $0 infrastructure.
+
+NUMBERS PATH: first sale (week 1-4) -> 100 members (month 3-6)
+-> 500 (month 6-12) -> 1,500 (the goal, 12-24 months, honest
+pace). Every week the KPI reads: members joined, churn, drops
+shipped, traffic. The brain records what worked.
+
+WHAT THE AI COMPANY DOES (24/7, $0): CEO (foreman) runs the
+week; Product Engineer ships the weekly drops (text/audio-list
+art via existing pipelines); Site Builder runs the drop site;
+Traffic Manager runs the calendar; Storefront Manager runs
+Gumroad incl. the Club setup; Conversion Optimizer kills
+friction; Sales Analyst reports weekly to Telegram. Owner reads
+reports. Nothing waits for him. $0 absolute: no spends ever
+(spec removed the micro-spend option).
+
+FIRST MOVES (next sessions, in order):
+1. Retire the 18 old listings from the storefront (keep files);
+   new site home = the Studio + the Club.
+2. Ship drop zero: brand page + first wallpaper set + first
+   ambience taste + Club page on Gumroad.
+3. Start the weekly drop calendar (Monday/Thursday).
+4. Turn the machine's roadmap to: members joined this week.
+====================================================================
