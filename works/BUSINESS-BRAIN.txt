@@ -1,0 +1,93 @@
+====================================================================
+THE NORTHBENCH BRAIN - the whole business, founded once, kept live
+====================================================================
+Rule: this file is the business model. The nightly rebuilds the KV
+copy (business:brain); the foreman reads it in EVERY pass before it
+looks at live gauges; the foreman adds living memory via brain_note;
+the deep agent curates it in sessions. Update cadence: numbers flow
+in daily; identity/strategy change only by decision.
+
+--------------------------------------------------------------------
+1. IDENTITY (what Northbench IS)
+--------------------------------------------------------------------
+A one-person digital-tools shop on Gumroad + a 96-page static site
+(northbenchshop.com). Voice: plain words, engineer's honesty, no
+hype. Doctrine: every product must be useful on day one, do one
+thing well, priced fair, screenshot-honest. The promise: tools that
+respect your time. Positioning: the anti-hype tool shelf.
+Standing law: $0/month, free tiers only (90-day window from
+launch). Absolute - not a question for anyone.
+
+--------------------------------------------------------------------
+2. FULL INVENTORY (what exists - the assets)
+--------------------------------------------------------------------
+PRODUCTS (18 live Gumroad listings, all $3-$50 band, NORTHBENCH30
+= 30% off code, 14-day no-questions refunds): PDF/HTML tool family
+- calculators, planners, checklists, worksheets (see works/
+PRODUCT-CATALOG-BRAINSTORM.txt + Gumroad for the live truth).
+CONTENT: 9 in-depth guides, 56 answers, 8 calculators on site;
+site = 96 pages, built from repo data, deployed by nightly.
+DESIGN: covers + 29 Pinterest pins, trade dress.
+STORIES (trust lane): ORBITAL (fiction), UNSENT (letters), and the
+LIGHTHOUSE series - published steadily, never as bait.
+SOCIAL: Reddit engine (account karma low, growing - launch threads
+gated at karma >= 10, retry Oct 20), Bluesky, X via Buffer,
+Telegram (owner channel).
+MACHINES: courier (daily poster, food calendar 739 rows to Oct
+2027), nightly (KPI + site deploy), foreman (24/7 manager, 9
+powers), laptop engine (executes queue: sweeps, inbox).
+Distribution is scheduled to Oct 2027 - attention is a solved
+problem; conversion is the frontier.
+
+--------------------------------------------------------------------
+3. STRATEGY (the plan)
+--------------------------------------------------------------------
+Funnel: attention (solved: calendar + engines) -> trust (guides,
+stories, honest screenshots, guarantees) -> conversion (THE
+frontier: $0 sales despite clicks) -> repeat/referral (later).
+Current bets, in order: (1) trust surfaces on product pages -
+"Why Buy" honesty blocks, guarantee page, real screenshots;
+(2) SEO depth on the 9 guides; (3) price-sensitivity testing
+within the $3-$50 band; (4) Reddit karma growth to unlock launch
+threads; (5) email lane wakes at the $100 payout gate.
+North star: first sale, then first 10. Evidence over vibes: every
+change gets a KPI read the next night.
+
+--------------------------------------------------------------------
+4. HISTORY + LESSONS (what we tried, what it taught)
+--------------------------------------------------------------------
+- Launches on Reddit failed early: karma too low, subreddits
+  reject drive-by links. Lesson: earn standing first, launch at
+  karma >= 10.
+- Clicks exist, sales don't (trust gap, not traffic gap). Lesson:
+  the product page must answer "why trust a $0-review shop" with
+  real proof, guarantees, and depth - never invented testimonials
+  (honesty law: 0 sales = no testimonials exist, ever).
+- Free shelf depth (guides/calculators) drives the best traffic
+  quality. Lesson: depth converts attention into trust better
+  than posts.
+- Engines beat willpower: everything that repeats is scheduled.
+- Deprecations/cloud quirks (CF models, cron caps, API changes):
+  the machine adapts, never buys its way out.
+- Pricing: started uniform; moving to value-banded testing.
+
+--------------------------------------------------------------------
+5. ROADMAP (ordered queue - the deep agent's backlog)
+--------------------------------------------------------------------
+1. Trust surfaces: "Why Buy" blocks + guarantee page + FAQ on
+   shop and product pages. (foreman ordered; IN PROGRESS)
+2. Guide SEO pass: titles, meta, internal links on all 9.
+3. Price tests on top-clicked listings (foreman may run these
+   itself now via gumroad_update).
+4. Reddit launch threads at karma >= 10 (Oct 20 retry).
+5. Spark lane: design one referral/pass-along loop.
+6. Email lane wake at $100 Gumroad payout gate.
+7. Ambassador/partnership lane after first 100 followers.
+
+--------------------------------------------------------------------
+6. LIVE STATE SLOT (numbers live in KV gauges, not here)
+--------------------------------------------------------------------
+Sales $0, karma low-single digits, clicks present and rising,
+site views present. Exact daily numbers: kpi:latest in KV + stats
+page. This file holds the MODEL; KV holds the MOMENT.
+====================================================================

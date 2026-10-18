@@ -262,6 +262,19 @@ def check_cycle():
 
 
 
+def push_brain():
+    """found once, kept live: repo brain + the foreman's own memory notes"""
+    try:
+        brain = open("works/BUSINESS-BRAIN.txt").read()
+    except Exception:
+        brain = "(brain file missing in repo checkout)"
+    notes = kv_get("brain:notes") or []
+    tail = "\n".join("- " + str(n.get("text", ""))[:200] for n in notes[-25:]) or "- (none yet)"
+    payload = brain + "\n\n--------------------------------------------------------------------\nFOREMAN MEMORY (its own notes, newest last)\n--------------------------------------------------------------------\n" + tail + "\n"
+    kv_put("business:brain", payload)
+    print("business:brain pushed (%d chars, %d foreman notes)" % (len(payload), len(notes)))
+
+
 def push_foreman_context(lines_text):
     """v3.8: the foreman (the AI layer of the control center) reads its
     context from the views KV. Right after the KPI is built, we hand it the
@@ -355,6 +368,7 @@ def main():
     lines.extend(hist)
     open("KPI.md", "w", encoding="utf-8").write("\n".join(lines) + "\n")
     print("\n".join(lines[:16]))
+    push_brain()
     push_foreman_context("\n".join(lines))
     sys.exit(0)
 
