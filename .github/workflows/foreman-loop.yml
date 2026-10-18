@@ -1,25 +1,25 @@
-# THE FOREMAN 24/7 PATROL - owner law (2026-10-17): "make it work
-# 24 hours, live and full capability 24/7 managing the business."
-# The account's 5 free cron slots are full, so GitHub Actions wakes
-# the foreman every 30 minutes instead. The foreman itself decides
-# whether to think (state changed) or keep watching (nothing new);
-# every 8th patrol it does a forced heartbeat pass. Neuron budget:
-# patrol thinks use the cheap 8b model (~35 neurons each), deep
-# daily passes use the 70b - total stays inside the free 10k/day.
-name: foreman 24/7 patrol
+name: the agency 24/7
 on:
   schedule:
     - cron: "*/30 * * * *"
   workflow_dispatch:
 jobs:
-  patrol:
+  beat:
     runs-on: ubuntu-latest
-    timeout-minutes: 3
+    timeout-minutes: 8
     steps:
-      - name: wake the foreman (patrol)
+      - uses: actions/checkout@v4
+      - name: build whatever the CEO ordered
+        env:
+          CF_ACCOUNT: ${{ secrets.CF_ACCOUNT }}
+          CF_TOKEN: ${{ secrets.CF_TOKEN }}
+          NB_VIEWS_KV: ${{ secrets.NB_VIEWS_KV }}
+          GUMROAD_TOKEN: ${{ secrets.GUMROAD_TOKEN }}
+        run: python tools/builder.py
+      - name: wake the CEO (patrol)
         env:
           FOREMAN_KEY: ${{ secrets.FOREMAN_KEY }}
         run: |
           curl -sS -m 100 -A "nb-agent/1.0" \
             "https://northbench-foreman.a7maaadesmail93.workers.dev/?key=${FOREMAN_KEY}&source=patrol&mode=patrol" \
-            | head -c 300 || echo "patrol ping failed (non-fatal - next patrol in 30min)"
+            | head -c 300 || echo "patrol ping failed (non-fatal)"
