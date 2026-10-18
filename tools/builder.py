@@ -25,7 +25,7 @@ def git(path, content, msg):
 queue=kv("build:queue") or []
 if not queue: print("builder: queue empty"); sys.exit(0)
 done=[]
-for o in queue[:6]:
+for o in queue[:20]:
     try:
         k=o.get("kind"); now=time.strftime("%Y-%m-%d")
         if k=="wallpaper_set":
