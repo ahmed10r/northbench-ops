@@ -1,249 +1,255 @@
 {
-  "site": "https://northbenchshop.com",
-  "generated_note": "single source of truth for the generated pages (index, guides index, sitemap). Edit this file, never the generated pages. builder: tools/site_builder.py",
-  "products": [
-    {
-      "slug": "freelance-os",
-      "name": "Freelance OS",
-      "one": "Your freelance back office, run by conversation. Eight Claude Code commands.",
-      "price": "$29",
-      "category": "work"
-    },
-    {
-      "slug": "clientos",
-      "name": "ClientOS",
-      "one": "Clients, projects and invoices in one workbook.",
-      "price": "$19",
-      "category": "work"
-    },
-    {
-      "slug": "proposals",
-      "name": "Proposal System",
-      "one": "Quotes, proposals and SOWs that get signed - and prevent arguments.",
-      "price": "$49",
-      "category": "work"
-    },
-    {
-      "slug": "outreachkit",
-      "name": "Outreach Kit",
-      "one": "Cold email system for freelancers and small studios.",
-      "price": "$16",
-      "category": "work"
-    },
-    {
-      "slug": "launchkit",
-      "name": "Launch Kit",
-      "one": "Your first digital product, start to published.",
-      "price": "$24",
-      "category": "work"
-    },
-    {
-      "slug": "listinglab",
-      "name": "Listing Lab",
-      "one": "168 fill-in listing lines and a keyword grid.",
-      "price": "$11",
-      "category": "work"
-    },
-    {
-      "slug": "contentengine",
-      "name": "Content Engine",
-      "one": "90-day post calendar and batch system.",
-      "price": "$17",
-      "category": "work"
-    },
-    {
-      "slug": "storeeye",
-      "name": "Store Eye",
-      "one": "A short daily letter about what changed on your shop or website.",
-      "price": "$29",
-      "category": "work"
-    },
-    {
-      "slug": "money-os",
-      "name": "Money OS",
-      "one": "Your money admin, done by conversation. Eight Claude Code commands.",
-      "price": "$34",
-      "category": "money"
-    },
-    {
-      "slug": "moneymap",
-      "name": "Money Map",
-      "one": "Household budget and net worth, one workbook.",
-      "price": "$14",
-      "category": "money"
-    },
-    {
-      "slug": "calc-pack",
-      "name": "Calculator Pack",
-      "one": "The eight calculators, offline, in one workbook.",
-      "price": "$12",
-      "category": "money"
-    },
-    {
-      "slug": "tutoros",
-      "name": "Tutor OS",
-      "one": "Students, sessions and payments for private tutors.",
-      "price": "$19",
-      "category": "everyday"
-    },
-    {
-      "slug": "eventplan",
-      "name": "Event Plan",
-      "one": "Guest list, seating and budget workbook for big events.",
-      "price": "$14",
-      "category": "everyday"
-    },
-    {
-      "slug": "jobhunt",
-      "name": "Job Hunt Command",
-      "one": "Application tracker, interview prep and offer scripts.",
-      "price": "$15",
-      "category": "everyday"
-    },
-    {
-      "slug": "habitledger",
-      "name": "Habit Ledger",
-      "one": "Undated 52-week printable planner. No streaks, no shame.",
-      "price": "$9",
-      "category": "everyday"
-    },
-    {
-      "slug": "promptvault",
-      "name": "Prompt Vault",
-      "one": "79 working AI prompts for small business.",
-      "price": "$12",
-      "category": "everyday"
-    },
-    {
-      "slug": "prompt-sampler",
-      "name": "Prompt Sampler",
-      "one": "14 working AI prompts. The free sample - take it, no strings.",
-      "price": "FREE",
-      "category": "everyday",
-      "free": true
-    },
-    {
-      "slug": "wholeshelf",
-      "name": "The Whole Shelf",
-      "one": "All sixteen tools, no duplicates, one file. The complete back office, money stack and planning shelf - the cheapest way to own everything we make.",
-      "price": "$59",
-      "category": "bundle"
-    }
-  ],
-  "sections": [
-    {
-      "id": "tools",
-      "kicker": "The tools",
-      "title": "For the work",
-      "sub": "Back offices, pipelines and paperwork for freelancers and small studios. Everything is a file - open it, own it, keep it.",
-      "slugs": [
-        "freelance-os",
-        "clientos",
-        "proposals",
-        "outreachkit",
-        "launchkit",
-        "listinglab",
-        "contentengine",
-        "storeeye"
-      ]
-    },
-    {
-      "id": "money",
-      "kicker": "The money",
-      "title": "For the money",
-      "sub": "Know your numbers before your numbers become a problem.",
-      "slugs": [
-        "money-os",
-        "moneymap",
-        "calc-pack"
-      ]
-    },
-    {
-      "id": "everyday",
-      "kicker": "Teaching & everyday",
-      "title": "For teaching & everyday",
-      "sub": "Classrooms, career moves, and the small daily things.",
-      "slugs": [
-        "tutoros",
-        "eventplan",
-        "jobhunt",
-        "habitledger",
-        "promptvault",
-        "prompt-sampler"
-      ]
-    }
-  ],
-  "guides": [
-    {
-      "slug": "how-to-price-freelance-work",
-      "title": "How to price freelance work",
-      "one": "Your cost floor, your value roof, the market range - and the number you can defend out loud."
-    },
-    {
-      "slug": "freelance-proposal-that-gets-signed",
-      "title": "The freelance proposal that gets signed",
-      "one": "The seven-part anatomy, in order: their words, the outcome, one number, the exclusions."
-    },
-    {
-      "slug": "cold-email-for-freelancers",
-      "title": "Cold email that gets replies",
-      "one": "The one-line pitch, the three-email rhythm, and what never to write."
-    },
-    {
-      "slug": "tutor-tracker-spreadsheet",
-      "title": "The tutor tracker spreadsheet",
-      "one": "The four lists that run a tutoring practice: students, sessions, payments, schedule."
-    },
-    {
-      "slug": "habit-tracker-that-survives",
-      "title": "The habit tracker that survives",
-      "one": "Why trackers die at week three - and the paper system that does not."
-    },
-    {
-      "slug": "household-budget-spreadsheet",
-      "title": "The household budget spreadsheet",
-      "one": "What belongs in a household budget - and what to leave out."
-    },
-    {
-      "slug": "ai-prompts-for-small-business",
-      "title": "AI prompts for small business",
-      "one": "Role, inputs, format - the three things every working prompt has."
-    },
-    {
-      "slug": "event-planning-checklist",
-      "title": "The event planning checklist",
-      "one": "The dependency order most checklists ignore, plus the three numbers that run every event."
-    },
-    {
-      "slug": "product-launch-checklist",
-      "title": "Your first product launch",
-      "one": "Pick it, prove it, build it in a day, price it to survive, publish, tell people."
-    }
-  ],
-  "free_lanes": [
-    {
-      "title": "The free sampler",
-      "one": "Fourteen working AI prompts. No email wall, no strings - take it.",
-      "href": "https://northbenchshop.gumroad.com/l/prompt-sampler",
-      "kind": "out"
-    },
-    {
-      "title": "Free calculators",
-      "one": "Freelance rate, invoice totals, payout after fees, break-even - eight of them, no signup.",
-      "href": "/calcs/",
-      "kind": "in"
-    },
-    {
-      "title": "Free guides",
-      "one": "Nine plain-words guides. Every one links to the working files if you want them.",
-      "href": "/guides/",
-      "kind": "in"
-    },
-    {
-      "title": "Plain answers",
-      "one": "Fifty-six short answers to the actual jobs - pricing, chasing invoices, seating charts, habits.",
-      "href": "/q/",
-      "kind": "in"
-    }
-  ]
+ "site": "https://northbenchshop.com",
+ "generated_note": "single source of truth for the generated pages (index, guides index, sitemap). Edit this file, never the generated pages. builder: tools/site_builder.py",
+ "products": [
+  {
+   "slug": "freelance-os",
+   "name": "Freelance OS",
+   "one": "Your freelance back office, run by conversation. Eight Claude Code commands.",
+   "price": "$29",
+   "category": "work"
+  },
+  {
+   "slug": "clientos",
+   "name": "ClientOS",
+   "one": "Clients, projects and invoices in one workbook.",
+   "price": "$19",
+   "category": "work"
+  },
+  {
+   "slug": "proposals",
+   "name": "Proposal System",
+   "one": "Quotes, proposals and SOWs that get signed - and prevent arguments.",
+   "price": "$49",
+   "category": "work"
+  },
+  {
+   "slug": "outreachkit",
+   "name": "Outreach Kit",
+   "one": "Cold email system for freelancers and small studios.",
+   "price": "$16",
+   "category": "work"
+  },
+  {
+   "slug": "launchkit",
+   "name": "Launch Kit",
+   "one": "Your first digital product, start to published.",
+   "price": "$24",
+   "category": "work"
+  },
+  {
+   "slug": "listinglab",
+   "name": "Listing Lab",
+   "one": "168 fill-in listing lines and a keyword grid.",
+   "price": "$11",
+   "category": "work"
+  },
+  {
+   "slug": "contentengine",
+   "name": "Content Engine",
+   "one": "90-day post calendar and batch system.",
+   "price": "$17",
+   "category": "work"
+  },
+  {
+   "slug": "storeeye",
+   "name": "Store Eye",
+   "one": "A short daily letter about what changed on your shop or website.",
+   "price": "$29",
+   "category": "work"
+  },
+  {
+   "slug": "money-os",
+   "name": "Money OS",
+   "one": "Your money admin, done by conversation. Eight Claude Code commands.",
+   "price": "$34",
+   "category": "money"
+  },
+  {
+   "slug": "moneymap",
+   "name": "Money Map",
+   "one": "Household budget and net worth, one workbook.",
+   "price": "$14",
+   "category": "money"
+  },
+  {
+   "slug": "calc-pack",
+   "name": "Calculator Pack",
+   "one": "The eight calculators, offline, in one workbook.",
+   "price": "$12",
+   "category": "money"
+  },
+  {
+   "slug": "tutoros",
+   "name": "Tutor OS",
+   "one": "Students, sessions and payments for private tutors.",
+   "price": "$19",
+   "category": "everyday"
+  },
+  {
+   "slug": "eventplan",
+   "name": "Event Plan",
+   "one": "Guest list, seating and budget workbook for big events.",
+   "price": "$14",
+   "category": "everyday"
+  },
+  {
+   "slug": "jobhunt",
+   "name": "Job Hunt Command",
+   "one": "Application tracker, interview prep and offer scripts.",
+   "price": "$15",
+   "category": "everyday"
+  },
+  {
+   "slug": "habitledger",
+   "name": "Habit Ledger",
+   "one": "Undated 52-week printable planner. No streaks, no shame.",
+   "price": "$9",
+   "category": "everyday"
+  },
+  {
+   "slug": "promptvault",
+   "name": "Prompt Vault",
+   "one": "79 working AI prompts for small business.",
+   "price": "$12",
+   "category": "everyday"
+  },
+  {
+   "slug": "prompt-sampler",
+   "name": "Prompt Sampler",
+   "one": "14 working AI prompts. The free sample - take it, no strings.",
+   "price": "FREE",
+   "category": "everyday",
+   "free": true
+  },
+  {
+   "slug": "wholeshelf",
+   "name": "The Whole Shelf",
+   "one": "All sixteen tools, no duplicates, one file. The complete back office, money stack and planning shelf - the cheapest way to own everything we make.",
+   "price": "$59",
+   "category": "bundle"
+  }
+ ],
+ "sections": [
+  {
+   "id": "tools",
+   "kicker": "The tools",
+   "title": "For the work",
+   "sub": "Back offices, pipelines and paperwork for freelancers and small studios. Everything is a file - open it, own it, keep it.",
+   "slugs": [
+    "freelance-os",
+    "clientos",
+    "proposals",
+    "outreachkit",
+    "launchkit",
+    "listinglab",
+    "contentengine",
+    "storeeye"
+   ]
+  },
+  {
+   "id": "money",
+   "kicker": "The money",
+   "title": "For the money",
+   "sub": "Know your numbers before your numbers become a problem.",
+   "slugs": [
+    "money-os",
+    "moneymap",
+    "calc-pack"
+   ]
+  },
+  {
+   "id": "everyday",
+   "kicker": "Teaching & everyday",
+   "title": "For teaching & everyday",
+   "sub": "Classrooms, career moves, and the small daily things.",
+   "slugs": [
+    "tutoros",
+    "eventplan",
+    "jobhunt",
+    "habitledger",
+    "promptvault",
+    "prompt-sampler"
+   ]
+  }
+ ],
+ "guides": [
+  {
+   "slug": "how-to-price-freelance-work",
+   "title": "How to price freelance work",
+   "one": "Your cost floor, your value roof, the market range - and the number you can defend out loud."
+  },
+  {
+   "slug": "freelance-proposal-that-gets-signed",
+   "title": "The freelance proposal that gets signed",
+   "one": "The seven-part anatomy, in order: their words, the outcome, one number, the exclusions."
+  },
+  {
+   "slug": "cold-email-for-freelancers",
+   "title": "Cold email that gets replies",
+   "one": "The one-line pitch, the three-email rhythm, and what never to write."
+  },
+  {
+   "slug": "tutor-tracker-spreadsheet",
+   "title": "The tutor tracker spreadsheet",
+   "one": "The four lists that run a tutoring practice: students, sessions, payments, schedule."
+  },
+  {
+   "slug": "habit-tracker-that-survives",
+   "title": "The habit tracker that survives",
+   "one": "Why trackers die at week three - and the paper system that does not."
+  },
+  {
+   "slug": "household-budget-spreadsheet",
+   "title": "The household budget spreadsheet",
+   "one": "What belongs in a household budget - and what to leave out."
+  },
+  {
+   "slug": "ai-prompts-for-small-business",
+   "title": "AI prompts for small business",
+   "one": "Role, inputs, format - the three things every working prompt has."
+  },
+  {
+   "slug": "event-planning-checklist",
+   "title": "The event planning checklist",
+   "one": "The dependency order most checklists ignore, plus the three numbers that run every event."
+  },
+  {
+   "slug": "product-launch-checklist",
+   "title": "Your first product launch",
+   "one": "Pick it, prove it, build it in a day, price it to survive, publish, tell people."
+  }
+ ],
+ "free_lanes": [
+  {
+   "title": "THE SERIES - free weekly stories",
+   "one": "UNSENT, The Frequency, The Story Club. New chapters every week, free forever.",
+   "href": "/series/",
+   "kind": "in"
+  },
+  {
+   "title": "The free sampler",
+   "one": "Fourteen working AI prompts. No email wall, no strings - take it.",
+   "href": "https://northbenchshop.gumroad.com/l/prompt-sampler",
+   "kind": "out"
+  },
+  {
+   "title": "Free calculators",
+   "one": "Freelance rate, invoice totals, payout after fees, break-even - eight of them, no signup.",
+   "href": "/calcs/",
+   "kind": "in"
+  },
+  {
+   "title": "Free guides",
+   "one": "Nine plain-words guides. Every one links to the working files if you want them.",
+   "href": "/guides/",
+   "kind": "in"
+  },
+  {
+   "title": "Plain answers",
+   "one": "Fifty-six short answers to the actual jobs - pricing, chasing invoices, seating charts, habits.",
+   "href": "/q/",
+   "kind": "in"
+  }
+ ]
 }
