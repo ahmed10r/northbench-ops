@@ -407,6 +407,23 @@ async function executeActions(env, actions, source, ctx) {
         q.push(g);
         await kvPut(env, "build:queue", q.slice(-10));
         results.push("build_order '" + g.kind + "' queued for the builder (runs <=30min)");
+      } else if (id === "self_repair") {
+        const stR = (await kvGet(env, KV_STATE)) || {};
+        if (stR.lastSelfRepair && Date.now() - stR.lastSelfRepair < 3600000) {
+          results.push("self_repair: skipped (ran in the last hour)");
+        } else {
+          const rr = await fetch("https://api.github.com/repos/ahmed10r/northbench-ops/actions/workflows/self-repair.yml/dispatches", {
+            method: "POST",
+            headers: { "User-Agent": "nb-agent/1.0",
+              "Authorization": "Bearer " + env.GITHUB_TOKEN,
+              "Accept": "application/vnd.github+json",
+              "Content-Type": "application/json" },
+            body: JSON.stringify({ ref: "main" }),
+          });
+          stR.lastSelfRepair = Date.now();
+          await kvPut(env, KV_STATE, stR);
+          results.push("self_repair: " + (rr.status === 204 ? "ENGAGED - redeploying last-known-good code" : "http " + rr.status));
+        }
       } else if (id === "telegram_alert") {
         await telegram(env, "FOREMAN ALERT (" + ctx.at.slice(11, 16) + " UTC): " +
           String((g && g.text) || (typeof a === "object" ? JSON.stringify(a) : "unspecified")).slice(0, 400));
@@ -952,7 +969,26 @@ export default {
         });
         chained2 = cr.status;
       } catch (e2) {}
-      try { await telegram(env, "MACHINE: a pass crashed (" + String(e).slice(0, 120) + ") - the chain continues, error logged."); } catch (e3) {}
+      try {
+        const stC = JSON.parse((await env.VIEWS.get("foreman:state")) || "{}");
+        stC.crashStreak = (stC.crashStreak || 0) + 1;
+        if (stC.crashStreak >= 2) {
+          stC.crashStreak = 0;
+          await env.VIEWS.put("foreman:state", JSON.stringify(stC));
+          await fetch("https://api.github.com/repos/ahmed10r/northbench-ops/actions/workflows/self-repair.yml/dispatches", {
+            method: "POST",
+            headers: { "User-Agent": "nb-agent/1.0",
+              "Authorization": "Bearer " + env.GITHUB_TOKEN,
+              "Accept": "application/vnd.github+json",
+              "Content-Type": "application/json" },
+            body: JSON.stringify({ ref: "main" }),
+          });
+          await telegram(env, "MACHINE: 2nd consecutive crash - SELF-REPAIR ENGAGED (redeploying last-known-good code). Error: " + String(e).slice(0, 100));
+        } else {
+          await env.VIEWS.put("foreman:state", JSON.stringify(stC));
+          await telegram(env, "MACHINE: a pass crashed (" + String(e).slice(0, 120) + ") - the chain continues, error logged.");
+        }
+      } catch (e3) {}
       return new Response(JSON.stringify({ ok: false, error: String(e).slice(0, 300), chained: chained2 }),
         { headers: { "content-type": "application/json" } });
     }
