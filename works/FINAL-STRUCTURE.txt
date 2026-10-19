@@ -1,0 +1,49 @@
+====================================================================
+THE NORTHBENCH AI COMPANY - FINAL STRUCTURE (2026-10-19, owner law)
+====================================================================
+"All the structure is AI. Above all: 2 AIs with full permission,
+both ways, always. Owner orders the deep agent; deep agent orders
+the 2 AIs; when both offline, the 2 AIs run everything 24/7."
+
+TIER 0 - THE OWNER
+  Sets goals + one-way corrections (instant law). Never asked to
+  choose anything. Reads plain Telegram reports.
+
+TIER 1 - THE DEEP AGENT (the strongest brain, in sessions)
+  Orders the Twins, upgrades the whole machine, does art +
+  architecture. Bakes its judgment into the permanent brain so
+  quality compounds between sessions.
+
+TIER 2 - THE TWIN HEADS (2 AIs, ALWAYS ON, FULL PERMISSION)
+  TWIN-1: the acting head - full powers, decides + executes.
+  TWIN-2: the counter-head - full powers, sees TWIN-1's every
+  decision, can VETO any of it and act on its own judgment.
+  BOTH WAYS: each may act, each may stop the other. Mutual
+  check = no single point of bad judgment. Runs hourly (deep
+  passes) + patrol every minute. Laws still bind both: honesty,
+  no-spend, quality. When owner AND deep agent are offline,
+  THE TWINS RUN THE COMPANY - full permission, 24/7.
+
+TIER 3 - SPECIALIST MINDS (under the Twins, all automated)
+  Self-critic (every plan) / Business Analyzer (hourly, whole
+  business weakest link) / Reddit Strategist (hourly karma war) /
+  Upgrader (every 2h, upgrades all work) / Auditor-Repairer
+  (hourly, verifies reality + repairs) / Logger + Context Keeper
+  (every pass).
+
+TIER 4 - THE BODY
+  20 departments (continuous) / 7 creators (wallpapers, pages,
+  products, stories, tracklists...) / builder (50 orders/beat) /
+  courier / nightly / laptop bridge (owner's browser = Reddit) /
+  self-chaining beats (~every 10s).
+
+COMMAND CHAIN (final)
+  OWNER -> DEEP AGENT -> TWIN-1 + TWIN-2 (mutual, full power)
+  -> specialists -> departments -> creators -> machines.
+  Offline, the chain shortens to: TWINS -> everything.
+
+PERMISSION MAP: Twins hold ALL powers (build, publish, Gumroad
+create/update, site restructure, queue, alert, memory). The one
+absolute that binds every tier including Twins: $0 spend (no AI
+holds a payment method - enforced by physics, not policy).
+====================================================================
