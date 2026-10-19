@@ -121,6 +121,20 @@ async function telegram(env, text) {
   } catch (e) { /* never break a pass */ }
 }
 
+async function chainAllowed(env) {
+  // chain gate 2026-10-19: max ONE dispatch per 4.5 min. The cron */5 is the
+  // guaranteed heartbeat; dispatches are only the accelerator. Prevents chain
+  // multiplication when runs overlap (queue bursts). Fail-closed: if KV is
+  // unavailable the cron carries the beat - never multiply blindly.
+  try {
+    const st = JSON.parse((await env.VIEWS.get("foreman:state")) || "{}");
+    if (Date.now() - (st.lastChainAt || 0) < 270000) return false;
+    st.lastChainAt = Date.now();
+    await env.VIEWS.put("foreman:state", JSON.stringify(st));
+    return true;
+  } catch (e) { return false; }
+}
+
 async function gatherContext(env, mode) {
   if (mode === "patrol") {
     try {
@@ -967,7 +981,8 @@ export default {
     // no client disconnect can ever break the chain again.
     let chained = null;
     if (source === "patrol") {
-      try {
+      if (!(await chainAllowed(env))) { chained = "paced (cron */5 carries the beat)"; }
+      else try {
         const cr = await fetch("https://api.github.com/repos/ahmed10r/northbench-ops/actions/workflows/foreman-loop.yml/dispatches", {
           method: "POST",
           headers: { "User-Agent": "nb-agent/1.0",
@@ -1000,6 +1015,7 @@ export default {
       // the error as data, and let the machine keep running no matter what
       let chained2 = null;
       try {
+        if (await chainAllowed(env)) {
         const cr = await fetch("https://api.github.com/repos/ahmed10r/northbench-ops/actions/workflows/foreman-loop.yml/dispatches", {
           method: "POST",
           headers: { "User-Agent": "nb-agent/1.0",
@@ -1008,7 +1024,8 @@ export default {
             "Content-Type": "application/json" },
           body: JSON.stringify({ ref: "main" }),
         });
-        chained2 = cr.status;
+          chained2 = cr.status;
+        } else chained2 = "paced";
       } catch (e2) {}
       try {
         const stC = JSON.parse((await env.VIEWS.get("foreman:state")) || "{}");
