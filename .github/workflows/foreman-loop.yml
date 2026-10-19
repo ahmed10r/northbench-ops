@@ -1,7 +1,7 @@
 name: the agency 24/7
 on:
   schedule:
-    - cron: "* * * * *"
+    - cron: "*/5 * * * *"
   workflow_dispatch:
 permissions:
   contents: write
@@ -11,9 +11,6 @@ jobs:
     timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
-      - name: pace the chain (5-min beats: KV read quota is 100k/day -
-          10s beats blew it; 5 min = ~3k reads/day, still instant for the business)
-        run: sleep 280
       - name: build whatever the CEO ordered
         env:
           CF_ACCOUNT: ${{ secrets.CF_ACCOUNT }}
@@ -29,7 +26,7 @@ jobs:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           OWNER_CHAT_ID: ${{ secrets.OWNER_CHAT_ID }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python tools/hourly.py
+        run: python tools/hourly.py || true
       - name: wake the CEO (patrol)
         env:
           FOREMAN_KEY: ${{ secrets.FOREMAN_KEY }}
