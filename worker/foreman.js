@@ -109,6 +109,26 @@ async function kvAppendLog(env, entry) {
   const log = (await kvGet(env, KV_LOG)) || [];
   log.push(entry);
   await env.VIEWS.put(KV_LOG, JSON.stringify(log.slice(-MAX_LOG)));
+  // HISTORY-TO-REPO (2026-10-19): KV keeps only the hot tail (write-cap law);
+  // the permanent record accumulates in the repo, forever. Best-effort.
+  try {
+    const line = JSON.stringify(entry);
+    const path = "works/machine-log/" + entry.at.slice(0, 13) + "h.json";
+    const enc = path.split("/").map(encodeURIComponent).join("/");
+    const ex = await grab("https://api.github.com/repos/ahmed10r/northbench-ops/contents/" + enc, 8000,
+      { headers: { "Authorization": "Bearer " + env.GITHUB_TOKEN } });
+    let content = line, sha = null;
+    if (ex.ok && ex.json && ex.json.sha) {
+      sha = ex.json.sha;
+      try { content = atob(ex.json.content.replace(/\n/g, "")).replace(/\s+$/, "") + "\n" + line; } catch (e2) {}
+    }
+    const b64 = btoa(unescape(encodeURIComponent(content)));
+    await grab("https://api.github.com/repos/ahmed10r/northbench-ops/contents/" + enc, 15000, {
+      method: "PUT",
+      headers: { "Authorization": "Bearer " + env.GITHUB_TOKEN, "Content-Type": "application/json" },
+      body: JSON.stringify({ message: "machine log " + entry.at, content: b64, sha: sha, branch: "main" }),
+    });
+  } catch (e) { /* the KV tail remains the hot source of truth */ }
 }
 
 async function telegram(env, text) {
