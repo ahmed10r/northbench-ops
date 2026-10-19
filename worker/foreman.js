@@ -121,7 +121,17 @@ async function telegram(env, text) {
   } catch (e) { /* never break a pass */ }
 }
 
-async function gatherContext(env) {
+async function gatherContext(env, mode) {
+  if (mode === "patrol") {
+    try {
+      const blobRaw = await env.VIEWS.get("ctx:blob");
+      if (blobRaw) {
+        const b = JSON.parse(blobRaw);
+        if (Date.now() - new Date(b.at).getTime() < 7200000)
+          return Object.assign({}, b, { at: new Date().toISOString() });
+      }
+    } catch (e) {}
+  }
   const ctx = { at: new Date().toISOString() };
   const c = await grab(COURIER_URL, 25000);
   if (c.ok && c.json) { ctx.courier = c.json.reddit || {}; ctx.courier_log = (c.json.log || []).slice(0, 4); }
@@ -169,6 +179,7 @@ async function gatherContext(env) {
   if (st) ctx.last_run = st.at;
   const log = await kvGet(env, KV_LOG);
   if (Array.isArray(log) && log.length) ctx.last_thought = String(log[log.length - 1].assessment || "").slice(0, 180);
+  if (mode !== "patrol") { try { await kvPut(env, "ctx:blob", ctx); } catch (e) {} }
   return ctx;
 }
 
@@ -625,7 +636,7 @@ async function deepAudit(env, ctx) {
 }
 
 async function runPass(env, source, mode) {
-  const ctx = await gatherContext(env);
+  const ctx = await gatherContext(env, mode);
   // 24/7 patrol: skip the AI when nothing changed, think the moment
   // something has (or every 8th patrol = forced heartbeat, 4h)
   const fp = JSON.stringify([ctx.courier_log, ctx.laptop, ctx.queue_pending,
