@@ -263,11 +263,18 @@ def check_cycle():
 
 
 def push_brain():
-    """found once, kept live: repo brain + the foreman's own memory notes"""
+    """found once, kept live: repo brain + the foreman's own memory notes.
+    v-fix 2026-10-19: KV quota days (429) must NEVER kill the nightly -
+    the report and KPI commit are the product; the brain push degrades
+    to a warning and retries next night."""
     try:
-        brain = open("works/BUSINESS-BRAIN.txt").read()
-    except Exception:
-        brain = "(brain file missing in repo checkout)"
+        _push_brain_inner()
+    except Exception as e:
+        print("WARN: business:brain push skipped (%s) - quota/throttle; retry tonight" % str(e)[:120])
+
+
+def _push_brain_inner():
+    brain = open("works/BUSINESS-BRAIN.txt").read()
     notes = kv_get("brain:notes") or []
     tail = "\n".join("- " + str(n.get("text", ""))[:200] for n in notes[-25:]) or "- (none yet)"
     payload = brain + "\n\n--------------------------------------------------------------------\nFOREMAN MEMORY (its own notes, newest last)\n--------------------------------------------------------------------\n" + tail + "\n"
