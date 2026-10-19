@@ -31,6 +31,6 @@ jobs:
         env:
           FOREMAN_KEY: ${{ secrets.FOREMAN_KEY }}
         run: |
-          curl -sS -m 100 -A "nb-agent/1.0" \
+          curl -sS -m 240 -A "nb-agent/1.0" \
             "https://northbench-foreman.a7maaadesmail93.workers.dev/?key=${FOREMAN_KEY}&source=patrol&mode=patrol" \
             | head -c 300 || echo "patrol ping failed (non-fatal)"
