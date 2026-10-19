@@ -1,43 +1,42 @@
-# MINUTE-BY-MINUTE OWNER REPORT (owner observation mode, 2026-10-18)
+# THE OWNER REPORT - plain human words, nothing else
 import json, os, time, urllib.request
 def kv(k):
     try:
         u=("https://api.cloudflare.com/client/v4/accounts/%s/storage/kv/namespaces/%s/values/"%(os.environ["CF_ACCOUNT"],os.environ["CF_VIEWS_KV"]))+k.replace(":","%3A")
         return urllib.request.urlopen(urllib.request.Request(u,headers={"Authorization":"Bearer "+os.environ["CF_TOKEN"]}),timeout=15).read().decode()
     except Exception: return None
-now=time.strftime("%H:%M:%S")
-# rate limit: one line per 60s max (beats now run ~every 10s)
 def kvput(k,v):
-    u=("https://api.cloudflare.com/client/v4/accounts/%s/storage/kv/namespaces/%s/values/"%(os.environ["CF_ACCOUNT"],os.environ["CF_VIEWS_KV"]))+k.replace(":","%3A")
-    urllib.request.urlopen(urllib.request.Request(u,data=v.encode(),headers={"Authorization":"Bearer "+os.environ["CF_TOKEN"],"Content-Type":"application/json"},method="PUT"),timeout=15)
-try:
-    last=float(kv("report:last") or 0)
-    if time.time()-last < 55: raise SystemExit(0)
-except SystemExit: raise
-except Exception: pass
-b=kv("build:log") or "{}"
-q=kv("build:queue") or "[]"
-try: ceo=(json.loads(kv("agent:log") or "[]")[-1].get("at","?")[11:16])
-except Exception: ceo="?"
-sales=0
-try:
-    g=json.load(urllib.request.urlopen(urllib.request.Request("https://api.gumroad.com/v2/sales",headers={"Authorization":"Bearer "+os.environ["GUMROAD_TOKEN"]}),timeout=15))
-    sales=len(g.get("sales",[]))
-except Exception: pass
-what="?"
-try:
-    e=json.loads(kv("agent:log") or "[]")[-1]
-    what=str(e.get("assessment") or e.get("digest") or "?")[:70]
-except Exception: pass
-built=json.loads(b).get("executed","?")
-runs="?"
-try:
-    h={"Authorization":"Bearer "+os.environ["GH_TOKEN"],"User-Agent":"nb"}
-    r=json.load(urllib.request.urlopen(urllib.request.Request("https://api.github.com/repos/ahmed10r/northbench-ops/actions/runs?per_page=100",headers=h),timeout=15))
-    today=time.strftime("%Y-%m-%d")
-    runs=sum(1 for x in r.get("workflow_runs",[]) if x.get("created_at","").startswith(today))
-except Exception: pass
-msg=("%s | NOW: %s | sales:%d | built:%s orders | queue:%d | beats today:%s (~%s min quota burn)" % (now, what, sales, built, len(json.loads(q)), runs, runs))
-urllib.request.urlopen(urllib.request.Request("https://api.telegram.org/bot%s/sendMessage"%os.environ["TELEGRAM_TOKEN"],data=json.dumps({"chat_id":os.environ["OWNER_CHAT_ID"],"text":msg[:500]}).encode(),headers={"Content-Type":"application/json"}),timeout=15)
-kvput("report:last",str(time.time()))
-print("report sent:", msg)
+    try:
+        u=("https://api.cloudflare.com/client/v4/accounts/%s/storage/kv/namespaces/%s/values/"%(os.environ["CF_ACCOUNT"],os.environ["CF_VIEWS_KV"]))+k.replace(":","%3A")
+        urllib.request.urlopen(urllib.request.Request(u,data=v.encode(),headers={"Authorization":"Bearer "+os.environ["CF_TOKEN"],"Content-Type":"application/json"},method="PUT"),timeout=15)
+    except Exception: pass
+last=kv("report:last")
+if not last or time.strftime("%H:%M") != time.strftime("%H:%M", time.gmtime(float(last))):
+    sales=0
+    try:
+        g=json.load(urllib.request.urlopen(urllib.request.Request("https://api.gumroad.com/v2/sales",headers={"Authorization":"Bearer "+os.environ["GUMROAD_TOKEN"]}),timeout=15))
+        sales=len(g.get("sales",[]))
+    except Exception: pass
+    bl=json.loads(kv("build:log") or "{}")
+    queue=json.loads(kv("build:queue") or "[]")
+    working="keeping the store sharp"
+    try:
+        log=json.loads(kv("agent:log") or "[]")
+        for e in reversed(log):
+            o=[str(x) for x in (e.get("orders") or []) if len(str(x))>15 and "dropped" not in str(x)]
+            if o: working=o[0][:90]; break
+    except Exception: pass
+    ctx=json.loads(kv("business:context") or "{}")
+    problems=[h for h in (ctx.get("health") or ["ok"]) if "ok" not in h.lower()]
+    msg=("Northbench %s UTC\n"
+         "Sales so far: %d\n"
+         "Made today: %s\n"
+         "Waiting to be built: %d\n"
+         "Now working on: %s\n"
+         "Machine: %s") % (time.strftime("%H:%M"), sales,
+            ("%s items" % bl.get("executed")) if str(bl.get("at","")).startswith(time.strftime("%Y-%m-%d")) else "nothing yet today",
+            len(queue), working,
+            "all good" if not problems else "; ".join(problems)[:120])
+    urllib.request.urlopen(urllib.request.Request("https://api.telegram.org/bot%s/sendMessage"%os.environ["TELEGRAM_TOKEN"],data=json.dumps({"chat_id":os.environ["OWNER_CHAT_ID"],"text":msg[:600]}).encode(),headers={"Content-Type":"application/json"}),timeout=15)
+    kvput("report:last",str(time.time()))
+    print("report sent")
