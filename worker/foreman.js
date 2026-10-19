@@ -320,7 +320,18 @@ async function executeActions(env, actions, source, ctx) {
     let id, g = null;
     if (typeof a === "string") { id = a.trim(); }
     else if (a && typeof a === "object") {
-      if (a.gumroad_update) { id = "gumroad_update"; g = a.gumroad_update; }
+      // intent rescue v2 (2026-10-19): the chiefs often emit strings or
+      // wrong shapes - normalize instead of refusing, so no intent is lost.
+      if (a.gumroad_update) {
+        id = "gumroad_update";
+        g = typeof a.gumroad_update === "string"
+          ? { product: a.gumroad_update.replace(/^[^:]{0,40}:?\s*/, "").slice(0, 60) }
+          : a.gumroad_update;
+        if (g && typeof g.product === "object" && g.product.name) g.product = g.product.name;
+      } else if (a.site_update) {
+        id = "site_update";
+        g = typeof a.site_update === "object" ? a.site_update : null;
+      }
       else if (a.publish_note) { id = "publish_note"; g = a.publish_note; }
       else if (a.registry_note) { id = "registry_note"; g = a.registry_note; }
       else if (a.product) { id = "gumroad_update"; g = a; }
@@ -455,6 +466,18 @@ async function executeActions(env, actions, source, ctx) {
           body.append("price", pr);
         }
         if (!body.toString()) { results.push("gumroad_update: nothing lawful to do"); continue; }
+        if (!/^(\d{5,}|[a-z0-9-]{3,})$/.test(String(g.product || ""))) {
+          // resolve a product NAME to its id via the live shelf
+          try {
+            const pl = await fetch("https://api.gumroad.com/v2/products?per_page=60",
+              { headers: { "Authorization": "Bearer " + env.GUMROAD_TOKEN, "User-Agent": "nb" } });
+            const pj = pl.ok ? await pl.json() : null;
+            const hit = (pj && pj.products || []).find((x) =>
+              String(x.name || "").toLowerCase().indexOf(String(g.product).toLowerCase().slice(0, 20)) > -1);
+            if (hit) { g.product = hit.id; results.push("gumroad_update: resolved product -> " + hit.name.slice(0, 40)); }
+            else { results.push("gumroad_update: no product matches '" + String(g.product).slice(0, 30) + "' - refused"); continue; }
+          } catch (e) { results.push("gumroad_update: product lookup failed"); continue; }
+        }
         const r = await fetch("https://api.gumroad.com/v2/products/" + encodeURIComponent(g.product), {
           method: "PUT",
           headers: { "Authorization": "Bearer " + env.GUMROAD_TOKEN,
@@ -462,6 +485,13 @@ async function executeActions(env, actions, source, ctx) {
           body: body,
         });
         results.push("gumroad_update " + g.product + ": " + (r.ok ? "PUBLISHED" : "http " + r.status));
+      } else if (id === "site_update") {
+        if (g && g.path && g.content) {
+          const q2 = (await kvGet(env, "build:queue")) || [];
+          q2.push({ kind: "page", path: String(g.path).slice(0, 90), content: String(g.content).slice(0, 8000) });
+          await kvPut(env, "build:queue", q2);
+          results.push("site_update -> page build queued: " + g.path);
+        } else results.push("site_update: needs {path, content} - refused");
       } else if (id === "publish_note") {
         if (!g) { results.push("publish_note: no title/text given - not executed"); continue; }
         const title = String(g.title || "Foreman note").slice(0, 80);
