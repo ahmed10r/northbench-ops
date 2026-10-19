@@ -1,10 +1,10 @@
 # NORTHBENCH KPI - nightly health + business metrics
 
-**Last run: 2026-10-19 23:04 UTC** - ATTENTION NEEDED
+**Last run: 2026-10-19 23:10 UTC** - ATTENTION NEEDED
 
 | system | status | detail |
 |---|---|---|
-| courier | OK | http 200 in 0.85s |
+| courier | OK | http 200 in 1.18s |
 | vault | FAIL | HTTP Error 500: Internal Server Error |
 | shop | OK | 18/18 listings answer |
 | site | OK | home 200, 97 pages in sitemap |
@@ -29,6 +29,7 @@ Payout gate: $100 in sales revenue unlocks the 16 email workflows.
 
 ## History
 
+- 2026-10-19 23:10 UTC - **ATTENTION** (courier ok, vault FAIL, shop ok, site ok, revenue $0, sales 0, pv n/a, tg 2)
 - 2026-10-19 23:04 UTC - **ATTENTION** (courier ok, vault FAIL, shop ok, site ok, revenue $0, sales 0, pv n/a, tg 2)
 - 2026-10-19 22:59 UTC - **ATTENTION** (courier ok, vault FAIL, shop ok, site ok, revenue $0, sales 0, pv n/a, tg 2)
 - 2026-10-19 22:54 UTC - **ATTENTION** (courier ok, vault FAIL, shop ok, site ok, revenue $0, sales 0, pv n/a, tg 2)
