@@ -1,0 +1,25 @@
+name: resume-the-machine
+on:
+  schedule:
+    - cron: "5 0 * * *"   # 00:05 UTC daily - after the KV write quota resets
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  resume:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: re-enable the 24/7 loop
+        run: |
+          curl -sS -o /dev/null -w "loop re-enabled: %{http_code}\n" -X PUT \
+            -H "Authorization: Bearer ${{ secrets.DEPLOY_PAT }}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/ahmed10r/northbench-ops/actions/workflows/foreman-loop.yml/enable"
+      - name: ship bridge code + queue discovery
+        env:
+          CF_ACCOUNT: ${{ secrets.CF_ACCOUNT }}
+          CF_TOKEN: ${{ secrets.CF_TOKEN }}
+          CF_VIEWS_KV: ${{ secrets.CF_VIEWS_KV }}
+        run: python tools/ship_bridge.py || true
