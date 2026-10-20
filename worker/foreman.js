@@ -652,7 +652,11 @@ async function deepAudit(env, ctx) {
       else if (!club.published) f.push("BUSINESS: THE CLUB is unpublished");
       else if (!(club.recurrences || club.subscription_duration)) f.push("BUSINESS: CLUB NOT RECURRING - the membership is one-time ($7 once = everything forever). API cannot set recurrence (dashboard-only). OWNER ACTION: porit -> recurring $7/mo. Alarms hourly.");
       const dead = ps.filter((x) => x.published === false);
-      if (dead.length) f.push("BUSINESS: " + dead.length + " product(s) unpublished: " + dead.slice(0,3).map((x) => x.name).join(", ").slice(0, 80));
+      // retired clubs are intentional once the real recurring membership is
+      // live - they are history, not problems (2026-10-20 false-alarm fix)
+      const liveMembership = ps.some((x) => x.recurrences || x.subscription_duration);
+      const realDead = liveMembership ? dead.filter((x) => !/CLUB|draft shell/i.test(x.name || "")) : dead;
+      if (realDead.length) f.push("BUSINESS: " + realDead.length + " product(s) unpublished: " + realDead.slice(0,3).map((x) => x.name).join(", ").slice(0, 80));
       if (ps.length < 10) f.push("BUSINESS: only " + ps.length + " products on the shelf (was 10 - nothing is ever deleted)");
     } else f.push("BUSINESS: Gumroad store check failed (http " + gr.status + ")");
   } catch (e) {}
