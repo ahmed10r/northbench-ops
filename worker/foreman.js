@@ -645,7 +645,9 @@ async function deepAudit(env, ctx) {
       { headers: { Authorization: "Bearer " + env.GUMROAD_TOKEN } });
     if (gr.ok && gr.json && Array.isArray(gr.json.products)) {
       const ps = gr.json.products;
-      const club = ps.find((x) => /CLUB/i.test(x.name || ""));
+      const clubs = ps.filter((x) => /CLUB/i.test(x.name || ""));
+      // prefer a recurring club when any exists (the real membership)
+      const club = clubs.find((x) => x.recurrences || x.subscription_duration) || clubs[0];
       if (!club) f.push("BUSINESS: THE CLUB product missing from Gumroad");
       else if (!club.published) f.push("BUSINESS: THE CLUB is unpublished");
       else if (!(club.recurrences || club.subscription_duration)) f.push("BUSINESS: CLUB NOT RECURRING - the membership is one-time ($7 once = everything forever). API cannot set recurrence (dashboard-only). OWNER ACTION: porit -> recurring $7/mo. Alarms hourly.");
