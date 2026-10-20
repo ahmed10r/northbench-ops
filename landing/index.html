@@ -77,6 +77,9 @@ h2{font-size:clamp(24px,3.4vw,34px);margin:0 0 10px;font-weight:700}
 footer{padding:44px 0 60px;color:var(--mut);font-size:14px}
 footer .cols{display:flex;gap:40px;flex-wrap:wrap;justify-content:space-between;border-top:1.5px solid var(--line);padding-top:24px}
 footer b{color:var(--ink);letter-spacing:2px}
+.card.sq img{aspect-ratio:1/1}
+.new{position:relative}
+.new::after{content:"NEW THIS WEEK";position:absolute;top:10px;left:10px;background:#1d7a3e;color:#fff;font-size:10.5px;font-weight:700;letter-spacing:1px;padding:3px 8px;border-radius:4px}
 .code{display:inline-block;border:1.5px dashed var(--amber);color:var(--ink);font-weight:700;letter-spacing:1.5px;padding:4px 12px;border-radius:6px;margin-top:8px}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Northbench Studio","url":"https://northbenchshop.com","logo":"https://northbenchshop.com/assets/covers/club.png","sameAs":["https://www.reddit.com/user/northbenchweekly"]}</script>
@@ -88,14 +91,41 @@ footer b{color:var(--ink);letter-spacing:2px}
       <h1>NORTHBENCH</h1>
       <span class=tag>Made to keep</span>
     </div>
-    <p class=lede>Plain, durable files for people who work for themselves - and patient
-    stories worth the paper they would be printed on. No logins, free updates, 14-day refunds,
+    <p class=lede>Free weekly fiction worth the paper it would be printed on - and plain,
+    durable files for people who work for themselves. No logins, free updates, 14-day refunds,
     no rent on tools you already bought.</p>
     <div class=badges>
       <span>Files you keep</span><span>Free updates</span><span>14-day refunds</span><span>30% off with NORTHBENCH30</span>
     </div>
   </div>
 </header>
+<section id="stories">
+  <div class=wrap>
+    <p class=kicker>The stories - new every week</p>
+    <h2 class=serif>Free fiction, seriously kept</h2>
+    <p class=sub>Three series, a new chapter every single week, free forever.
+    The Club gets every chapter early - plus every product we make.</p>
+    <div class="grid">
+      <div class="card new sq"><img src=assets/covers/unsent.png alt="UNSENT">
+        <div class=body><div class=name>UNSENT</div>
+        <div class=one>A novel told entirely in emails that were never sent. Aunt Ada's 1989 drafts, read forty years late.</div>
+        <div class=row><span class="price free">Letters 1-6 free</span><a class=buy href="/series/">Read &rarr;</a></div></div></div>
+      <div class="card new sq"><img src=assets/covers/frequency.png alt="THE FREQUENCY">
+        <div class=body><div class=name>THE FREQUENCY</div>
+        <div class=one>A radio station that only broadcasts at 3:07 AM, never repeats a song, and takes requests for things people miss.</div>
+        <div class=row><span class="price free">Chapters 1-3 free</span><a class=buy href="/series/">Read &rarr;</a></div></div></div>
+      <div class="card sq"><img src=assets/covers/storyclub.png alt="THE STORY CLUB">
+        <div class=body><div class=name>THE STORY CLUB</div>
+        <div class=one>A new short story every week: lighthouse ledgers, second-hand shops, night shifts at the lost and found.</div>
+        <div class=row><span class="price free">Weeks 1-3 free</span><a class=buy href="/series/">Read &rarr;</a></div></div></div>
+      <div class="card sq" style="border:2.5px solid var(--ink)">
+        <img src=assets/covers/club.png alt="THE CLUB">
+        <div class=body><div class=name>THE CLUB</div>
+        <div class=one>Every chapter early, every product on the shelf, audio versions, the full archive.</div>
+        <div class=row><span class=price>$7/month</span><a class=buy href="/club/">Join &rarr;</a></div></div></div>
+    </div>
+  </div>
+</section>
 <section id="tools">
   <div class=wrap>
     <p class=kicker>The tools</p>
