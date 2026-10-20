@@ -89,8 +89,13 @@ async function grab(url, ms, opts) {
   const c = new AbortController();
   const t = setTimeout(() => c.abort(), ms || 12000);
   try {
-    const r = await fetch(url, Object.assign({ signal: c.signal,
-      headers: { "User-Agent": "nb-agent/1.0" } }, opts || {}));
+    // fix 2026-10-20: merge headers instead of replacing - GitHub 403s any
+    // request without a User-Agent (this broke repo check, dispatch_nightly,
+    // publish_note - every grab() call that passed its own Authorization).
+    const o = Object.assign({}, opts || {});
+    o.headers = Object.assign({ "User-Agent": "nb-agent/1.0" }, (opts && opts.headers) || {});
+    o.signal = c.signal;
+    const r = await fetch(url, o);
     return { ok: r.ok, status: r.status, json: await r.json().catch(() => null) };
   } catch (e) { return { ok: false, status: 0, json: null }; }
   finally { clearTimeout(t); }
@@ -692,10 +697,10 @@ async function deepAudit(env, ctx) {
       f.push("FLOW: no logged pass at all in 2h+ - the thinker may be silent while the body runs");
   } catch (e) {}
   // the storefront truth: are the Studio pages actually LIVE on the site?
-  for (const pg of ["club.html", "shelf.html", "drops/index.html"]) {
+  for (const pg of ["club/", "shelf/", "drops/", "series/"]) {
     const r = await grab("https://northbenchshop.com/" + pg, 8000);
-    if (r.ok && r.json && String(r.json).indexOf("Northbench") > -1) continue;
-    f.push("Studio page not live: /" + pg + " (http " + r.status + ") - needs nightly deploy");
+    if (r.ok) continue;
+    f.push("Studio page not live: /" + pg + " (http " + r.status + ")");
   }
   return f;
 }
