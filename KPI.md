@@ -1,13 +1,13 @@
 # NORTHBENCH KPI - nightly health + business metrics
 
-**Last run: 2026-10-19 23:20 UTC** - ATTENTION NEEDED
+**Last run: 2026-10-20 08:26 UTC** - ALL SYSTEMS GO
 
 | system | status | detail |
 |---|---|---|
-| courier | OK | http 200 in 1.02s |
-| vault | FAIL | HTTP Error 500: Internal Server Error |
+| courier | OK | http 200 in 2.14s |
+| vault | OK | 127 keys, index intact, 0.4s |
 | shop | OK | 18/18 listings answer |
-| site | OK | home 200, 97 pages in sitemap |
+| site | OK | home 200, 100 pages in sitemap |
 
 ## Business metrics (machine-fed daily)
 
@@ -15,20 +15,21 @@
 |---|---|
 | revenue to date | $0 |
 | sales to date | 0 |
-| site pageviews (yesterday) | n/a |
-| site->shop clicks (yesterday) | n/a |
-| top pages (yesterday) | n/a |
-| channel->product clicks | n/a |
+| site pageviews (yesterday) | 30 |
+| site->shop clicks (yesterday) | 1 |
+| top pages (yesterday) | /(30) |
+| channel->product clicks | money-os<-bluesky |
 | telegram members | 2 |
-| bluesky followers | 11 |
+| bluesky followers | 13 |
 | cycle due (the work queue) | none - all components cycled |
-| reddit replies today | n/a |
-| reddit karma | n/a |
+| reddit replies today | 0 |
+| reddit karma | 1 |
 
 Payout gate: $100 in sales revenue unlocks the 16 email workflows.
 
 ## History
 
+- 2026-10-20 08:26 UTC - OK (courier ok, vault ok, shop ok, site ok, revenue $0, sales 0, pv 30, tg 2)
 - 2026-10-19 23:20 UTC - **ATTENTION** (courier ok, vault FAIL, shop ok, site ok, revenue $0, sales 0, pv n/a, tg 2)
 - 2026-10-19 23:10 UTC - **ATTENTION** (courier ok, vault FAIL, shop ok, site ok, revenue $0, sales 0, pv n/a, tg 2)
 - 2026-10-19 23:04 UTC - **ATTENTION** (courier ok, vault FAIL, shop ok, site ok, revenue $0, sales 0, pv n/a, tg 2)
