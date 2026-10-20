@@ -37,6 +37,7 @@ for o in queue[:50]:
         k=o.get("kind"); now=time.strftime("%Y-%m-%d")
         if k=="wallpaper_set":
             seed=o.get("seed") or int(time.time()); n=o.get("count",3)
+            if os.path.exists(f"content/drops/{now}/wallpaper-{n}.svg"): print("skip: drop already built"); done.append(o); continue
             for i in range(n): git(f"content/drops/{now}/wallpaper-{i+1}.svg", wallpaper(o.get("name","set"),seed+i), f"builder: wallpaper {i+1}")
             print(f"built {n} wallpapers: {o.get('name')}")
         elif k=="story":
