@@ -1,26 +1,26 @@
 # NORTHBENCH KPI - nightly health + business metrics
 
-**Last run: 2026-10-20 08:26 UTC** - ALL SYSTEMS GO
+**Last run: 2026-10-21 08:29 UTC** - ALL SYSTEMS GO
 
 | system | status | detail |
 |---|---|---|
-| courier | OK | http 200 in 2.14s |
-| vault | OK | 127 keys, index intact, 0.4s |
+| courier | OK | http 200 in 4.41s |
+| vault | OK | 203 keys, index intact, 0.2s |
 | shop | OK | 18/18 listings answer |
-| site | OK | home 200, 100 pages in sitemap |
+| site | OK | home 200, 102 pages in sitemap |
 
 ## Business metrics (machine-fed daily)
 
 | metric | value |
 |---|---|
-| revenue to date | $0 |
-| sales to date | 0 |
-| site pageviews (yesterday) | 30 |
-| site->shop clicks (yesterday) | 1 |
-| top pages (yesterday) | /(30) |
-| channel->product clicks | money-os<-bluesky |
+| revenue to date | $0.0 |
+| sales to date | 3 |
+| site pageviews (yesterday) | 403 |
+| site->shop clicks (yesterday) | 223 |
+| top pages (yesterday) | /(140), /series(16), /club(13) |
+| channel->product clicks | launchkit<-home, freelance-os<-home, clientos<-home, proposals<-home |
 | telegram members | 2 |
-| bluesky followers | 13 |
+| bluesky followers | 14 |
 | cycle due (the work queue) | none - all components cycled |
 | reddit replies today | 0 |
 | reddit karma | 1 |
@@ -29,6 +29,7 @@ Payout gate: $100 in sales revenue unlocks the 16 email workflows.
 
 ## History
 
+- 2026-10-21 08:29 UTC - OK (courier ok, vault ok, shop ok, site ok, revenue $0.0, sales 3, pv 403, tg 2)
 - 2026-10-20 08:26 UTC - OK (courier ok, vault ok, shop ok, site ok, revenue $0, sales 0, pv 30, tg 2)
 - 2026-10-19 23:20 UTC - **ATTENTION** (courier ok, vault FAIL, shop ok, site ok, revenue $0, sales 0, pv n/a, tg 2)
 - 2026-10-19 23:10 UTC - **ATTENTION** (courier ok, vault FAIL, shop ok, site ok, revenue $0, sales 0, pv n/a, tg 2)
