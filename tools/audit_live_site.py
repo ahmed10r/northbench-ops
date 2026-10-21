@@ -40,11 +40,15 @@ def main():
             raise RuntimeError(f'sitemap HTTP/content-type mismatch: {status} {ctype}')
         root = ET.fromstring(raw)
         locs = [e.text for e in root.findall('sm:url/sm:loc', NS) if e.text]
-        base_host = urlsplit(base).netloc.lower()
-        routes = sorted({urlsplit(u).path or '/' for u in locs
-                         if urlsplit(u).netloc.lower() == base_host})
+        canonical_hosts = {urlsplit(u).netloc.lower() for u in locs}
+        if len(canonical_hosts) != 1:
+            raise RuntimeError(f'sitemap has unexpected canonical hosts: {sorted(canonical_hosts)}')
+        # The Worker hostname intentionally serves a sitemap whose locs point
+        # at the custom canonical domain. Reuse its paths against the requested
+        # base so the exact same route set can be checked on either hostname.
+        routes = sorted({urlsplit(u).path or '/' for u in locs})
         if not routes:
-            raise RuntimeError('sitemap contained no URLs for the requested host')
+            raise RuntimeError('sitemap contained no URLs')
     except Exception as exc:
         print(f'FAIL sitemap: {type(exc).__name__}: {exc}', file=sys.stderr)
         return 1
@@ -71,7 +75,7 @@ def main():
     nav_ok = sum(nav == 1 for _, _, nav, _, _ in results)
     links = sum(n for _, _, _, _, n in results)
     pages = sum(n > 0 for _, _, _, _, n in results)
-    print(f'sitemap: {status} {ctype}; routes={len(routes)}')
+    print(f'sitemap: {status} {ctype}; canonical={next(iter(canonical_hosts))}; routes={len(routes)}')
     print(f'pages: HTTP 200={http_ok}/{len(routes)}; primary nav exactly once={nav_ok}/{len(routes)}')
     print(f'direct Gumroad product links={links} across {pages} routes; CTA styles checked')
     for path, issues in failed:
