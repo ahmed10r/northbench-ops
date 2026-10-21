@@ -95,6 +95,23 @@ footer b{color:var(--ink);letter-spacing:2px}
 .code{display:inline-block;border:1.5px dashed var(--amber);color:var(--ink);font-weight:700;letter-spacing:1.5px;padding:4px 12px;border-radius:6px;margin-top:8px}
 """.strip()
 
+GLOBAL_NAV_CSS = """
+.nb-global-nav{position:sticky;top:0;z-index:99;background:rgba(12,12,14,.97);border-bottom:1px solid #302e28;backdrop-filter:blur(8px);font:14px/1.35 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#efece4}
+.nb-global-nav *{box-sizing:border-box}.nb-global-nav__inner{max-width:1200px;min-height:58px;margin:0 auto;padding:9px 22px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.nb-global-nav__brand{flex:0 0 auto;color:#efece4;text-decoration:none;border:0;font-weight:900;letter-spacing:2.3px;font-size:12px;white-space:nowrap}.nb-global-nav__brand span{color:#f5d90a}
+.nb-global-nav nav{display:flex;align-items:center;justify-content:flex-end;gap:clamp(8px,1.35vw,17px);flex-wrap:wrap}.nb-global-nav nav a{color:#c3bfb4;text-decoration:none;border:0;font-size:12px;font-weight:650;white-space:nowrap;transition:color .15s}.nb-global-nav nav a:hover,.nb-global-nav nav a:focus-visible{color:#f5d90a}
+.nb-global-nav nav .nb-global-nav__club{color:#111;background:#f5d90a;border-radius:7px;padding:8px 11px;font-weight:900}.nb-global-nav__club small{font-size:10px;font-weight:700;margin-left:3px}
+.nb-global-nav a:focus-visible{outline:3px solid #fff;outline-offset:3px}
+@media(max-width:800px){.nb-global-nav__inner{align-items:flex-start;flex-direction:column;gap:8px;padding:10px 16px}.nb-global-nav nav{justify-content:flex-start;gap:7px 13px}.nb-global-nav nav a{font-size:11.5px}}
+@media(max-width:430px){.nb-global-nav nav{gap:6px 10px}.nb-global-nav nav a{font-size:10.5px}}
+""".strip()
+
+GLOBAL_NAV_HTML = """<header class="nb-global-nav"><div class="nb-global-nav__inner">
+<a class="nb-global-nav__brand" href="/" aria-label="Northbench Studio home">NORTHBENCH <span>STUDIO</span></a>
+<nav aria-label="Primary navigation">
+<a href="/series/">Stories</a><a href="/#workbench">Workbench</a><a href="/calcs/">Free tools</a><a href="/shelf/">Shelf</a><a href="/guides/">Guides</a><a href="/q/">Answers</a><a href="/drops/">Drops</a><a href="/compare/">Compare</a><a href="/trust/">Trust</a><a class="nb-global-nav__club" href="/club/">THE CLUB <small>$7/mo</small></a>
+</nav></div></header>"""
+
 PROMISE = """
       <div><b>Files, not accounts</b><p>Everything you buy is a file you keep. Works
       offline, forever. If we vanish, your tools still work.</p></div>
@@ -152,10 +169,11 @@ def card(p):
 def section_grid(sec, products_by_slug):
     cards = "\n".join(card(products_by_slug[s]) for s in sec["slugs"])
     kicker = '<p class=kicker>%s</p>\n    ' % sec["kicker"] if sec.get("kicker") else ""
-    return ('<section%s>\n  <div class=wrap>\n    %s<h2 class=serif>%s</h2>\n'
+    anchor = '<span id="workbench"></span>' if sec.get("id") == "tools" else ""
+    return ('<section%s>\n  <div class=wrap>\n    %s%s<h2 class=serif>%s</h2>\n'
             '    <p class=sub>%s</p>\n    <div class=grid>\n%s\n    </div>\n  </div>\n</section>'
             % (' id="%s"' % sec["id"] if sec.get("id") else "",
-               kicker, h(sec["title"]), h(sec["sub"]), cards))
+               anchor, kicker, h(sec["title"]), h(sec["sub"]), cards))
 
 
 def build_index(data):
@@ -177,7 +195,7 @@ def build_index(data):
 <meta name=twitter:card content="summary">
 <meta name=twitter:image content="https://northbenchshop.com/avatar.png">
 <style>
-""" + CSS + """
+""" + CSS + GLOBAL_NAV_CSS + """
 </style>
 </head>
 <body>
@@ -335,7 +353,7 @@ def build_guides_index(data):
 <meta name=description content="Free, plain-words guides: pricing freelance work, proposals that get signed, cold email, habit trackers, household budgets, AI prompts, event planning, product launches. No email wall.">
 <link rel=canonical href="https://northbenchshop.com/guides/">
 <style>
-""" + GUIDE_CSS + """
+""" + GUIDE_CSS + GLOBAL_NAV_CSS + """
 </style>
 </head>
 <body>
@@ -387,6 +405,13 @@ def main():
         os.path.join(LANDING, "index.html"): build_index(data),
         os.path.join(LANDING, "guides", "index.html"): build_guides_index(data),
     }
+    # These two pages are regenerated every night; keep the site-wide nav in
+    # the generated output so automation cannot silently remove it.
+    for path in (os.path.join(LANDING, "index.html"),
+                 os.path.join(LANDING, "guides", "index.html")):
+        outputs[path] = outputs[path].replace(
+            "</head>\n<body>\n",
+            "</head>\n<body>\n" + GLOBAL_NAV_HTML + "\n", 1)
     smap, n = build_sitemap(data)
     outputs[os.path.join(LANDING, "sitemap.xml")] = smap
 
