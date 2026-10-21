@@ -28,7 +28,7 @@ a{color:var(--ink);text-decoration:none}
 .bar .in{max-width:1060px;margin:0 auto;padding:13px 22px;display:flex;justify-content:space-between;align-items:center}
 .bar .wordmark{font-weight:900;letter-spacing:4px;font-size:14px}
 .bar .wordmark b{color:var(--gold)}
-.bar nav{display:flex;gap:22px;font-size:13.5px;font-weight:600}
+.bar nav{display:flex;gap:clamp(8px,1.2vw,16px);font-size:12px;font-weight:650;flex-wrap:wrap;justify-content:flex-end}
 .bar nav a{color:var(--mut)}
 .bar nav a:hover{color:var(--gold)}
 .bar nav .clublink{color:var(--gold)}
@@ -97,12 +97,13 @@ footer b{color:var(--ink);letter-spacing:2px}
 footer a{color:var(--mut)}
 footer a:hover{color:var(--gold)}
 .machineline{text-align:center;margin:30px 0 0;font-size:13px;color:#6d6a63}
+@media(max-width:800px){.bar .in{align-items:flex-start;gap:10px;flex-direction:column}.bar nav{justify-content:flex-start;gap:8px 13px;font-size:11.5px}}
 </style>
 </head>
 <body>
 <div class=bar><div class=in>
   <span class="wordmark serif">NORTH<b>BENCH</b> STUDIO</span>
-  <nav><a href=#series>The series</a><a href=#workbench>Tools</a><a href=/trust/>Trust</a><a href=/compare/>Compare</a><a class=clublink href=/club/>THE CLUB - $7/mo</a></nav>
+  <nav aria-label="Primary navigation"><a href="/series/">Stories</a><a href="/#workbench">Workbench</a><a href="/calcs/">Free tools</a><a href="/shelf/">Shelf</a><a href="/guides/">Guides</a><a href="/q/">Answers</a><a href="/drops/">Drops</a><a href="/compare/">Compare</a><a href="/trust/">Trust</a><a class=clublink href="/club/">THE CLUB - $7/mo</a></nav>
 </div></div>
 
 <header class=hero>
@@ -123,7 +124,7 @@ footer a:hover{color:var(--gold)}
     <div class=log>
       <div class=head><h3>Tonight at the studio</h3><span class=date>2026-10-20 - live from the machine's log</span></div>
       <table>
-        <tr><td class=t>23:12</td><td><span class=what>Story Club - Week Three: "The Night Shift at the Lost and Found"</span><br><span class=note>Clara, 4,118 umbrellas, and the fourth field that isn't printed.</span> <a class="gumroad-button" href="https://northbenchshop.gumroad.com/l/story-club-week-3" style="color:var(--gold)">read free</a></td></tr>
+        <tr><td class=t>23:12</td><td><span class=what>Story Club - Week Three: "The Night Shift at the Lost and Found"</span><br><span class=note>Clara, 4,118 umbrellas, and the fourth field that isn't printed.</span> <a class="nb-gumroad-link" href="https://northbenchshop.gumroad.com/l/story-club-week-3" style="color:var(--gold)">read free</a></td></tr>
         <tr><td class=t>23:15</td><td><span class=what>UNSENT - Letters Four to Six</span><br><span class=note>Ada finally writes. The fig tree finally fell.</span> <a href=https://northbenchshop.gumroad.com/l/unsent-letter-4 style="color:var(--gold)">read free</a></td></tr>
         <tr><td class=t>23:18</td><td><span class=what>THE FREQUENCY - Chapter Three: "The Request Line"</span><br><span class=note>The station does not take requests. It grants them.</span> <a href=https://northbenchshop.gumroad.com/l/frequency-chapter-3 style="color:var(--gold)">read free</a></td></tr>
         <tr><td class=t>12:00</td><td><span class=what>Drop day - four new wallpapers</span><br><span class=note>Deep Field series, 1600&times;900.</span> <a href=/drops/ style="color:var(--gold)">see the drop</a></td></tr>
@@ -215,7 +216,7 @@ footer a:hover{color:var(--gold)}
   <div class=wrap>
     <h3 class=serif>One membership. Everything we make.</h3>
     <p>$7 a month - less than one coffee - and the whole studio is yours.</p>
-    <a class="btn gumroad-button" href="https://northbenchshop.gumroad.com/l/club">JOIN THE CLUB &rarr;</a>
+    <a class="btn gold nb-gumroad-buy" href="https://northbenchshop.gumroad.com/l/club">JOIN THE CLUB &rarr;</a>
   </div>
 </div>
 
