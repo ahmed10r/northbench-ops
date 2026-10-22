@@ -57,9 +57,9 @@ for o in queue[:50]:
         elif k=="page":
             git(o["path"], o["content"], "builder: page "+o["path"])
         elif k=="gumroad_product":
-            body=urllib.parse.urlencode({"name":o["name"],"description":o.get("description",""),"price":int(o.get("price",7)*100)}).encode()
-            r=urllib.request.urlopen(urllib.request.Request("https://api.gumroad.com/v2/products",data=body,headers={"Authorization":"Bearer "+os.environ["GUMROAD_TOKEN"]},method="POST"),timeout=30)
-            print("gumroad product created:", json.load(r).get("product",{}).get("id"))
+            # Hard owner guard: no new offers or Gumroad product creation.
+            # Remove the rejected order from the queue without making an API call.
+            print("blocked: owner no-new-offers rule; no Gumroad API request made")
         elif k=="push":
             subprocess.run(["git","push"],check=True); print("pushed")
             continue
