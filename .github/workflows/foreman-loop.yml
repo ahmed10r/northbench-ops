@@ -16,7 +16,6 @@ jobs:
           CF_ACCOUNT: ${{ secrets.CF_ACCOUNT }}
           CF_TOKEN: ${{ secrets.CF_TOKEN }}
           CF_VIEWS_KV: ${{ secrets.CF_VIEWS_KV }}
-          GUMROAD_TOKEN: ${{ secrets.GUMROAD_TOKEN }}
         run: python tools/builder.py || true
       - name: hourly owner report
         env:
