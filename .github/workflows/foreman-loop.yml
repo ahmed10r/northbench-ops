@@ -5,6 +5,10 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
+# Serialize scheduled and watchdog-dispatched runs against shared state.
+concurrency:
+  group: foreman-loop-main
+  cancel-in-progress: false
 jobs:
   beat:
     runs-on: ubuntu-latest
