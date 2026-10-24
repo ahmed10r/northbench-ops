@@ -4,6 +4,7 @@ on:
     - cron: "*/5 * * * *"
   workflow_dispatch:
 permissions:
+  actions: read
   contents: write
 # Serialize scheduled and watchdog-dispatched runs against shared state.
 concurrency:
@@ -15,13 +16,20 @@ jobs:
     timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
+      - name: suppress duplicate fallback dispatches
+        id: dedupe
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python tools/dispatch_guard.py
       - name: build whatever the CEO ordered
+        if: steps.dedupe.outputs.run == 'true'
         env:
           CF_ACCOUNT: ${{ secrets.CF_ACCOUNT }}
           CF_TOKEN: ${{ secrets.CF_TOKEN }}
           CF_VIEWS_KV: ${{ secrets.CF_VIEWS_KV }}
         run: python tools/builder.py || true
       - name: hourly owner report
+        if: steps.dedupe.outputs.run == 'true'
         env:
           CF_ACCOUNT: ${{ secrets.CF_ACCOUNT }}
           CF_TOKEN: ${{ secrets.CF_TOKEN }}
@@ -31,6 +39,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python tools/hourly.py || true
       - name: wake the CEO (patrol)
+        if: steps.dedupe.outputs.run == 'true'
         env:
           FOREMAN_KEY: ${{ secrets.FOREMAN_KEY }}
         run: |
