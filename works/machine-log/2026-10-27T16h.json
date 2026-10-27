@@ -1,0 +1,1 @@
+{"at":"2026-10-27T16:15:17.221Z","desk":"foreman","source":"cron","assessment":null,"actions":[],"orders":[],"decisions":[],"needs_hands":[],"digest":null,"reddit":null,"audit":null,"twin2":null,"chief":null,"analyzer":null,"upgrader":null,"creative":null,"raw":"Workers AI daily cap reached during fallback; no further call was made.","failureKind":"daily_cap"}
