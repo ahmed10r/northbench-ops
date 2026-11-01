@@ -1,11 +1,11 @@
 # NORTHBENCH KPI - nightly health + business metrics
 
-**Last run: 2026-10-31 09:32 UTC** - ALL SYSTEMS GO
+**Last run: 2026-11-01 10:22 UTC** - ALL SYSTEMS GO
 
 | system | status | detail |
 |---|---|---|
-| courier | OK | http 200 in 1.56s |
-| vault | OK | 245 keys, index intact, 0.24s |
+| courier | OK | http 200 in 1.6s |
+| vault | OK | 245 keys, index intact, 0.26s |
 | shop | OK | 18/18 listings answer |
 | site | OK | home 200, 103 pages in sitemap |
 
@@ -15,21 +15,29 @@
 |---|---|
 | revenue to date | $0.0 |
 | sales to date | 3 |
-| site pageviews (yesterday) | 120 |
-| site->shop clicks (yesterday) | 22 |
-| top pages (yesterday) | /(56), /series(16), /free/prompt-sampler(16) |
-| channel->product clicks | listinglab<-bsky, moneymap<-direct, listinglab<-x, contentengine<-bluesky |
+| site pageviews (yesterday) | 168 |
+| site->shop clicks (yesterday) | 98 |
+| top pages (yesterday) | /(96), /club(16), /q/raise-freelance-rates(16) |
+| channel->product clicks | moneymap<-bsky, wholeshelf<-site, freelance-os<-site, tutoros<-site |
 | telegram members | 2 |
-| bluesky followers | 18 |
+| bluesky followers | 19 |
 | cycle due (the work queue) | gumroad-listings, site-homepage, site-guides, site-analytics, reddit-engine, reddit-account, bluesky, x-buffer, telegram, courier, nightly-kpi, laptop-bridge, ops-repo, site-auto-builder, kpi-report, ledger, control-center, review-packages, foreman |
 | reddit replies today | 0 |
 | reddit karma | 1 |
 
 Payout gate: $100 in sales revenue unlocks the 16 email workflows.
 
+## Week in numbers (auto, Sundays)
+
+- pageviews, 7 days: 1480
+- site->shop clicks, 7 days: 0
+- revenue to date: $0.0
+- sales to date: 3
+- telegram members: 2
+
 ## History
 
-- 2026-10-31 09:32 UTC - OK (courier ok, vault ok, shop ok, site ok, revenue $0.0, sales 3, pv 120, tg 2)
+- 2026-11-01 10:22 UTC - OK (courier ok, vault ok, shop ok, site ok, revenue $0.0, sales 3, pv 168, tg 2)
 - site->shop clicks, 7 days: 0
 - revenue to date: $0.0
 - sales to date: 3
@@ -59,3 +67,4 @@ Payout gate: $100 in sales revenue unlocks the 16 email workflows.
 - 2026-10-15 02:54 UTC - OK (courier ok, vault ok, shop ok)
 - 2026-10-15 02:53 UTC - **ATTENTION** (courier ok, vault ok, shop FAIL)
 - WEEK 2026-10-25 | rev=0.0 | pv7=1603 | go7=0 | tg=2
+- WEEK 2026-11-01 | rev=0.0 | pv7=1480 | go7=0 | tg=2
