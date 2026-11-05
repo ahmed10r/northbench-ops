@@ -1,13 +1,13 @@
 # NORTHBENCH KPI - nightly health + business metrics
 
-**Last run: 2026-11-03 10:45 UTC** - ALL SYSTEMS GO
+**Last run: 2026-11-05 10:45 UTC** - ALL SYSTEMS GO
 
 | system | status | detail |
 |---|---|---|
-| courier | OK | http 200 in 3.98s |
-| vault | OK | 245 keys, index intact, 0.27s |
+| courier | OK | http 200 in 1.76s |
+| vault | OK | 245 keys, index intact, 0.3s |
 | shop | OK | 18/18 listings answer |
-| site | OK | home 200, 103 pages in sitemap |
+| site | OK | home 200, 115 pages in sitemap |
 
 ## Business metrics (machine-fed daily)
 
@@ -15,10 +15,10 @@
 |---|---|
 | revenue to date | $0.0 |
 | sales to date | 3 |
-| site pageviews (yesterday) | 424 |
-| site->shop clicks (yesterday) | 36 |
-| top pages (yesterday) | /(152), /series(56), /shelf(40) |
-| channel->product clicks | money-os<-bsky, habitledger<-x, launchkit<-x, launchkit<-bluesky |
+| site pageviews (yesterday) | 840 |
+| site->shop clicks (yesterday) | 28 |
+| top pages (yesterday) | /(224), /drops(96), /club(88) |
+| channel->product clicks | story-club-week-6<-bsky, contentengine<-bsky, proposals<-x, launchkit<-bluesky |
 | telegram members | 2 |
 | bluesky followers | 20 |
 | cycle due (the work queue) | gumroad-listings, site-homepage, site-guides, site-analytics, reddit-engine, reddit-account, bluesky, x-buffer, telegram, courier, nightly-kpi, laptop-bridge, ops-repo, site-auto-builder, kpi-report, ledger, control-center, review-packages, foreman |
@@ -29,7 +29,7 @@ Payout gate: $100 in sales revenue unlocks the 16 email workflows.
 
 ## History
 
-- 2026-11-03 10:45 UTC - OK (courier ok, vault ok, shop ok, site ok, revenue $0.0, sales 3, pv 424, tg 2)
+- 2026-11-05 10:45 UTC - OK (courier ok, vault ok, shop ok, site ok, revenue $0.0, sales 3, pv 840, tg 2)
 - revenue to date: $0.0
 - sales to date: 3
 - telegram members: 2
