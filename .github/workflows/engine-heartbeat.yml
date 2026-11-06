@@ -1,0 +1,40 @@
+name: engine heartbeat
+
+# Redundancy for the department engine's own schedule.
+#
+# Measured 2026-11-06: the engine repo's "20 */6 * * *" fired once at 20:06 UTC (about 1h46m
+# late) and dropped the 00:20 run entirely. GitHub scheduled workflows are best-effort and are
+# delayed or skipped under load. This repo's cron has proven reliable, so it dispatches the
+# engine explicitly. workflow_dispatch is not subject to schedule dropping.
+#
+# Offset to :35 so the two triggers do not collide; the engine's concurrency group serialises
+# them, and a duplicate run is cheap and harmless.
+
+on:
+  schedule:
+    - cron: "35 */6 * * *"
+  workflow_dispatch: {}
+
+permissions: {}
+
+concurrency:
+  group: engine-heartbeat
+  cancel-in-progress: false
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: wake the department engine
+        env:
+          NB_ENGINE_TOKEN: ${{ secrets.NB_ENGINE_TOKEN }}
+        run: |
+          code=$(curl -sS -o /tmp/r.txt -w '%{http_code}' -X POST \
+            -H "Authorization: Bearer $NB_ENGINE_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            -A "nb-heartbeat/1.0" \
+            https://api.github.com/repos/ahmed10r/northbench-engine/actions/workflows/departments.yml/dispatches \
+            -d '{"ref":"main"}')
+          echo "dispatch HTTP $code"
+          if [ "$code" != "204" ]; then cat /tmp/r.txt; exit 1; fi
