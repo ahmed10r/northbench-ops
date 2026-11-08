@@ -1,11 +1,11 @@
 # NORTHBENCH KPI - nightly health + business metrics
 
-**Last run: 2026-11-07 09:58 UTC** - ALL SYSTEMS GO
+**Last run: 2026-11-08 10:11 UTC** - ALL SYSTEMS GO
 
 | system | status | detail |
 |---|---|---|
-| courier | OK | http 200 in 0.58s |
-| vault | OK | 249 keys, index intact, 0.36s |
+| courier | OK | http 200 in 0.56s |
+| vault | OK | 249 keys, index intact, 0.33s |
 | shop | OK | 18/18 listings answer |
 | site | OK | home 200, 115 pages in sitemap |
 
@@ -15,21 +15,29 @@
 |---|---|
 | revenue to date | $0.0 |
 | sales to date | 3 |
-| site pageviews (yesterday) | 520 |
-| site->shop clicks (yesterday) | 4 |
-| top pages (yesterday) | /(112), /free/prompt-sampler(72), /shelf(64) |
-| channel->product clicks | jobhunt<-bsky |
+| site pageviews (yesterday) | 80 |
+| site->shop clicks (yesterday) | 9 |
+| top pages (yesterday) | /(56), /calcs/payout-after-fees(8), /calcs/bundle-price(8) |
+| channel->product clicks | launchkit<-bsky, contentengine<-bsky, moneymap<-bsky, jobhunt<-bsky |
 | telegram members | 2 |
-| bluesky followers | 22 |
+| bluesky followers | 23 |
 | cycle due (the work queue) | gumroad-listings, site-homepage, site-guides, site-analytics, reddit-engine, reddit-account, bluesky, x-buffer, telegram, courier, nightly-kpi, laptop-bridge, ops-repo, site-auto-builder, kpi-report, ledger, control-center, review-packages, foreman |
 | reddit replies today | 0 |
 | reddit karma | 1 |
 
 Payout gate: $100 in sales revenue unlocks the 16 email workflows.
 
+## Week in numbers (auto, Sundays)
+
+- pageviews, 7 days: 2712
+- site->shop clicks, 7 days: 0
+- revenue to date: $0.0
+- sales to date: 3
+- telegram members: 2
+
 ## History
 
-- 2026-11-07 09:58 UTC - OK (courier ok, vault ok, shop ok, site ok, revenue $0.0, sales 3, pv 520, tg 2)
+- 2026-11-08 10:11 UTC - OK (courier ok, vault ok, shop ok, site ok, revenue $0.0, sales 3, pv 80, tg 2)
 - revenue to date: $0.0
 - sales to date: 3
 - telegram members: 2
@@ -59,3 +67,4 @@ Payout gate: $100 in sales revenue unlocks the 16 email workflows.
 - 2026-10-15 02:53 UTC - **ATTENTION** (courier ok, vault ok, shop FAIL)
 - WEEK 2026-10-25 | rev=0.0 | pv7=1603 | go7=0 | tg=2
 - WEEK 2026-11-01 | rev=0.0 | pv7=1480 | go7=0 | tg=2
+- WEEK 2026-11-08 | rev=0.0 | pv7=2712 | go7=0 | tg=2
