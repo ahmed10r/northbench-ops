@@ -1,13 +1,13 @@
 # NORTHBENCH KPI - nightly health + business metrics
 
-**Last run: 2026-11-09 11:23 UTC** - ALL SYSTEMS GO
+**Last run: 2026-11-10 11:02 UTC** - ALL SYSTEMS GO
 
 | system | status | detail |
 |---|---|---|
-| courier | OK | http 200 in 0.63s |
-| vault | OK | 249 keys, index intact, 0.4s |
+| courier | OK | http 200 in 0.46s |
+| vault | OK | 249 keys, index intact, 0.23s |
 | shop | OK | 18/18 listings answer |
-| site | OK | home 200, 115 pages in sitemap |
+| site | OK | home 200, 124 pages in sitemap |
 
 ## Business metrics (machine-fed daily)
 
@@ -15,10 +15,10 @@
 |---|---|
 | revenue to date | $0.0 |
 | sales to date | 3 |
-| site pageviews (yesterday) | 112 |
-| site->shop clicks (yesterday) | 10 |
-| top pages (yesterday) | /(64), /calcs/project-quote(16), /calcs/freelance-rate(16) |
-| channel->product clicks | wholeshelf<-bsky, story-club-week-4<-bsky, wholeshelf<-site, the-wrong-bride-ch2<-series |
+| site pageviews (yesterday) | 88 |
+| site->shop clicks (yesterday) | 5 |
+| top pages (yesterday) | /(64), /calcs/payout-after-fees(8), /free/calc-pack(8) |
+| channel->product clicks | clientos<-bsky, proposals<-site, money-os<-bsky |
 | telegram members | 2 |
 | bluesky followers | 23 |
 | cycle due (the work queue) | gumroad-listings, site-homepage, site-guides, site-analytics, reddit-engine, reddit-account, bluesky, x-buffer, telegram, courier, nightly-kpi, laptop-bridge, ops-repo, site-auto-builder, kpi-report, ledger, control-center, review-packages, foreman |
@@ -29,7 +29,7 @@ Payout gate: $100 in sales revenue unlocks the 16 email workflows.
 
 ## History
 
-- 2026-11-09 11:23 UTC - OK (courier ok, vault ok, shop ok, site ok, revenue $0.0, sales 3, pv 112, tg 2)
+- 2026-11-10 11:02 UTC - OK (courier ok, vault ok, shop ok, site ok, revenue $0.0, sales 3, pv 88, tg 2)
 - sales to date: 3
 - telegram members: 2
 - 2026-10-25 08:20 UTC - OK (courier ok, vault ok, shop ok, site ok, revenue $0.0, sales 3, pv 208, tg 2)
