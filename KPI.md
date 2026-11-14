@@ -1,11 +1,11 @@
 # NORTHBENCH KPI - nightly health + business metrics
 
-**Last run: 2026-11-13 10:51 UTC** - ALL SYSTEMS GO
+**Last run: 2026-11-14 10:14 UTC** - ALL SYSTEMS GO
 
 | system | status | detail |
 |---|---|---|
-| courier | OK | http 200 in 0.52s |
-| vault | OK | 249 keys, index intact, 0.42s |
+| courier | OK | http 200 in 0.62s |
+| vault | OK | 249 keys, index intact, 0.37s |
 | shop | OK | 18/18 listings answer |
 | site | OK | home 200, 124 pages in sitemap |
 
@@ -15,13 +15,13 @@
 |---|---|
 | revenue to date | $0.0 |
 | sales to date | 3 |
-| site pageviews (yesterday) | 48 |
+| site pageviews (yesterday) | 152 |
 | site->shop clicks (yesterday) | 0 |
-| top pages (yesterday) | /(16), /u(8), /terms(8) |
+| top pages (yesterday) | /(48), /worlds/wrong-bride(32), /u(16) |
 | channel->product clicks | n/a |
 | telegram members | 2 |
 | bluesky followers | 25 |
-| cycle due (the work queue) | gumroad-listings, product-covers, product-files, pricing, site-homepage, site-guides, site-analytics, reddit-engine, reddit-account, bluesky, x-buffer, telegram, email-workflows, courier, nightly-kpi, laptop-bridge, ops-repo, site-auto-builder, kpi-report, ledger, control-center, review-packages, foreman |
+| cycle due (the work queue) | gumroad-listings, product-covers, product-files, pricing, site-homepage, site-guides, site-answers, site-free-pages, site-calcs, site-analytics, reddit-engine, reddit-account, bluesky, x-buffer, telegram, email-workflows, courier, nightly-kpi, laptop-bridge, ops-repo, site-auto-builder, kpi-report, ledger, control-center, review-packages, foreman |
 | reddit replies today | 0 |
 | reddit karma | 1 |
 
@@ -29,7 +29,7 @@ Payout gate: $100 in sales revenue unlocks the 16 email workflows.
 
 ## History
 
-- 2026-11-13 10:51 UTC - OK (courier ok, vault ok, shop ok, site ok, revenue $0.0, sales 3, pv 48, tg 2)
+- 2026-11-14 10:14 UTC - OK (courier ok, vault ok, shop ok, site ok, revenue $0.0, sales 3, pv 152, tg 2)
 - sales to date: 3
 - telegram members: 2
 - 2026-10-25 08:20 UTC - OK (courier ok, vault ok, shop ok, site ok, revenue $0.0, sales 3, pv 208, tg 2)
