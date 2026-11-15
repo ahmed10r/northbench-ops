@@ -1,11 +1,11 @@
 # NORTHBENCH KPI - nightly health + business metrics
 
-**Last run: 2026-11-14 10:14 UTC** - ALL SYSTEMS GO
+**Last run: 2026-11-15 10:44 UTC** - ALL SYSTEMS GO
 
 | system | status | detail |
 |---|---|---|
-| courier | OK | http 200 in 0.62s |
-| vault | OK | 249 keys, index intact, 0.37s |
+| courier | OK | http 200 in 0.7s |
+| vault | OK | 249 keys, index intact, 0.32s |
 | shop | OK | 18/18 listings answer |
 | site | OK | home 200, 124 pages in sitemap |
 
@@ -15,9 +15,9 @@
 |---|---|
 | revenue to date | $0.0 |
 | sales to date | 3 |
-| site pageviews (yesterday) | 152 |
+| site pageviews (yesterday) | 48 |
 | site->shop clicks (yesterday) | 0 |
-| top pages (yesterday) | /(48), /worlds/wrong-bride(32), /u(16) |
+| top pages (yesterday) | /(32), /refund(8), /trust(8) |
 | channel->product clicks | n/a |
 | telegram members | 2 |
 | bluesky followers | 25 |
@@ -27,9 +27,17 @@
 
 Payout gate: $100 in sales revenue unlocks the 16 email workflows.
 
+## Week in numbers (auto, Sundays)
+
+- pageviews, 7 days: 616
+- site->shop clicks, 7 days: 0
+- revenue to date: $0.0
+- sales to date: 3
+- telegram members: 2
+
 ## History
 
-- 2026-11-14 10:14 UTC - OK (courier ok, vault ok, shop ok, site ok, revenue $0.0, sales 3, pv 152, tg 2)
+- 2026-11-15 10:44 UTC - OK (courier ok, vault ok, shop ok, site ok, revenue $0.0, sales 3, pv 48, tg 2)
 - sales to date: 3
 - telegram members: 2
 - 2026-10-25 08:20 UTC - OK (courier ok, vault ok, shop ok, site ok, revenue $0.0, sales 3, pv 208, tg 2)
@@ -59,3 +67,4 @@ Payout gate: $100 in sales revenue unlocks the 16 email workflows.
 - WEEK 2026-10-25 | rev=0.0 | pv7=1603 | go7=0 | tg=2
 - WEEK 2026-11-01 | rev=0.0 | pv7=1480 | go7=0 | tg=2
 - WEEK 2026-11-08 | rev=0.0 | pv7=2712 | go7=0 | tg=2
+- WEEK 2026-11-15 | rev=0.0 | pv7=616 | go7=0 | tg=2
