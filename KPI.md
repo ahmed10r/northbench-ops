@@ -1,11 +1,11 @@
 # NORTHBENCH KPI - nightly health + business metrics
 
-**Last run: 2026-11-17 11:44 UTC** - ALL SYSTEMS GO
+**Last run: 2026-11-18 11:31 UTC** - ALL SYSTEMS GO
 
 | system | status | detail |
 |---|---|---|
-| courier | OK | http 200 in 0.63s |
-| vault | OK | 249 keys, index intact, 0.35s |
+| courier | OK | http 200 in 0.55s |
+| vault | OK | 249 keys, index intact, 0.28s |
 | shop | OK | 18/18 listings answer |
 | site | OK | home 200, 124 pages in sitemap |
 
@@ -15,12 +15,12 @@
 |---|---|
 | revenue to date | $0.0 |
 | sales to date | 3 |
-| site pageviews (yesterday) | 120 |
+| site pageviews (yesterday) | 40 |
 | site->shop clicks (yesterday) | 0 |
-| top pages (yesterday) | /(32), /worlds/orbital(16), /checkout(16) |
+| top pages (yesterday) | /(16), /worlds/orbital(8), /support(8) |
 | channel->product clicks | n/a |
 | telegram members | 2 |
-| bluesky followers | 26 |
+| bluesky followers | 27 |
 | cycle due (the work queue) | gumroad-listings, product-covers, product-files, pricing, site-homepage, site-guides, site-answers, site-free-pages, site-calcs, site-seo, site-analytics, reddit-engine, reddit-account, bluesky, x-buffer, telegram, pinterest, email-workflows, family-visuals, family-fiction, family-knowledge, family-audio, family-gaming, food-calendar, competitor-research, courier, nightly-kpi, vault, laptop-bridge, ops-repo, site-auto-builder, kpi-report, ledger, control-center, review-packages, business-charter, foreman |
 | reddit replies today | 0 |
 | reddit karma | 1 |
@@ -29,7 +29,7 @@ Payout gate: $100 in sales revenue unlocks the 16 email workflows.
 
 ## History
 
-- 2026-11-17 11:44 UTC - OK (courier ok, vault ok, shop ok, site ok, revenue $0.0, sales 3, pv 120, tg 2)
+- 2026-11-18 11:31 UTC - OK (courier ok, vault ok, shop ok, site ok, revenue $0.0, sales 3, pv 40, tg 2)
 - telegram members: 2
 - 2026-10-25 08:20 UTC - OK (courier ok, vault ok, shop ok, site ok, revenue $0.0, sales 3, pv 208, tg 2)
 - 2026-10-24 08:02 UTC - OK (courier ok, vault ok, shop ok, site ok, revenue $0.0, sales 3, pv 136, tg 2)
