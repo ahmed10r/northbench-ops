@@ -1,11 +1,11 @@
 # NORTHBENCH KPI - nightly health + business metrics
 
-**Last run: 2026-11-18 11:31 UTC** - ALL SYSTEMS GO
+**Last run: 2026-11-19 11:30 UTC** - ALL SYSTEMS GO
 
 | system | status | detail |
 |---|---|---|
-| courier | OK | http 200 in 0.55s |
-| vault | OK | 249 keys, index intact, 0.28s |
+| courier | OK | http 200 in 0.66s |
+| vault | OK | 249 keys, index intact, 0.41s |
 | shop | OK | 18/18 listings answer |
 | site | OK | home 200, 124 pages in sitemap |
 
@@ -15,9 +15,9 @@
 |---|---|
 | revenue to date | $0.0 |
 | sales to date | 3 |
-| site pageviews (yesterday) | 40 |
+| site pageviews (yesterday) | 32 |
 | site->shop clicks (yesterday) | 0 |
-| top pages (yesterday) | /(16), /worlds/orbital(8), /support(8) |
+| top pages (yesterday) | /(32) |
 | channel->product clicks | n/a |
 | telegram members | 2 |
 | bluesky followers | 27 |
@@ -29,7 +29,7 @@ Payout gate: $100 in sales revenue unlocks the 16 email workflows.
 
 ## History
 
-- 2026-11-18 11:31 UTC - OK (courier ok, vault ok, shop ok, site ok, revenue $0.0, sales 3, pv 40, tg 2)
+- 2026-11-19 11:30 UTC - OK (courier ok, vault ok, shop ok, site ok, revenue $0.0, sales 3, pv 32, tg 2)
 - telegram members: 2
 - 2026-10-25 08:20 UTC - OK (courier ok, vault ok, shop ok, site ok, revenue $0.0, sales 3, pv 208, tg 2)
 - 2026-10-24 08:02 UTC - OK (courier ok, vault ok, shop ok, site ok, revenue $0.0, sales 3, pv 136, tg 2)
