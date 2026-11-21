@@ -1,11 +1,11 @@
 # NORTHBENCH KPI - nightly health + business metrics
 
-**Last run: 2026-11-21 01:01 UTC** - ATTENTION NEEDED
+**Last run: 2026-11-21 10:54 UTC** - ATTENTION NEEDED
 
 | system | status | detail |
 |---|---|---|
-| courier | OK | http 200 in 0.69s |
-| vault | OK | 249 keys, index intact, 0.24s |
+| courier | OK | http 200 in 0.5s |
+| vault | OK | 249 keys, index intact, 0.23s |
 | shop | OK | 18/18 listings answer |
 | site | FAIL | home 200, 0 pages in sitemap |
 
@@ -29,7 +29,7 @@ Payout gate: $100 in sales revenue unlocks the 16 email workflows.
 
 ## History
 
-- 2026-11-21 01:01 UTC - **ATTENTION** (courier ok, vault ok, shop ok, site FAIL, revenue $0.0, sales 3, pv n/a, tg 2)
+- 2026-11-21 10:54 UTC - **ATTENTION** (courier ok, vault ok, shop ok, site FAIL, revenue $0.0, sales 3, pv n/a, tg 2)
 - telegram members: 2
 - 2026-10-25 08:20 UTC - OK (courier ok, vault ok, shop ok, site ok, revenue $0.0, sales 3, pv 208, tg 2)
 - 2026-10-24 08:02 UTC - OK (courier ok, vault ok, shop ok, site ok, revenue $0.0, sales 3, pv 136, tg 2)
